@@ -49,6 +49,10 @@ class Ui_stockWidget(object):
         self.top.setStyleSheet(u"QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{\n"
 "background-color: #13141F;\n"
 "color: white;\n"
+"font:bold;\n"
+"font-size: 22px;\n"
+"qproperty-alignment: AlignCenter;\n"
+"border-radius: 8px;\n"
 "}\n"
 "\n"
 "")
@@ -73,12 +77,13 @@ class Ui_stockWidget(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label_2 = QLabel(self.cardStock)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setFont(font)
 
         self.verticalLayout_3.addWidget(self.label_2)
 
         self.textTotalStock = QLabel(self.cardStock)
         self.textTotalStock.setObjectName(u"textTotalStock")
-        self.textTotalStock.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.textTotalStock.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.textTotalStock)
 
@@ -92,12 +97,13 @@ class Ui_stockWidget(object):
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.totalProduct = QLabel(self.cardProduct)
         self.totalProduct.setObjectName(u"totalProduct")
+        self.totalProduct.setFont(font)
 
         self.verticalLayout_8.addWidget(self.totalProduct)
 
         self.textTotalProduct = QLabel(self.cardProduct)
         self.textTotalProduct.setObjectName(u"textTotalProduct")
-        self.textTotalProduct.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.textTotalProduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_8.addWidget(self.textTotalProduct)
 
@@ -111,12 +117,13 @@ class Ui_stockWidget(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.totalBondeEntree = QLabel(self.cardBondeEntree)
         self.totalBondeEntree.setObjectName(u"totalBondeEntree")
+        self.totalBondeEntree.setFont(font)
 
         self.verticalLayout_9.addWidget(self.totalBondeEntree)
 
         self.textTotalBondeEntree = QLabel(self.cardBondeEntree)
         self.textTotalBondeEntree.setObjectName(u"textTotalBondeEntree")
-        self.textTotalBondeEntree.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.textTotalBondeEntree.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.textTotalBondeEntree)
 
@@ -130,12 +137,13 @@ class Ui_stockWidget(object):
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.totalBondeSortie = QLabel(self.cardBondeSortie)
         self.totalBondeSortie.setObjectName(u"totalBondeSortie")
+        self.totalBondeSortie.setFont(font)
 
         self.verticalLayout_10.addWidget(self.totalBondeSortie)
 
         self.textTotalBondeSortie = QLabel(self.cardBondeSortie)
         self.textTotalBondeSortie.setObjectName(u"textTotalBondeSortie")
-        self.textTotalBondeSortie.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.textTotalBondeSortie.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.textTotalBondeSortie)
 
@@ -162,6 +170,10 @@ class Ui_stockWidget(object):
         __qtablewidgetitem2 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.tableWidget.setObjectName(u"tableWidget")
+        font2 = QFont()
+        font2.setFamilies([u"Montserrat"])
+        font2.setPointSize(10)
+        self.tableWidget.setFont(font2)
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.verticalHeader().setStretchLastSection(True)
 

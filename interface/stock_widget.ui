@@ -42,6 +42,10 @@ QTableWidget {
       <string notr="true">QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{
 background-color: #13141F;
 color: white;
+font:bold;
+font-size: 22px;
+qproperty-alignment: AlignCenter;
+border-radius: 8px;
 }
 
 </string>
@@ -73,6 +77,12 @@ color: white;
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
             <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <family>Montserrat</family>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Total Stock</string>
              </property>
@@ -84,7 +94,7 @@ color: white;
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -99,6 +109,12 @@ color: white;
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
             <widget class="QLabel" name="totalProduct">
+             <property name="font">
+              <font>
+               <family>Montserrat</family>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Produits</string>
              </property>
@@ -110,7 +126,7 @@ color: white;
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -125,6 +141,12 @@ color: white;
           <layout class="QVBoxLayout" name="verticalLayout_9">
            <item>
             <widget class="QLabel" name="totalBondeEntree">
+             <property name="font">
+              <font>
+               <family>Montserrat</family>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Bons d'entrée</string>
              </property>
@@ -136,7 +158,7 @@ color: white;
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -151,6 +173,12 @@ color: white;
           <layout class="QVBoxLayout" name="verticalLayout_10">
            <item>
             <widget class="QLabel" name="totalBondeSortie">
+             <property name="font">
+              <font>
+               <family>Montserrat</family>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Bons de sortie</string>
              </property>
@@ -162,7 +190,7 @@ color: white;
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -179,6 +207,12 @@ color: white;
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
        <widget class="QTableWidget" name="tableWidget">
+        <property name="font">
+         <font>
+          <family>Montserrat</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <attribute name="horizontalHeaderStretchLastSection">
          <bool>true</bool>
         </attribute>
