@@ -16,8 +16,8 @@ class EntryWidget(QWidget):
         row = self.ui.entryTable.rowCount()
         for entry_pass in entry_passes:
             self.ui.entryTable.insertRow(row)
-            self.ui.entryTable.setItem(row , 1 , QTableWidgetItem(entry_pass.get("NumBon")))
-            self.ui.entryTable.setItem(row , 2 , QTableWidgetItem(entry_pass.get("NumProduit")))
-            self.ui.entryTable.setItem(row , 3 , QTableWidgetItem(str(entry_pass.get("QteEntree"))))
-            self.ui.entryTable.setItem(row , 4 , QTableWidgetItem(str(entry_pass.get("DateEntree"))))
+            self.ui.entryTable.setItem(row , 0 , QTableWidgetItem(entry_pass.get("NumBon")))
+            self.ui.entryTable.setItem(row , 1 , QTableWidgetItem(entry_pass.get("NumProduit")))
+            self.ui.entryTable.setItem(row , 2 , QTableWidgetItem(str(entry_pass.get("QteEntree"))))
+            self.ui.entryTable.setItem(row , 3 , QTableWidgetItem(str(entry_pass.get("DateEntree"))))
         
