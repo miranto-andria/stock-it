@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_entryWidget(object):
     def setupUi(self, entryWidget):
@@ -58,6 +59,11 @@ class Ui_entryWidget(object):
 
         self.horizontalLayout.addWidget(self.pageName)
 
+        self.searchChoice = QComboBox(self.searchBar)
+        self.searchChoice.setObjectName(u"searchChoice")
+
+        self.horizontalLayout.addWidget(self.searchChoice)
+
         self.search = QFrame(self.searchBar)
         self.search.setObjectName(u"search")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
@@ -75,12 +81,12 @@ class Ui_entryWidget(object):
 
         self.horizontalLayout_2.addWidget(self.searchInput)
 
-        self.pushButton = QPushButton(self.search)
-        self.pushButton.setObjectName(u"pushButton")
+        self.btnSearch = QPushButton(self.search)
+        self.btnSearch.setObjectName(u"btnSearch")
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
-        self.pushButton.setIcon(icon)
+        self.btnSearch.setIcon(icon)
 
-        self.horizontalLayout_2.addWidget(self.pushButton)
+        self.horizontalLayout_2.addWidget(self.btnSearch)
 
 
         self.horizontalLayout.addWidget(self.search, 0, Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTop)
@@ -141,7 +147,7 @@ class Ui_entryWidget(object):
     def retranslateUi(self, entryWidget):
         entryWidget.setWindowTitle(QCoreApplication.translate("entryWidget", u"Form", None))
         self.pageName.setText(QCoreApplication.translate("entryWidget", u"Bon d'entr\u00e9e", None))
-        self.pushButton.setText("")
+        self.btnSearch.setText("")
         self.tableTitle.setText(QCoreApplication.translate("entryWidget", u"Liste des bon d'entr\u00e9e", None))
         self.btnAjouter.setText(QCoreApplication.translate("entryWidget", u"Ajouter", None))
         ___qtablewidgetitem = self.entryTable.horizontalHeaderItem(0)
