@@ -1,0 +1,4 @@
+bg-primary : #05060f
+bg-secondary : #13141F
+accent : #6243FF
+text : #f8f8ff
