@@ -114,20 +114,20 @@ class Ui_entryWidget(object):
         self.widget_3.setObjectName(u"widget_3")
         self.verticalLayout_2 = QVBoxLayout(self.widget_3)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.tableWidget = QTableWidget(self.widget_3)
-        if (self.tableWidget.columnCount() < 4):
-            self.tableWidget.setColumnCount(4)
+        self.entryTable = QTableWidget(self.widget_3)
+        if (self.entryTable.columnCount() < 4):
+            self.entryTable.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        self.entryTable.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        self.entryTable.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.entryTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        self.tableWidget.setObjectName(u"tableWidget")
+        self.entryTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        self.entryTable.setObjectName(u"entryTable")
 
-        self.verticalLayout_2.addWidget(self.tableWidget)
+        self.verticalLayout_2.addWidget(self.entryTable)
 
 
         self.verticalLayout.addWidget(self.widget_3)
@@ -144,13 +144,13 @@ class Ui_entryWidget(object):
         self.pushButton.setText("")
         self.tableTitle.setText(QCoreApplication.translate("entryWidget", u"Liste des bon d'entr\u00e9e", None))
         self.btnAjouter.setText(QCoreApplication.translate("entryWidget", u"Ajouter", None))
-        ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
+        ___qtablewidgetitem = self.entryTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("entryWidget", u"N\u00b0BON", None))
-        ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
+        ___qtablewidgetitem1 = self.entryTable.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("entryWidget", u"N\u00b0 Produit", None))
-        ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
+        ___qtablewidgetitem2 = self.entryTable.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("entryWidget", u"Quantite Entr\u00e9e", None))
-        ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
+        ___qtablewidgetitem3 = self.entryTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("entryWidget", u"Date", None))
     # retranslateUi
 

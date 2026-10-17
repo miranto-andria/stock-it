@@ -39,3 +39,7 @@ def get_total_stock():
 def get_total_products():
     product_count = execute("SELECT COUNT(NumProduit) as total_products FROM produit" , fetch=True)
     return product_count[0]["total_products"]
+
+def get_entry_pass():
+    entry_pass = execute("SELECT * FROM bondeentree" , fetch=True)
+    return entry_pass

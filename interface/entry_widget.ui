@@ -131,7 +131,7 @@ width : 200px;
     <widget class="QWidget" name="widget_3" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="entryTable">
         <column>
          <property name="text">
           <string>N°BON</string>
