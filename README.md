@@ -1,4 +1,4 @@
-# Workflow Git - Gestion de stock
+# Workflow Git - Stock IT 
 
 ## 1. Branches
 
