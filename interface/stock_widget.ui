@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
-    <height>630</height>
+    <width>790</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="font">
@@ -26,18 +26,123 @@
 }
 
 QTableWidget {
-    background: #13141F;
-    alternate-background-color: #05060f;
-    border: 1px solid rgba(255, 255 , 255, 30%);
-    border-radius: 6px;
-    gridline-color: #e2e8f0;
-    selection-background-color: #dbeafe;
-    selection-color: #0f172a;
-}</string>
+    background-color: #13141F;
+    alternate-background-color: #0D0E19;
+    color: #f8f8ff;
+
+    border: 1px solid rgba(255, 255, 255, 20%);
+    border-radius: 10px;
+
+    gridline-color: rgba(255, 255, 255, 8%);
+    selection-background-color: #6243FF;
+    selection-color: #f8f8ff;
+
+    outline: none;
+    padding: 4px;
+}
+
+QTableWidget::item {
+    padding: 10px 8px;
+    border: none;
+}
+
+QTableWidget::item:hover {
+    background-color: rgba(98, 67, 255, 18%);
+    color: #f8f8ff;
+}
+
+QTableWidget::item:selected {
+    background-color: #6243FF;
+    color: #f8f8ff;
+}
+
+QHeaderView {
+    background-color: #05060f;
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #05060f;
+    color: #f8f8ff;
+
+    padding: 12px 10px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 15%);
+
+    font-weight: 600;
+}
+
+QTableCornerButton::section {
+    background-color: #05060f;
+    border: none;
+}
+
+QScrollBar:vertical {
+    background-color: #13141F;
+    width: 8px;
+    margin: 4px 2px;
+    border: none;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #3A3655;
+    border-radius: 4px;
+    min-height: 28px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #6243FF;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+    border: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+QScrollBar:horizontal {
+    background-color: #13141F;
+    height: 8px;
+    margin: 2px 4px;
+    border: none;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #3A3655;
+    border-radius: 4px;
+    min-width: 28px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #6243FF;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0;
+    border: none;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: transparent;
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QWidget" name="top" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>200</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{
 background-color: #13141F;
@@ -51,26 +156,56 @@ border-radius: 8px;
 </string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_12">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Montserrat</family>
-          <pointsize>17</pointsize>
-         </font>
+      <item alignment="Qt::AlignmentFlag::AlignTop">
+       <widget class="QFrame" name="cardHeader">
+        <property name="styleSheet">
+         <string notr="true">#cardHeader{
+background-color: #13141F;
+border-radius:8px;
+padding: 10px;
+}</string>
         </property>
-        <property name="text">
-         <string>État de stock des produits</string>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
         </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <family>Montserrat</family>
+             <pointsize>17</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#label{
+background-color:transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>État de stock des produits</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_12">
         <property name="sizeConstraint">
-         <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+         <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
         </property>
         <item>
          <widget class="QWidget" name="cardStock" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>140</height>
+           </size>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
           </property>
@@ -80,7 +215,6 @@ border-radius: 8px;
              <property name="font">
               <font>
                <family>Montserrat</family>
-               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -103,6 +237,12 @@ border-radius: 8px;
         </item>
         <item>
          <widget class="QWidget" name="cardProduct" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>140</height>
+           </size>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
           </property>
@@ -112,7 +252,6 @@ border-radius: 8px;
              <property name="font">
               <font>
                <family>Montserrat</family>
-               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -135,6 +274,12 @@ border-radius: 8px;
         </item>
         <item>
          <widget class="QWidget" name="cardBondeEntree" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>140</height>
+           </size>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
           </property>
@@ -144,7 +289,6 @@ border-radius: 8px;
              <property name="font">
               <font>
                <family>Montserrat</family>
-               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -167,6 +311,12 @@ border-radius: 8px;
         </item>
         <item>
          <widget class="QWidget" name="cardBondeSortie" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>140</height>
+           </size>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
           </property>
@@ -176,7 +326,6 @@ border-radius: 8px;
              <property name="font">
               <font>
                <family>Montserrat</family>
-               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -204,9 +353,15 @@ border-radius: 8px;
    </item>
    <item alignment="Qt::AlignmentFlag::AlignVCenter">
     <widget class="QWidget" name="middle" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>340</height>
+      </size>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="table">
         <property name="font">
          <font>
           <family>Montserrat</family>
@@ -245,9 +400,9 @@ border-radius: 8px;
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>9</y>
+        <y>29</y>
         <width>821</width>
-        <height>201</height>
+        <height>181</height>
        </rect>
       </property>
       <property name="currentIndex">
