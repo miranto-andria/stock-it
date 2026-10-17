@@ -64,6 +64,9 @@ width : 200px;
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QComboBox" name="searchChoice"/>
+      </item>
       <item alignment="Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTop">
        <widget class="QFrame" name="search">
         <property name="sizePolicy">
@@ -86,7 +89,7 @@ width : 200px;
           <widget class="QLineEdit" name="searchInput"/>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="btnSearch">
            <property name="text">
             <string/>
            </property>
