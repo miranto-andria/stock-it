@@ -23,7 +23,7 @@ class Ui_Stock_It(object):
     def setupUi(self, Stock_It):
         if not Stock_It.objectName():
             Stock_It.setObjectName(u"Stock_It")
-        Stock_It.resize(800, 600)
+        Stock_It.resize(1280, 844)
         Stock_It.setStyleSheet(u"#sideBar , #mainSection{\n"
 "border : 1px solid #13141F\n"
 "}\n"

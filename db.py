@@ -94,3 +94,23 @@ def get_nb_bons_sortie():
 
 def get_total_stock():
     return count("SELECT COALESCE(SUM(Stock), 0) AS total FROM Produit")
+
+def stock_repartition():
+    return [
+        (
+            "Rupture(0)",
+            count("SELECT COUNT(*) AS total FROM Produit WHERE Stock <= 0"),
+        ),
+        (
+            "Faible(1-5)",
+            count("SELECT COUNT(*) AS total FROM Produit WHERE Stock BETWEEN 1 AND 5"),
+        ),
+        (
+            "Moyen(6-10)",
+            count("SELECT COUNT(*) AS total FROM Produit WHERE Stock BETWEEN 6 AND 10"),
+        ),
+        (
+            "Élevé(> 10)",
+            count("SELECT COUNT(*) AS total FROM Produit WHERE Stock > 10"),
+        ),
+    ]

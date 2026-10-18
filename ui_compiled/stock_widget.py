@@ -16,14 +16,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QHeaderView,
-    QLabel, QLayout, QSizePolicy, QTabWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QPushButton, QSizePolicy,
+    QSpacerItem, QTabWidget, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
+
+from views.graphics import (HistogramWidget, PieChartWidget)
 
 class Ui_stockWidget(object):
     def setupUi(self, stockWidget):
         if not stockWidget.objectName():
             stockWidget.setObjectName(u"stockWidget")
-        stockWidget.resize(790, 700)
+        stockWidget.resize(874, 808)
         font = QFont()
         font.setFamilies([u"Montserrat"])
         font.setBold(True)
@@ -33,121 +36,12 @@ class Ui_stockWidget(object):
 "    background-color: #05060f;\n"
 "}\n"
 "\n"
-"QTableWidget {\n"
-"    background-color: #13141F;\n"
-"    alternate-background-color: #0D0E19;\n"
-"    color: #f8f8ff;\n"
-"\n"
-"    border: 1px solid rgba(255, 255, 255, 20%);\n"
-"    border-radius: 10px;\n"
-"\n"
-"    gridline-color: rgba(255, 255, 255, 8%);\n"
-"    selection-background-color: #6243FF;\n"
-"    selection-color: #f8f8ff;\n"
-"\n"
-"    outline: none;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"QTableWidget::item {\n"
-"    padding: 10px 8px;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QTableWidget::item:hover {\n"
-"    background-color: rgba(98, 67, 255, 18%);\n"
-"    color: #f8f8ff;\n"
-"}\n"
-"\n"
-"QTableWidget::item:selected {\n"
-"    background-color: #6243FF;\n"
-"    color: #f8f8ff;\n"
-"}\n"
-"\n"
-"QHeaderView {\n"
-"    background-color: #05060f;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QHeaderView::section {\n"
-"    background-color: #05060f;\n"
-"    color: #f8f8ff;\n"
-"\n"
-"    padding: 12px 10px;\n"
-"    border: none;\n"
-""
-                        "    border-bottom: 1px solid rgba(255, 255, 255, 15%);\n"
-"\n"
-"    font-weight: 600;\n"
-"}\n"
-"\n"
-"QTableCornerButton::section {\n"
-"    background-color: #05060f;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QScrollBar:vertical {\n"
-"    background-color: #13141F;\n"
-"    width: 8px;\n"
-"    margin: 4px 2px;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QScrollBar::handle:vertical {\n"
-"    background-color: #3A3655;\n"
-"    border-radius: 4px;\n"
-"    min-height: 28px;\n"
-"}\n"
-"\n"
-"QScrollBar::handle:vertical:hover {\n"
-"    background-color: #6243FF;\n"
-"}\n"
-"\n"
-"QScrollBar::add-line:vertical,\n"
-"QScrollBar::sub-line:vertical {\n"
-"    height: 0;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QScrollBar::add-page:vertical,\n"
-"QScrollBar::sub-page:vertical {\n"
-"    background: transparent;\n"
-"}\n"
-"\n"
-"QScrollBar:horizontal {\n"
-"    background-color: #13141F;\n"
-"    height: 8px;\n"
-"    margin: 2px 4px;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QScrollBar::handle:horizontal {\n"
-"    background-color: #3A3655;\n"
-"    border-r"
-                        "adius: 4px;\n"
-"    min-width: 28px;\n"
-"}\n"
-"\n"
-"QScrollBar::handle:horizontal:hover {\n"
-"    background-color: #6243FF;\n"
-"}\n"
-"\n"
-"QScrollBar::add-line:horizontal,\n"
-"QScrollBar::sub-line:horizontal {\n"
-"    width: 0;\n"
-"    border: none;\n"
-"}\n"
-"\n"
-"QScrollBar::add-page:horizontal,\n"
-"QScrollBar::sub-page:horizontal {\n"
-"    background: transparent;\n"
-"}\n"
 "")
         self.verticalLayout = QVBoxLayout(stockWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.top = QWidget(stockWidget)
         self.top.setObjectName(u"top")
-        self.top.setMinimumSize(QSize(0, 200))
+        self.top.setMinimumSize(QSize(0, 195))
         self.top.setStyleSheet(u"QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{\n"
 "background-color: #13141F;\n"
 "color: white;\n"
@@ -188,10 +82,9 @@ class Ui_stockWidget(object):
 
         self.horizontalLayout_12 = QHBoxLayout()
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.horizontalLayout_12.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.cardStock = QWidget(self.top)
         self.cardStock.setObjectName(u"cardStock")
-        self.cardStock.setMinimumSize(QSize(0, 140))
+        self.cardStock.setMinimumSize(QSize(0, 104))
         self.cardStock.setContextMenuPolicy(Qt.ContextMenuPolicy.PreventContextMenu)
         self.verticalLayout_3 = QVBoxLayout(self.cardStock)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -214,7 +107,7 @@ class Ui_stockWidget(object):
 
         self.cardProduct = QWidget(self.top)
         self.cardProduct.setObjectName(u"cardProduct")
-        self.cardProduct.setMinimumSize(QSize(0, 140))
+        self.cardProduct.setMinimumSize(QSize(0, 104))
         self.cardProduct.setContextMenuPolicy(Qt.ContextMenuPolicy.PreventContextMenu)
         self.verticalLayout_8 = QVBoxLayout(self.cardProduct)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
@@ -235,7 +128,7 @@ class Ui_stockWidget(object):
 
         self.cardBondeEntree = QWidget(self.top)
         self.cardBondeEntree.setObjectName(u"cardBondeEntree")
-        self.cardBondeEntree.setMinimumSize(QSize(0, 140))
+        self.cardBondeEntree.setMinimumSize(QSize(0, 104))
         self.cardBondeEntree.setContextMenuPolicy(Qt.ContextMenuPolicy.PreventContextMenu)
         self.verticalLayout_9 = QVBoxLayout(self.cardBondeEntree)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
@@ -256,7 +149,7 @@ class Ui_stockWidget(object):
 
         self.cardBondeSortie = QWidget(self.top)
         self.cardBondeSortie.setObjectName(u"cardBondeSortie")
-        self.cardBondeSortie.setMinimumSize(QSize(0, 140))
+        self.cardBondeSortie.setMinimumSize(QSize(0, 104))
         self.cardBondeSortie.setContextMenuPolicy(Qt.ContextMenuPolicy.PreventContextMenu)
         self.verticalLayout_10 = QVBoxLayout(self.cardBondeSortie)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
@@ -283,9 +176,34 @@ class Ui_stockWidget(object):
 
         self.middle = QWidget(stockWidget)
         self.middle.setObjectName(u"middle")
-        self.middle.setMinimumSize(QSize(0, 340))
+        self.middle.setMinimumSize(QSize(0, 290))
         self.verticalLayout_11 = QVBoxLayout(self.middle)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.searchLayout = QHBoxLayout()
+        self.searchLayout.setObjectName(u"searchLayout")
+        self.searchLayout.setContentsMargins(-1, 8, 8, 8)
+        self.labelFilter = QLabel(self.middle)
+        self.labelFilter.setObjectName(u"labelFilter")
+
+        self.searchLayout.addWidget(self.labelFilter)
+
+        self.search = QLineEdit(self.middle)
+        self.search.setObjectName(u"search")
+        self.search.setMinimumSize(QSize(0, 40))
+        self.search.setClearButtonEnabled(True)
+
+        self.searchLayout.addWidget(self.search)
+
+        self.btnSearch = QPushButton(self.middle)
+        self.btnSearch.setObjectName(u"btnSearch")
+        self.btnSearch.setMinimumSize(QSize(0, 40))
+
+        self.searchLayout.addWidget(self.btnSearch)
+
+        self.searchLayout.setStretch(1, 1)
+
+        self.verticalLayout_11.addLayout(self.searchLayout)
+
         self.table = QTableWidget(self.middle)
         if (self.table.columnCount() < 3):
             self.table.setColumnCount(3)
@@ -296,6 +214,7 @@ class Ui_stockWidget(object):
         __qtablewidgetitem2 = QTableWidgetItem()
         self.table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         self.table.setObjectName(u"table")
+        self.table.setMinimumSize(QSize(0, 210))
         font3 = QFont()
         font3.setFamilies([u"Montserrat"])
         font3.setPointSize(10)
@@ -306,26 +225,77 @@ class Ui_stockWidget(object):
         self.verticalLayout_11.addWidget(self.table)
 
 
-        self.verticalLayout.addWidget(self.middle, 0, Qt.AlignmentFlag.AlignVCenter)
+        self.verticalLayout.addWidget(self.middle)
 
         self.bottom = QWidget(stockWidget)
         self.bottom.setObjectName(u"bottom")
+        self.bottom.setMinimumSize(QSize(0, 293))
+        self.verticalLayout_2 = QVBoxLayout(self.bottom)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.tabWidget = QTabWidget(self.bottom)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(0, 29, 821, 181))
-        self.histogramme = QWidget()
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        self.tabWidget.setSizePolicy(sizePolicy)
+        self.tabWidget.setMinimumSize(QSize(0, 200))
+        self.histogrammeTab = QWidget()
+        self.histogrammeTab.setObjectName(u"histogrammeTab")
+        self.verticalLayout_13 = QVBoxLayout(self.histogrammeTab)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.histogramme = HistogramWidget(self.histogrammeTab)
         self.histogramme.setObjectName(u"histogramme")
-        self.tabWidget.addTab(self.histogramme, "")
-        self.camembert = QWidget()
+        sizePolicy.setHeightForWidth(self.histogramme.sizePolicy().hasHeightForWidth())
+        self.histogramme.setSizePolicy(sizePolicy)
+        self.histogramme.setFrameShape(QFrame.Shape.StyledPanel)
+        self.histogramme.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.verticalLayout_13.addWidget(self.histogramme)
+
+        self.tabWidget.addTab(self.histogrammeTab, "")
+        self.camembertTab = QWidget()
+        self.camembertTab.setObjectName(u"camembertTab")
+        self.verticalLayout_14 = QVBoxLayout(self.camembertTab)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
+        self.camembert = PieChartWidget(self.camembertTab)
         self.camembert.setObjectName(u"camembert")
-        self.tabWidget.addTab(self.camembert, "")
+        sizePolicy.setHeightForWidth(self.camembert.sizePolicy().hasHeightForWidth())
+        self.camembert.setSizePolicy(sizePolicy)
+        self.camembert.setFrameShape(QFrame.Shape.StyledPanel)
+        self.camembert.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.verticalLayout_14.addWidget(self.camembert)
+
+        self.tabWidget.addTab(self.camembertTab, "")
+
+        self.verticalLayout_2.addWidget(self.tabWidget)
+
+        self.barreActions = QHBoxLayout()
+        self.barreActions.setObjectName(u"barreActions")
+        self.espaceActions = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.barreActions.addItem(self.espaceActions)
+
+        self.btnPdf = QPushButton(self.bottom)
+        self.btnPdf.setObjectName(u"btnPdf")
+        self.btnPdf.setMinimumSize(QSize(0, 40))
+        self.btnPdf.setProperty(u"primaire", True)
+
+        self.barreActions.addWidget(self.btnPdf)
+
+
+        self.verticalLayout_2.addLayout(self.barreActions)
+
 
         self.verticalLayout.addWidget(self.bottom)
 
 
         self.retranslateUi(stockWidget)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(stockWidget)
@@ -342,13 +312,17 @@ class Ui_stockWidget(object):
         self.textTotalBondeEntree.setText("")
         self.totalBondeSortie.setText(QCoreApplication.translate("stockWidget", u"Bons de sortie", None))
         self.textTotalBondeSortie.setText("")
+        self.labelFilter.setText(QCoreApplication.translate("stockWidget", u"Filtre :", None))
+        self.search.setPlaceholderText(QCoreApplication.translate("stockWidget", u"Filtrer par code ou d\u00e9signation\u2026", None))
+        self.btnSearch.setText(QCoreApplication.translate("stockWidget", u"Recherche", None))
         ___qtablewidgetitem = self.table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("stockWidget", u"N\u00b0 Produit", None))
         ___qtablewidgetitem1 = self.table.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("stockWidget", u"D\u00e9signation", None))
         ___qtablewidgetitem2 = self.table.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("stockWidget", u"Stock", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.histogramme), QCoreApplication.translate("stockWidget", u"Histogramme", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.camembert), QCoreApplication.translate("stockWidget", u"Camembert", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.histogrammeTab), QCoreApplication.translate("stockWidget", u"Histogramme", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.camembertTab), QCoreApplication.translate("stockWidget", u"Camembert", None))
+        self.btnPdf.setText(QCoreApplication.translate("stockWidget", u"G\u00e9n\u00e9rer le PDF", None))
     # retranslateUi
 
