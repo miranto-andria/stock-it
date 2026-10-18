@@ -114,3 +114,6 @@ def stock_repartition():
             count("SELECT COUNT(*) AS total FROM Produit WHERE Stock > 10"),
         ),
     ]
+
+def add_entry(NumBon , NumProd , QteEntree , Date):
+    execute("INSERT INTO bondeentree (NumBon , NumProduit , QteEntree , DateEntree) VALUES (%s , %s , %s , %s)" , (NumBon , NumProd , QteEntree , Date))

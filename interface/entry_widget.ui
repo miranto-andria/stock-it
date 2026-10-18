@@ -39,114 +39,6 @@ width : 200px;
 }
 
 
-QTableWidget {
-    background-color: #13141F;
-    alternate-background-color: #0D0E19;
-    color: #f8f8ff;
-
-    border: 1px solid rgba(255, 255, 255, 20%);
-    border-radius: 10px;
-
-    gridline-color: rgba(255, 255, 255, 8%);
-    selection-background-color: #6243FF;
-    selection-color: #f8f8ff;
-
-    outline: none;
-    padding: 4px;
-}
-
-QTableWidget::item {
-    padding: 10px 8px;
-    border: none;
-}
-
-QTableWidget::item:hover {
-    background-color: rgba(98, 67, 255, 18%);
-    color: #f8f8ff;
-}
-
-QTableWidget::item:selected {
-    background-color: #6243FF;
-    color: #f8f8ff;
-}
-
-QHeaderView {
-    background-color: #05060f;
-    border: none;
-}
-
-QHeaderView::section {
-    background-color: #05060f;
-    color: #f8f8ff;
-
-    padding: 12px 10px;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 15%);
-
-    font-weight: 600;
-}
-
-QTableCornerButton::section {
-    background-color: #05060f;
-    border: none;
-}
-
-QScrollBar:vertical {
-    background-color: #13141F;
-    width: 8px;
-    margin: 4px 2px;
-    border: none;
-}
-
-QScrollBar::handle:vertical {
-    background-color: #3A3655;
-    border-radius: 4px;
-    min-height: 28px;
-}
-
-QScrollBar::handle:vertical:hover {
-    background-color: #6243FF;
-}
-
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0;
-    border: none;
-}
-
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}
-
-QScrollBar:horizontal {
-    background-color: #13141F;
-    height: 8px;
-    margin: 2px 4px;
-    border: none;
-}
-
-QScrollBar::handle:horizontal {
-    background-color: #3A3655;
-    border-radius: 4px;
-    min-width: 28px;
-}
-
-QScrollBar::handle:horizontal:hover {
-    background-color: #6243FF;
-}
-
-QScrollBar::add-line:horizontal,
-QScrollBar::sub-line:horizontal {
-    width: 0;
-    border: none;
-}
-
-QScrollBar::add-page:horizontal,
-QScrollBar::sub-page:horizontal {
-    background: transparent;
-}
-
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -240,6 +132,13 @@ QScrollBar::sub-page:horizontal {
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btnAdd">
+     <property name="text">
+      <string>Ajouter</string>
+     </property>
     </widget>
    </item>
    <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
