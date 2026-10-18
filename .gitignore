@@ -16,3 +16,6 @@ venv/
 ENV/
 env/
 env.bak/
+
+.pdf
+*.pdf

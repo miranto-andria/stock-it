@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>790</width>
-    <height>700</height>
+    <width>874</width>
+    <height>808</height>
    </rect>
   </property>
   <property name="font">
@@ -25,113 +25,6 @@
     background-color: #05060f;
 }
 
-QTableWidget {
-    background-color: #13141F;
-    alternate-background-color: #0D0E19;
-    color: #f8f8ff;
-
-    border: 1px solid rgba(255, 255, 255, 20%);
-    border-radius: 10px;
-
-    gridline-color: rgba(255, 255, 255, 8%);
-    selection-background-color: #6243FF;
-    selection-color: #f8f8ff;
-
-    outline: none;
-    padding: 4px;
-}
-
-QTableWidget::item {
-    padding: 10px 8px;
-    border: none;
-}
-
-QTableWidget::item:hover {
-    background-color: rgba(98, 67, 255, 18%);
-    color: #f8f8ff;
-}
-
-QTableWidget::item:selected {
-    background-color: #6243FF;
-    color: #f8f8ff;
-}
-
-QHeaderView {
-    background-color: #05060f;
-    border: none;
-}
-
-QHeaderView::section {
-    background-color: #05060f;
-    color: #f8f8ff;
-
-    padding: 12px 10px;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 15%);
-
-    font-weight: 600;
-}
-
-QTableCornerButton::section {
-    background-color: #05060f;
-    border: none;
-}
-
-QScrollBar:vertical {
-    background-color: #13141F;
-    width: 8px;
-    margin: 4px 2px;
-    border: none;
-}
-
-QScrollBar::handle:vertical {
-    background-color: #3A3655;
-    border-radius: 4px;
-    min-height: 28px;
-}
-
-QScrollBar::handle:vertical:hover {
-    background-color: #6243FF;
-}
-
-QScrollBar::add-line:vertical,
-QScrollBar::sub-line:vertical {
-    height: 0;
-    border: none;
-}
-
-QScrollBar::add-page:vertical,
-QScrollBar::sub-page:vertical {
-    background: transparent;
-}
-
-QScrollBar:horizontal {
-    background-color: #13141F;
-    height: 8px;
-    margin: 2px 4px;
-    border: none;
-}
-
-QScrollBar::handle:horizontal {
-    background-color: #3A3655;
-    border-radius: 4px;
-    min-width: 28px;
-}
-
-QScrollBar::handle:horizontal:hover {
-    background-color: #6243FF;
-}
-
-QScrollBar::add-line:horizontal,
-QScrollBar::sub-line:horizontal {
-    width: 0;
-    border: none;
-}
-
-QScrollBar::add-page:horizontal,
-QScrollBar::sub-page:horizontal {
-    background: transparent;
-}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -140,7 +33,7 @@ QScrollBar::sub-page:horizontal {
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>200</height>
+       <height>195</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -195,15 +88,12 @@ background-color:transparent;
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_12">
-        <property name="sizeConstraint">
-         <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
-        </property>
         <item>
          <widget class="QWidget" name="cardStock" native="true">
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>140</height>
+            <height>104</height>
            </size>
           </property>
           <property name="contextMenuPolicy">
@@ -240,7 +130,7 @@ background-color:transparent;
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>140</height>
+            <height>104</height>
            </size>
           </property>
           <property name="contextMenuPolicy">
@@ -277,7 +167,7 @@ background-color:transparent;
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>140</height>
+            <height>104</height>
            </size>
           </property>
           <property name="contextMenuPolicy">
@@ -314,7 +204,7 @@ background-color:transparent;
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>140</height>
+            <height>104</height>
            </size>
           </property>
           <property name="contextMenuPolicy">
@@ -351,17 +241,72 @@ background-color:transparent;
      </layout>
     </widget>
    </item>
-   <item alignment="Qt::AlignmentFlag::AlignVCenter">
+   <item>
     <widget class="QWidget" name="middle" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>340</height>
+       <height>290</height>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
+       <layout class="QHBoxLayout" name="searchLayout" stretch="0,1,0">
+        <property name="topMargin">
+         <number>8</number>
+        </property>
+        <property name="rightMargin">
+         <number>8</number>
+        </property>
+        <property name="bottomMargin">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelFilter">
+          <property name="text">
+           <string>Filtre :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="search">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="placeholderText">
+           <string>Filtrer par code ou désignation…</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnSearch">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Recherche</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QTableWidget" name="table">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>210</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>Montserrat</family>
@@ -396,33 +341,154 @@ background-color:transparent;
    </item>
    <item>
     <widget class="QWidget" name="bottom" native="true">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>29</y>
-        <width>821</width>
-        <height>181</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="histogramme">
-       <attribute name="title">
-        <string>Histogramme</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="camembert">
-       <attribute name="title">
-        <string>Camembert</string>
-       </attribute>
-      </widget>
-     </widget>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>293</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>200</height>
+         </size>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="histogrammeTab">
+         <attribute name="title">
+          <string>Histogramme</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="HistogramWidget" name="histogramme">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="camembertTab">
+         <attribute name="title">
+          <string>Camembert</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="PieChartWidget" name="camembert">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="barreActions" stretch="0,0">
+        <item>
+         <spacer name="espaceActions">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnPdf">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Générer le PDF</string>
+          </property>
+          <property name="primaire" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PieChartWidget</class>
+   <extends>QFrame</extends>
+   <header location="global">views.graphics</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HistogramWidget</class>
+   <extends>QFrame</extends>
+   <header location="global">views.graphics</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
