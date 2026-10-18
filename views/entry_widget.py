@@ -1,8 +1,9 @@
 
-from PySide6.QtWidgets import QWidget , QTableWidgetItem , QHeaderView
+from PySide6.QtWidgets import QWidget , QTableWidgetItem , QHeaderView , QDialog
 from ui_compiled.ui_entry_widget import Ui_entryWidget
 import db
-
+from views.entry_dialog import AddEntryDialog
+from ui_compiled.ui_add_entry_dialog import Ui_Dialog
 
 class EntryWidget(QWidget):
     def __init__(self):
@@ -13,7 +14,7 @@ class EntryWidget(QWidget):
         self.set_entry_table()
         self.init_count()
         self.ui.searchChoice.addItems(["Numero de bon" , "Numero du produit"])
-        
+        self.ui.btnAdd.clicked.connect(self.show_dialog)
 
     def set_entry_table(self):
         entry_passes = db.get_entry_pass()
@@ -44,3 +45,13 @@ class EntryWidget(QWidget):
         nb_bons_entree = db.get_nb_bons_entree()         
         self.ui.totalProduct.setText(str(total_products))
         self.ui.entryCount.setText(str(nb_bons_entree))
+
+    def show_dialog(self):
+        dialog = AddEntryDialog(self)
+        if dialog.exec() == QDialog.Accepted:
+            NumBon , NumProduit , QteEntree , Date = dialog.get_dialog_data()
+            print(NumBon , NumProduit , QteEntree , Date)
+            db.add_entry(NumBon , NumProduit , QteEntree , Date)
+            self.set_entry_table()
+            self.init_count()
+            
