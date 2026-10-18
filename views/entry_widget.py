@@ -1,7 +1,7 @@
 
-from PySide6.QtWidgets import QWidget , QTableWidgetItem
+from PySide6.QtWidgets import QWidget , QTableWidgetItem , QHeaderView
 from ui_compiled.ui_entry_widget import Ui_entryWidget
-from db import get_entry_pass
+import db
 
 
 class EntryWidget(QWidget):
@@ -11,11 +11,18 @@ class EntryWidget(QWidget):
         self.ui.setupUi(self)
         self.ui.btnSearch.clicked.connect(self.set_entry_table)
         self.set_entry_table()
+        self.init_count()
         self.ui.searchChoice.addItems(["Numero de bon" , "Numero du produit"])
+        
 
     def set_entry_table(self):
-        entry_passes = get_entry_pass()
-        keywords = self.ui.searchInput.text()  
+        entry_passes = db.get_entry_pass()
+        keywords = self.ui.searchInput.text() 
+        self.ui.entryTable.setColumnWidth(0 , 300)
+        self.ui.entryTable.setColumnWidth(1 , 300)
+        header = self.ui.entryTable.horizontalHeader()
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch) 
         if keywords: 
             if self.ui.searchChoice.currentText() == "Numero du produit":
                 filtered_passes = [e for e in entry_passes if keywords.lower() in e.get("NumProduit").lower()]
@@ -25,13 +32,15 @@ class EntryWidget(QWidget):
             filtered_passes = entry_passes
 
         self.ui.entryTable.setRowCount(0)
-        self.ui.entryTable.setRowCount(len(filtered_passes))
-
         for row, entry_pass in enumerate(filtered_passes):
             self.ui.entryTable.insertRow(row)
             self.ui.entryTable.setItem(row , 0 , QTableWidgetItem(entry_pass.get("NumBon")))
             self.ui.entryTable.setItem(row , 1 , QTableWidgetItem(entry_pass.get("NumProduit")))
             self.ui.entryTable.setItem(row , 2 , QTableWidgetItem(str(entry_pass.get("QteEntree"))))
             self.ui.entryTable.setItem(row , 3 , QTableWidgetItem(str(entry_pass.get("DateEntree"))))
-             
-                
+
+    def init_count(self):
+        total_products = db.get_total_products()
+        nb_bons_entree = db.get_nb_bons_entree()         
+        self.ui.totalProduct.setText(str(total_products))
+        self.ui.entryCount.setText(str(nb_bons_entree))

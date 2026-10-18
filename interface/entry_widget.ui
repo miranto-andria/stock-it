@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
-    <height>475</height>
+    <width>783</width>
+    <height>532</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,14 @@
    <string notr="true">*{
 background : #05060F;
 }
+#middle{
+border-radius : 8px
+}
+
 #searchBar{
 background : #13141F;
 border-radius : 8px;
-
+padding : 50px
 }
  #pageName , #search {
 font-weight : bold;
@@ -33,29 +37,163 @@ border: 1px solid #05060f;
 border-radius : 8px;
 width : 200px;
 }
+
+
+QTableWidget {
+    background-color: #13141F;
+    alternate-background-color: #0D0E19;
+    color: #f8f8ff;
+
+    border: 1px solid rgba(255, 255, 255, 20%);
+    border-radius: 10px;
+
+    gridline-color: rgba(255, 255, 255, 8%);
+    selection-background-color: #6243FF;
+    selection-color: #f8f8ff;
+
+    outline: none;
+    padding: 4px;
+}
+
+QTableWidget::item {
+    padding: 10px 8px;
+    border: none;
+}
+
+QTableWidget::item:hover {
+    background-color: rgba(98, 67, 255, 18%);
+    color: #f8f8ff;
+}
+
+QTableWidget::item:selected {
+    background-color: #6243FF;
+    color: #f8f8ff;
+}
+
+QHeaderView {
+    background-color: #05060f;
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #05060f;
+    color: #f8f8ff;
+
+    padding: 12px 10px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 15%);
+
+    font-weight: 600;
+}
+
+QTableCornerButton::section {
+    background-color: #05060f;
+    border: none;
+}
+
+QScrollBar:vertical {
+    background-color: #13141F;
+    width: 8px;
+    margin: 4px 2px;
+    border: none;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #3A3655;
+    border-radius: 4px;
+    min-height: 28px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #6243FF;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+    border: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+QScrollBar:horizontal {
+    background-color: #13141F;
+    height: 8px;
+    margin: 2px 4px;
+    border: none;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #3A3655;
+    border-radius: 4px;
+    min-width: 28px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #6243FF;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0;
+    border: none;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: transparent;
+}
+
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item alignment="Qt::AlignmentFlag::AlignTop">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <item>
     <widget class="QWidget" name="searchBar" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>0</number>
+       <number>8</number>
       </property>
       <property name="leftMargin">
-       <number>9</number>
+       <number>16</number>
       </property>
       <property name="topMargin">
-       <number>0</number>
+       <number>8</number>
       </property>
       <property name="rightMargin">
-       <number>9</number>
+       <number>16</number>
       </property>
       <property name="bottomMargin">
-       <number>0</number>
+       <number>8</number>
       </property>
       <item>
        <widget class="QLabel" name="pageName">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>
@@ -104,27 +242,143 @@ width : 200px;
      </layout>
     </widget>
    </item>
-   <item alignment="Qt::AlignmentFlag::AlignTop">
-    <widget class="QWidget" name="widget_2" native="true">
+   <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
+    <widget class="QWidget" name="middle" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background : #13141F;
+border : none</string>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="tableTitle">
-        <property name="text">
-         <string>Liste des bon d'entrée</string>
+      <property name="spacing">
+       <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
+       <widget class="QFrame" name="entrContainer">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>8</number>
+         </property>
+         <property name="topMargin">
+          <number>8</number>
+         </property>
+         <property name="rightMargin">
+          <number>8</number>
+         </property>
+         <property name="bottomMargin">
+          <number>8</number>
+         </property>
+         <item alignment="Qt::AlignmentFlag::AlignLeft">
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">opacity : 0</string>
+           </property>
+           <property name="text">
+            <string>Total de bon</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft</set>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignmentFlag::AlignLeft">
+          <widget class="QLabel" name="entryCount">
+           <property name="font">
+            <font>
+             <pointsize>26</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="btnAjouter">
-        <property name="text">
-         <string>Ajouter</string>
+      <item alignment="Qt::AlignmentFlag::AlignTop">
+       <widget class="QFrame" name="frame_2">
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
         </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item alignment="Qt::AlignmentFlag::AlignHCenter">
+          <widget class="QLabel" name="totalProduct">
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">padding-right : 4px</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>produits</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -135,6 +389,12 @@ width : 200px;
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QTableWidget" name="entryTable">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>N°BON</string>
