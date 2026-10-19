@@ -15,19 +15,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QPushButton,
-    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFrame,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 
 class Ui_entryWidget(object):
     def setupUi(self, entryWidget):
         if not entryWidget.objectName():
             entryWidget.setObjectName(u"entryWidget")
         entryWidget.resize(783, 532)
-        entryWidget.setStyleSheet(u"*{\n"
-"background : #05060F;\n"
-"}\n"
+        entryWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px\n"
 "}\n"
@@ -37,17 +35,15 @@ class Ui_entryWidget(object):
 "border-radius : 8px;\n"
 "padding : 50px\n"
 "}\n"
-" #pageName , #search {\n"
+" #pageName , #add {\n"
 "font-weight : bold;\n"
-"background : transparent\n"
+"background : transparent;\n"
+"}\n"
+"QPushButton , QComboBox{\n"
+"padding : 8px 16px;\n"
 "}\n"
 "\n"
-"#searchInput{\n"
-"background : transparent;\n"
-"border: 1px solid #05060f;\n"
-"border-radius : 8px;\n"
-"width : 200px;\n"
-"}\n"
+"\n"
 "\n"
 "\n"
 "")
@@ -81,126 +77,92 @@ class Ui_entryWidget(object):
 
         self.horizontalLayout.addWidget(self.pageName)
 
-        self.searchChoice = QComboBox(self.searchBar)
-        self.searchChoice.setObjectName(u"searchChoice")
-
-        self.horizontalLayout.addWidget(self.searchChoice)
-
-        self.search = QFrame(self.searchBar)
-        self.search.setObjectName(u"search")
+        self.add = QFrame(self.searchBar)
+        self.add.setObjectName(u"add")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.search.sizePolicy().hasHeightForWidth())
-        self.search.setSizePolicy(sizePolicy2)
-        self.search.setStyleSheet(u"")
-        self.search.setFrameShape(QFrame.Shape.StyledPanel)
-        self.search.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.search)
+        sizePolicy2.setHeightForWidth(self.add.sizePolicy().hasHeightForWidth())
+        self.add.setSizePolicy(sizePolicy2)
+        self.add.setStyleSheet(u"")
+        self.add.setFrameShape(QFrame.Shape.StyledPanel)
+        self.add.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.add)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.searchInput = QLineEdit(self.search)
-        self.searchInput.setObjectName(u"searchInput")
+        self.btnAdd = QPushButton(self.add)
+        self.btnAdd.setObjectName(u"btnAdd")
+        self.btnAdd.setStyleSheet(u"background-color : #6243FF;\n"
+"font : bold")
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
+        self.btnAdd.setIcon(icon)
+        self.btnAdd.setIconSize(QSize(12, 12))
 
-        self.horizontalLayout_2.addWidget(self.searchInput)
-
-        self.btnSearch = QPushButton(self.search)
-        self.btnSearch.setObjectName(u"btnSearch")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
-        self.btnSearch.setIcon(icon)
-
-        self.horizontalLayout_2.addWidget(self.btnSearch)
+        self.horizontalLayout_2.addWidget(self.btnAdd)
 
 
-        self.horizontalLayout.addWidget(self.search, 0, Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTop)
+        self.horizontalLayout.addWidget(self.add)
 
 
         self.verticalLayout.addWidget(self.searchBar)
-
-        self.btnAdd = QPushButton(entryWidget)
-        self.btnAdd.setObjectName(u"btnAdd")
-
-        self.verticalLayout.addWidget(self.btnAdd)
-
-        self.middle = QWidget(entryWidget)
-        self.middle.setObjectName(u"middle")
-        sizePolicy.setHeightForWidth(self.middle.sizePolicy().hasHeightForWidth())
-        self.middle.setSizePolicy(sizePolicy)
-        self.middle.setStyleSheet(u"background : #13141F;\n"
-"border : none")
-        self.horizontalLayout_3 = QHBoxLayout(self.middle)
-        self.horizontalLayout_3.setSpacing(30)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(-1, 0, -1, -1)
-        self.entrContainer = QFrame(self.middle)
-        self.entrContainer.setObjectName(u"entrContainer")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.entrContainer.sizePolicy().hasHeightForWidth())
-        self.entrContainer.setSizePolicy(sizePolicy3)
-        self.entrContainer.setStyleSheet(u"")
-        self.entrContainer.setFrameShape(QFrame.Shape.StyledPanel)
-        self.entrContainer.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.entrContainer)
-        self.verticalLayout_3.setSpacing(0)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(8, 8, 8, 8)
-        self.label = QLabel(self.entrContainer)
-        self.label.setObjectName(u"label")
-        font1 = QFont()
-        font1.setPointSize(10)
-        self.label.setFont(font1)
-        self.label.setStyleSheet(u"opacity : 0")
-        self.label.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
-
-        self.verticalLayout_3.addWidget(self.label, 0, Qt.AlignmentFlag.AlignLeft)
-
-        self.entryCount = QLabel(self.entrContainer)
-        self.entryCount.setObjectName(u"entryCount")
-        font2 = QFont()
-        font2.setPointSize(26)
-        font2.setBold(True)
-        self.entryCount.setFont(font2)
-        self.entryCount.setStyleSheet(u"")
-
-        self.verticalLayout_3.addWidget(self.entryCount, 0, Qt.AlignmentFlag.AlignLeft)
-
-
-        self.horizontalLayout_3.addWidget(self.entrContainer, 0, Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
-
-        self.frame_2 = QFrame(self.middle)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_4 = QHBoxLayout(self.frame_2)
-        self.horizontalLayout_4.setSpacing(0)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.totalProduct = QLabel(self.frame_2)
-        self.totalProduct.setObjectName(u"totalProduct")
-        self.totalProduct.setFont(font)
-        self.totalProduct.setStyleSheet(u"padding-right : 4px")
-        self.totalProduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.horizontalLayout_4.addWidget(self.totalProduct, 0, Qt.AlignmentFlag.AlignHCenter)
-
-        self.label_3 = QLabel(self.frame_2)
-        self.label_3.setObjectName(u"label_3")
-        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy1)
-        self.label_3.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-
-        self.horizontalLayout_4.addWidget(self.label_3)
-
-
-        self.horizontalLayout_3.addWidget(self.frame_2, 0, Qt.AlignmentFlag.AlignTop)
-
-
-        self.verticalLayout.addWidget(self.middle, 0, Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
 
         self.widget_3 = QWidget(entryWidget)
         self.widget_3.setObjectName(u"widget_3")
         self.verticalLayout_2 = QVBoxLayout(self.widget_3)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.frame = QFrame(self.widget_3)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(-1, 20, -1, 20)
+        self.label_2 = QLabel(self.frame)
+        self.label_2.setObjectName(u"label_2")
+
+        self.horizontalLayout_5.addWidget(self.label_2)
+
+        self.searchChoice = QComboBox(self.frame)
+        self.searchChoice.setObjectName(u"searchChoice")
+        self.searchChoice.setStyleSheet(u"")
+
+        self.horizontalLayout_5.addWidget(self.searchChoice)
+
+        self.searchInput = QLineEdit(self.frame)
+        self.searchInput.setObjectName(u"searchInput")
+        self.searchInput.setStyleSheet(u"padding : 8px 16px")
+
+        self.horizontalLayout_5.addWidget(self.searchInput)
+
+        self.btnSearch = QPushButton(self.frame)
+        self.btnSearch.setObjectName(u"btnSearch")
+        self.btnSearch.setStyleSheet(u"")
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.btnSearch.setIcon(icon1)
+        self.btnSearch.setIconSize(QSize(12, 12))
+
+        self.horizontalLayout_5.addWidget(self.btnSearch)
+
+        self.btnEdit = QPushButton(self.frame)
+        self.btnEdit.setObjectName(u"btnEdit")
+        self.btnEdit.setStyleSheet(u"")
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
+        self.btnEdit.setIcon(icon2)
+        self.btnEdit.setIconSize(QSize(12, 12))
+
+        self.horizontalLayout_5.addWidget(self.btnEdit)
+
+        self.btnDelete = QPushButton(self.frame)
+        self.btnDelete.setObjectName(u"btnDelete")
+        self.btnDelete.setStyleSheet(u"background :#e74c3c")
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
+        self.btnDelete.setIcon(icon3)
+        self.btnDelete.setIconSize(QSize(12, 12))
+
+        self.horizontalLayout_5.addWidget(self.btnDelete)
+
+
+        self.verticalLayout_2.addWidget(self.frame)
+
         self.entryTable = QTableWidget(self.widget_3)
         if (self.entryTable.columnCount() < 4):
             self.entryTable.setColumnCount(4)
@@ -214,6 +176,7 @@ class Ui_entryWidget(object):
         self.entryTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.entryTable.setObjectName(u"entryTable")
         self.entryTable.setStyleSheet(u"")
+        self.entryTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.entryTable.verticalHeader().setVisible(False)
 
         self.verticalLayout_2.addWidget(self.entryTable)
@@ -230,12 +193,11 @@ class Ui_entryWidget(object):
     def retranslateUi(self, entryWidget):
         entryWidget.setWindowTitle(QCoreApplication.translate("entryWidget", u"Form", None))
         self.pageName.setText(QCoreApplication.translate("entryWidget", u"Bon d'entr\u00e9e", None))
-        self.btnSearch.setText("")
-        self.btnAdd.setText(QCoreApplication.translate("entryWidget", u"Ajouter", None))
-        self.label.setText(QCoreApplication.translate("entryWidget", u"Total de bon", None))
-        self.entryCount.setText("")
-        self.totalProduct.setText("")
-        self.label_3.setText(QCoreApplication.translate("entryWidget", u"produits", None))
+        self.btnAdd.setText(QCoreApplication.translate("entryWidget", u"Ajouter un bon", None))
+        self.label_2.setText(QCoreApplication.translate("entryWidget", u"Filtrer par :", None))
+        self.btnSearch.setText(QCoreApplication.translate("entryWidget", u"Recherche", None))
+        self.btnEdit.setText(QCoreApplication.translate("entryWidget", u"Modifier", None))
+        self.btnDelete.setText(QCoreApplication.translate("entryWidget", u"Supprimer", None))
         ___qtablewidgetitem = self.entryTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("entryWidget", u"N\u00b0BON", None))
         ___qtablewidgetitem1 = self.entryTable.horizontalHeaderItem(1)
