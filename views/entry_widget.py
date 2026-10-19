@@ -1,4 +1,3 @@
-
 from PySide6.QtWidgets import QWidget , QTableWidgetItem
 from ui_compiled.ui_entry_widget import Ui_entryWidget
 from db import get_entry_pass

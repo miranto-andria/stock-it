@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dashboard</class>
+ <widget class="QWidget" name="dashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>837</width>
+    <height>636</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton{
+background: transparent;
+border: none;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Montserrat</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Tableau de bord des stocks</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Montserrat</family>
+         </font>
+        </property>
+        <property name="text">
+         <string>Vue d'ensemble de la gestion de materiel informatique</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QWidget" name="cardStock" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>104</height>
+        </size>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>Produits</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../assets/resources.qrc">
+            <normaloff>:/icons/product.svg</normaloff>:/icons/product.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="textTotalStock">
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QWidget" name="cardBondeEntree" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>104</height>
+        </size>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Bons d'entrées</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../assets/resources.qrc">
+            <normaloff>:/icons/inward.svg</normaloff>:/icons/inward.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="textTotalBondeEntree">
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QWidget" name="cardProduct" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>104</height>
+        </size>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Stock total</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../assets/resources.qrc">
+            <normaloff>:/icons/box.svg</normaloff>:/icons/box.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="textTotalProduct">
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QWidget" name="cardBondeSortie" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>104</height>
+        </size>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Bons de sortie</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../assets/resources.qrc">
+            <normaloff>:/icons/outward.svg</normaloff>:/icons/outward.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="textTotalBondeSortie">
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="HistogramWidget" name="histogramme">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="PieChartWidget" name="camembert">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>200</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PieChartWidget</class>
+   <extends>QFrame</extends>
+   <header location="global">views.graphics</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HistogramWidget</class>
+   <extends>QFrame</extends>
+   <header location="global">views.graphics</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../assets/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

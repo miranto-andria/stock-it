@@ -89,6 +89,13 @@ font-size : 24px;
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
+           <widget class="QPushButton" name="dashboardBtn">
+            <property name="text">
+             <string>Tableau de bord</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="stockBtn">
             <property name="text">
              <string>Etat de stock</string>

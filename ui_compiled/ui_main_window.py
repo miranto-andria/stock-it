@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_widget.ui'
+## Form generated from reading UI file 'main_window.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.12.0
 ##
@@ -89,6 +89,11 @@ class Ui_Stock_It(object):
         self.sideBarConatainer.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.sideBarConatainer)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.dashboardBtn = QPushButton(self.sideBarConatainer)
+        self.dashboardBtn.setObjectName(u"dashboardBtn")
+
+        self.verticalLayout.addWidget(self.dashboardBtn)
+
         self.stockBtn = QPushButton(self.sideBarConatainer)
         self.stockBtn.setObjectName(u"stockBtn")
 
@@ -172,6 +177,7 @@ class Ui_Stock_It(object):
     def retranslateUi(self, Stock_It):
         Stock_It.setWindowTitle(QCoreApplication.translate("Stock_It", u"MainWindow", None))
         self.title.setText(QCoreApplication.translate("Stock_It", u"Stock IT", None))
+        self.dashboardBtn.setText(QCoreApplication.translate("Stock_It", u"Tableau de bord", None))
         self.stockBtn.setText(QCoreApplication.translate("Stock_It", u"Etat de stock", None))
         self.entryBtn.setText(QCoreApplication.translate("Stock_It", u"Bon d'entr\u00e9e", None))
         self.sortieBtn.setText(QCoreApplication.translate("Stock_It", u"Bon de sortie", None))

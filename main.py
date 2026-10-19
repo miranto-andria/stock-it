@@ -1,4 +1,4 @@
-from views.main_window import mainWindow
+from views.main_window import MainWindow
 import sys
 from PySide6.QtWidgets import QApplication
 from pathlib import Path
@@ -18,7 +18,7 @@ for font_file in FONT_DIR.glob("*.ttf"):
 
 app.setFont(QFont("Montserrat", 10))
 
-w = mainWindow()
+w = MainWindow()
 w.show()
 sys.exit(app.exec())
 
