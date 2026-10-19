@@ -114,10 +114,13 @@ def stock_repartition():
         ),
     ]
 
-def add_entry(NumBon , NumProd , QteEntree , Date):
-    execute("INSERT INTO bondeentree (NumBon , NumProduit , QteEntree , DateEntree) VALUES (%s , %s , %s , %s)" , (NumBon , NumProd , QteEntree , Date))
+def add_entry(NumBon , NumProduit , QteEntree , Date):
+    execute("INSERT INTO bondeentree (NumBon , NumProduit , QteEntree , DateEntree) VALUES (%s , %s , %s , %s)" , (NumBon , NumProduit , QteEntree , Date))
+    execute("UPDATE produit p JOIN bondeentree b ON p.NumProduit = b.NumProduit SET p.Stock = p.stock + %s WHERE p.NumProduit = %s" , [ QteEntree ,NumProduit])
 
 def delete_entry(row):
     execute("DELETE FROM bondeentree WHERE NumBon = %s" , [row])
 def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
     execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
+
+    

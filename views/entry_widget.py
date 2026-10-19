@@ -14,7 +14,7 @@ class EntryWidget(QWidget):
         self.ui.btnSearch.clicked.connect(self.set_entry_table)
         self.set_entry_table()
         self.ui.searchChoice.addItems(["Numero de bon" , "Numero du produit"])
-        self.ui.btnAdd.clicked.connect(self.show_dialog)
+        self.ui.btnAdd.clicked.connect(self.show_add_dialog)
         self.ui.btnDelete.clicked.connect(self.delete_row)
         self.ui.btnEdit.clicked.connect(self.edit_row)
 
@@ -36,7 +36,7 @@ class EntryWidget(QWidget):
 
         fill_table(self.ui.entryTable , [[fp.get("NumBon") , fp.get("NumProduit") , fp.get("QteEntree") , fp.get("DateEntree")] for fp in self.filtered_passes])
 
-    def show_dialog(self):
+    def show_add_dialog(self):
         dialog = AddEntryDialog(self)
         if dialog.exec() == QDialog.Accepted:
             NumBon, NumProduit, QteEntree, DateEntree = dialog.get_dialog_data()
@@ -58,8 +58,8 @@ class EntryWidget(QWidget):
             try:
                 db.add_entry(NumBon, NumProduit, QteEntree, DateEntree)
                 QMessageBox.information(self, "Succès", "Ajout réussi !")
+
                 self.set_entry_table()
-                self.init_count()
             except Exception as e:
                 QMessageBox.critical(self, "Erreur BDD", f"Impossible d'ajouter : {e}")      
 
