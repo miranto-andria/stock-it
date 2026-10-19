@@ -1,3 +1,4 @@
+
 QPushButton {
     background-color: #202132;
     color: #f8f8ff;
@@ -5,13 +6,13 @@ QPushButton {
     border-radius: 8px;
     padding: 9px 16px;
 }
-
-    QPushButton#btnSearch {
-    background-color: #6243FF;
+QPushButton#btnSearch {
     border-color: #6243FF;
     color: #f8f8ff;
     font-weight: bold;
+    padding: 8px 16px;
 }
+
 
 QPushButton#btnSearch:hover {
     background-color: #7965ff;

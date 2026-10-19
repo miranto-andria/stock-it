@@ -52,8 +52,7 @@ def execute_many(requetes):
         conn.close()
 
 def get_entry_pass():
-    entry_pass = execute("SELECT * FROM bondeentree" , fetch=True)
-    return entry_pass
+    return execute("SELECT NumBon , NumProduit , QteEntree , DateEntree FROM bondeentree ORDER BY NumBon" , fetch=True)
 
 def product_lists():
     return execute(
@@ -114,3 +113,14 @@ def stock_repartition():
             count("SELECT COUNT(*) AS total FROM Produit WHERE Stock > 10"),
         ),
     ]
+
+def add_entry(NumBon , NumProduit , QteEntree , Date):
+    execute("INSERT INTO bondeentree (NumBon , NumProduit , QteEntree , DateEntree) VALUES (%s , %s , %s , %s)" , (NumBon , NumProduit , QteEntree , Date))
+    execute("UPDATE produit p JOIN bondeentree b ON p.NumProduit = b.NumProduit SET p.Stock = p.stock + %s WHERE p.NumProduit = %s" , [ QteEntree ,NumProduit])
+
+def delete_entry(row):
+    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [row])
+def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
+    execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
+
+    
