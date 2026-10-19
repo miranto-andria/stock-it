@@ -12,7 +12,7 @@ class AddEntryDialog(QDialog):
         return [
             self.ui.numBonInput.text(),
             self.ui.numProdInput.text(),
-            self.ui.qteInput.text(),
-            self.ui.dateInput.text(),
+            self.ui.qteInput.value(),
+            self.ui.dateInput.date().toString("yyyy-MM-dd") ,
         ]
     

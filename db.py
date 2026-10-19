@@ -52,8 +52,7 @@ def execute_many(requetes):
         conn.close()
 
 def get_entry_pass():
-    entry_pass = execute("SELECT * FROM bondeentree ORDER BY NumBon" , fetch=True)
-    return entry_pass
+    return execute("SELECT NumBon , NumProduit , QteEntree , DateEntree FROM bondeentree ORDER BY NumBon" , fetch=True)
 
 def product_lists():
     return execute(
@@ -117,3 +116,6 @@ def stock_repartition():
 
 def add_entry(NumBon , NumProd , QteEntree , Date):
     execute("INSERT INTO bondeentree (NumBon , NumProduit , QteEntree , DateEntree) VALUES (%s , %s , %s , %s)" , (NumBon , NumProd , QteEntree , Date))
+
+def delete_entry(row):
+    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [row])
