@@ -119,3 +119,5 @@ def add_entry(NumBon , NumProd , QteEntree , Date):
 
 def delete_entry(row):
     execute("DELETE FROM bondeentree WHERE NumBon = %s" , [row])
+def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
+    execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
