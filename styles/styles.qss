@@ -7,10 +7,13 @@ QPushButton {
     padding: 9px 16px;
 }
 QPushButton#btnSearch {
-    border-color: #6243FF;
+    border-color: rgba(119, 76, 255, 1);
     color: #f8f8ff;
     font-weight: bold;
     padding: 8px 16px;
+}
+#sideBar QPushButton:hover{
+background-color: #774cff;
 }
 
 
@@ -81,17 +84,17 @@ QTableWidget::item:selected {
 
 
 QHeaderView {
-    background-color: #05060f;
+    background-color: #774cff;
     border: none;
 }
 
 QHeaderView::section {
-    background-color: #05060f;
+    background-color: #774cff;
     color: #f8f8ff;
 
-    padding: 10px 8px;
+    padding: 6px 0px;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 15%);
+    border-bottom: 1px solid rgba(255, 255, 255, 40%);
 
     font-weight: 600;
 }
