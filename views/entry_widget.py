@@ -89,20 +89,22 @@ class EntryWidget(QWidget):
         dialog = AddEntryDialog(self)
         dialog.ui.numBonInput.setReadOnly(True)
         
-        # 1. Récupération des données
+
         num_bon = self.ui.entryTable.item(row, 0).text()
         num_produit = self.ui.entryTable.item(row, 1).text()
         qte_entree = self.ui.entryTable.item(row, 2).text()
         
-        # 2. Extraction de la date au format AAAA-MM-JJ
-        date_str = self.ui.entryTable.item(row, 3).text()
-        annee, mois, jour = map(int, date_str.split("-")) # ✅ Ordre corrigé
 
-        # 3. Pré-remplissage
+
+        date_str = self.ui.entryTable.item(row, 3).text()
+        annee, mois, jour = map(int, date_str.split("-"))
+
+
         dialog.ui.numBonInput.setText(num_bon)
         dialog.ui.numProdInput.setText(num_produit)
         dialog.ui.qteInput.setValue(int(qte_entree))
-        dialog.ui.dateInput.setDate(QDate(annee, mois, jour)) # ✅ Qt attend (Annee, Mois, Jour)
+        dialog.ui.dateInput.setDate(QDate(annee, mois, jour))
+
 
         if dialog.exec() == QDialog.Accepted:
             NumBon, NumProduit, QteEntree, DateEntree = dialog.get_dialog_data()
