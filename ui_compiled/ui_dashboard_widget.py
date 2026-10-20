@@ -20,7 +20,6 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
 
 from views.graphics import (HistogramWidget, PieChartWidget)
 
-
 class Ui_dashboard(object):
     def setupUi(self, dashboard):
         if not dashboard.objectName():
