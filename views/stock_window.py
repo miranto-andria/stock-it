@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget
-from  ui_compiled.stock_widget import Ui_stockWidget
+from  ui_compiled.ui_stock_widget import Ui_stockWidget
 import db
 import  utils.table_management as tbm
 import utils.pdf_export

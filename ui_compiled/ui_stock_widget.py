@@ -26,14 +26,14 @@ class Ui_stockWidget(object):
     def setupUi(self, stockWidget):
         if not stockWidget.objectName():
             stockWidget.setObjectName(u"stockWidget")
-        stockWidget.resize(874, 808)
+        stockWidget.resize(659, 808)
         font = QFont()
         font.setFamilies([u"Montserrat"])
         font.setBold(True)
         stockWidget.setFont(font)
         stockWidget.setStyleSheet(u"* {\n"
 "    font-family: \"Montserrat\";\n"
-"    background-color: #05060f;\n"
+"    background-color: #f8f8f8;\n"
 "}\n"
 "\n"
 "")
@@ -57,9 +57,10 @@ class Ui_stockWidget(object):
         self.cardHeader = QFrame(self.top)
         self.cardHeader.setObjectName(u"cardHeader")
         self.cardHeader.setStyleSheet(u"#cardHeader{\n"
-"background-color: #13141F;\n"
+"background-color: #fff;\n"
 "border-radius:8px;\n"
 "padding: 10px;\n"
+"border : 1px solid rgba(171, 173, 174, 40%);\n"
 "}")
         self.cardHeader.setFrameShape(QFrame.Shape.StyledPanel)
         self.cardHeader.setFrameShadow(QFrame.Shadow.Raised)
@@ -98,6 +99,7 @@ class Ui_stockWidget(object):
 
         self.textTotalStock = QLabel(self.cardStock)
         self.textTotalStock.setObjectName(u"textTotalStock")
+        self.textTotalStock.setStyleSheet(u"background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);")
         self.textTotalStock.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.textTotalStock)
@@ -119,6 +121,7 @@ class Ui_stockWidget(object):
 
         self.textTotalProduct = QLabel(self.cardProduct)
         self.textTotalProduct.setObjectName(u"textTotalProduct")
+        self.textTotalProduct.setStyleSheet(u"background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);")
         self.textTotalProduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_8.addWidget(self.textTotalProduct)
@@ -140,6 +143,7 @@ class Ui_stockWidget(object):
 
         self.textTotalBondeEntree = QLabel(self.cardBondeEntree)
         self.textTotalBondeEntree.setObjectName(u"textTotalBondeEntree")
+        self.textTotalBondeEntree.setStyleSheet(u"background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);")
         self.textTotalBondeEntree.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.textTotalBondeEntree)
@@ -161,6 +165,7 @@ class Ui_stockWidget(object):
 
         self.textTotalBondeSortie = QLabel(self.cardBondeSortie)
         self.textTotalBondeSortie.setObjectName(u"textTotalBondeSortie")
+        self.textTotalBondeSortie.setStyleSheet(u"background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);")
         self.textTotalBondeSortie.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.textTotalBondeSortie)
@@ -190,6 +195,7 @@ class Ui_stockWidget(object):
         self.search = QLineEdit(self.middle)
         self.search.setObjectName(u"search")
         self.search.setMinimumSize(QSize(0, 40))
+        self.search.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;")
         self.search.setClearButtonEnabled(True)
 
         self.searchLayout.addWidget(self.search)
