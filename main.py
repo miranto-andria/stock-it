@@ -8,6 +8,31 @@ BASE_DIR = Path(__file__).resolve().parent
 FONT_DIR = BASE_DIR / "assets" / "fonts"
 
 app = QApplication(sys.argv)
+
+# Palette claire : en mode sombre de Windows, les widgets sans regle QSS
+# (QFrame, QGroupBox, QListWidget, QLabel...) prendraient la palette sombre
+# du systeme et deviendraient illisibles. La palette est le niveau le plus
+# faible : toute regle QSS reste au-dessus.
+from PySide6.QtGui import QColor, QPalette
+
+palette_claire = app.palette()
+for role in (
+    QPalette.ColorRole.Window,
+    QPalette.ColorRole.Base,
+    QPalette.ColorRole.Button,
+    QPalette.ColorRole.AlternateBase,
+    QPalette.ColorRole.ToolTipBase,
+):
+    palette_claire.setColor(role, QColor("#ffffff"))
+for role in (
+    QPalette.ColorRole.WindowText,
+    QPalette.ColorRole.Text,
+    QPalette.ColorRole.ButtonText,
+    QPalette.ColorRole.ToolTipText,
+):
+    palette_claire.setColor(role, QColor("#111827"))
+app.setPalette(palette_claire)
+
 qss_file = Path(__file__).parent / "styles" / "styles.qss"
 app.setStyleSheet(qss_file.read_text(encoding="utf-8"))
 for font_file in FONT_DIR.glob("*.ttf"):

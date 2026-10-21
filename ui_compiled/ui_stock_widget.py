@@ -29,9 +29,8 @@ class Ui_stockWidget(object):
         font.setFamilies([u"Montserrat"])
         font.setBold(True)
         stockWidget.setFont(font)
-        stockWidget.setStyleSheet(u"* {\n"
+        stockWidget.setStyleSheet(u"#stockWidget {\n"
 "    font-family: \"Montserrat\";\n"
-"    background-color: #05060f;\n"
 "}\n"
 "\n"
 "")
@@ -46,8 +45,8 @@ class Ui_stockWidget(object):
         self.top.setObjectName(u"top")
         self.top.setMinimumSize(QSize(0, 40))
         self.top.setStyleSheet(u"QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{\n"
-"background-color: #13141F;\n"
-"color: white;\n"
+"background-color: #ffffff;\n"
+"color: #111827; border: 1px solid #e5e7eb;\n"
 "font:bold;\n"
 "font-size: 22px;\n"
 "qproperty-alignment: AlignCenter;\n"
@@ -60,7 +59,8 @@ class Ui_stockWidget(object):
         self.cardHeader = QFrame(self.top)
         self.cardHeader.setObjectName(u"cardHeader")
         self.cardHeader.setStyleSheet(u"#cardHeader{\n"
-"background-color: #13141F;\n"
+"background-color: #ffffff;\n"
+"border : 1px solid #e5e7eb;\n"
 "border-radius:8px;\n"
 "padding: 10px;\n"
 "}")
@@ -68,6 +68,10 @@ class Ui_stockWidget(object):
         self.cardHeader.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_13 = QHBoxLayout(self.cardHeader)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.verticalSpacer = QSpacerItem(5, 5, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
+
+        self.horizontalLayout_13.addItem(self.verticalSpacer)
+
         self.label = QLabel(self.cardHeader)
         self.label.setObjectName(u"label")
         font1 = QFont()
@@ -126,6 +130,8 @@ class Ui_stockWidget(object):
         font2.setFamilies([u"Montserrat"])
         font2.setPointSize(10)
         self.table.setFont(font2)
+        self.table.setStyleSheet(u"")
+        self.table.setAlternatingRowColors(True)
         self.table.horizontalHeader().setStretchLastSection(True)
         self.table.verticalHeader().setStretchLastSection(True)
 

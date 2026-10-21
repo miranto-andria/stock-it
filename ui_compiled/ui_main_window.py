@@ -23,18 +23,18 @@ class Ui_Stock_It(object):
     def setupUi(self, Stock_It):
         if not Stock_It.objectName():
             Stock_It.setObjectName(u"Stock_It")
-        Stock_It.resize(1280, 663)
+        Stock_It.resize(1280, 720)
         Stock_It.setStyleSheet(u"#sideBar{\n"
 "border : 1px solid rgba(171, 173, 174, 40%);\n"
 "background-color : #433D9E ; color:#fff\n"
 "}\n"
 "\n"
 "*{\n"
-"background : #fff;\n"
-"padding : 0;\n"
-"margin : 0 ;\n"
 "text-transform : capitalize;\n"
-"color : #000;\n"
+"}\n"
+"\n"
+"#centralwidget{\n"
+"background : #fff;\n"
 "}\n"
 "\n"
 "#sideBar QPushButton{\n"
@@ -44,10 +44,6 @@ class Ui_Stock_It(object):
 "border-radius : 8px;\n"
 "font-size : 17px;\n"
 "}\n"
-"QPushButton:hover{\n"
-"background :#fff ;\n"
-"}\n"
-"\n"
 "#titleContainer{\n"
 "margin-bottom : 24px;\n"
 "}\n"
@@ -57,16 +53,20 @@ class Ui_Stock_It(object):
 "}\n"
 "#mainSection #stackedWidget{\n"
 "background-color : #f8f8f8\n"
-"}")
+"} ")
         self.centralwidget = QWidget(Stock_It)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.sideBar = QWidget(self.centralwidget)
         self.sideBar.setObjectName(u"sideBar")
         self.sideBar.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.sideBar)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 24, 0, 0)
         self.titleContainer = QFrame(self.sideBar)
         self.titleContainer.setObjectName(u"titleContainer")
         self.titleContainer.setAutoFillBackground(False)
@@ -75,6 +75,7 @@ class Ui_Stock_It(object):
         self.titleContainer.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.titleContainer)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(24, -1, -1, -1)
         self.title = QLabel(self.titleContainer)
         self.title.setObjectName(u"title")
 

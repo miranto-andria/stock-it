@@ -13,28 +13,31 @@ from PySide6.QtCore import QMargins, Qt
 from PySide6.QtGui import QColor, QFont, QPainter, QPen
 from PySide6.QtWidgets import QFrame
 
-BG_PRIMARY = "#05060f"
-BG_SECONDARY = "#13141F"
-ACCENT = "#6243FF"
-TEXT_COLOR = "#f8f8ff"
+# Palette claire du dashboard (cartes et cadres blancs, accents bleus).
+BG_PRIMARY = "#f8f8f8"
+BG_SECONDARY = "#ffffff"
+ACCENT = "#2d66e4"
+TEXT_COLOR = "#111827"
 
 # Couleurs secondaires
-SOFT_TEXT_COLOR = "#a5a6bd"
-AXIS_COLOR = "#85869e"
-GRID_COLOR = "#292a3b"
+SOFT_TEXT_COLOR = "#374151"
+AXIS_COLOR = "#6b7280"
+GRID_COLOR = "#e5e7eb"
 BAR_COLOR = ACCENT
-BAR_BORDER_COLOR = "#8b78ff"
-BAR_HOVER_COLOR = "#7965ff"
+BAR_BORDER_COLOR = "#2153c5"
+BAR_HOVER_COLOR = "#4a80f0"
 
 PALETTE = [
-    "#6243FF",
-    "#8b78ff",
-    "#a78bfa",
+    "#2d66e4",
+    "#774cff",
     "#0ea5e9",
     "#14b8a6",
     "#f59e0b",
     "#ec4899",
-    "#64748b",
+    "#22c55e",
+    "#8b5cf6",
+    "#f43f5e",
+    "#6b7280",
 ]
 
 
@@ -62,7 +65,11 @@ class BaseChart(QChartView):
 
         self._data = []
 
-        self.setMinimumSize(320, 200)
+        # Taille minimale revue : assez grande pour rester lisible
+        # (25 produits dans l'histogramme), sans deborder de la page
+        # (l'en-tete, les 4 cartes et le bloc des mouvements prennent le
+        # reste) ; le stretch de la page fait grossir les graphiques au-dela.
+        self.setMinimumSize(400, 250)
         self.setFrameShape(QFrame.Shape.NoFrame)
         self.setStyleSheet(
             f"""
@@ -99,7 +106,9 @@ class BaseChart(QChartView):
         chart.setPlotAreaBackgroundBrush(QColor(BG_SECONDARY))
         chart.setPlotAreaBackgroundVisible(True)
 
-        chart.setMargins(QMargins(12, 12, 12, 8))
+        # Marge superieure generouse : les etiquettes exterieures du
+        # camembert (tranche en haut) ne doivent pas passer sous le titre.
+        chart.setMargins(QMargins(12, 28, 12, 8))
         chart.setAnimationOptions(QChart.AnimationOption.SeriesAnimations)
 
         chart.legend().setVisible(False)
@@ -206,7 +215,7 @@ class PieChartWidget(BaseChart):
             return
 
         series = QPieSeries()
-        series.setPieSize(0.68)
+        series.setPieSize(0.62)
         series.setHorizontalPosition(0.5)
         series.setVerticalPosition(0.48)
 
@@ -226,6 +235,14 @@ class PieChartWidget(BaseChart):
             self._decorate(part, index)
 
         chart.addSeries(series)
+
+        # La legende repete la meme donnée que les etiquettes exterieures :
+        # on n'y laisse que le nom, pour eviter les ellipses du type
+        # « Rupture(0) : 2 (8… » lors du calcul des proportions.
+        for marqueur, (label, _valeur) in zip(
+            chart.legend().markers(series), positive_data
+        ):
+            marqueur.setLabel(str(label))
 
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignmentFlag.AlignBottom)

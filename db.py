@@ -1,6 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
 
+from datetime import date
+
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
@@ -94,6 +96,35 @@ def get_nb_bons_sortie():
 def get_total_stock():
     return count("SELECT COALESCE(SUM(Stock), 0) AS total FROM Produit")
 
+
+def get_total_entrees():
+    return count("SELECT COALESCE(SUM(QteEntree), 0) AS total FROM BondeEntree")
+
+
+def get_total_sorties():
+    return count("SELECT COALESCE(SUM(QteSortie), 0) AS total FROM BondeSortie")
+
+
+def get_bons_entree_mois():
+    aujourdhui = date.today()
+    return count(
+        "SELECT COUNT(*) AS total FROM BondeEntree "
+        "WHERE YEAR(DateEntree) = %s AND MONTH(DateEntree) = %s",
+        (aujourdhui.year, aujourdhui.month),
+    )
+
+
+def get_bons_entree_mois_dernier():
+    aujourdhui = date.today()
+    mois, annee = aujourdhui.month, aujourdhui.year
+    if mois == 1:
+        mois, annee = 12, annee - 1
+    return count(
+        "SELECT COUNT(*) AS total FROM BondeEntree "
+        "WHERE YEAR(DateEntree) = %s AND MONTH(DateEntree) = %s",
+        (annee, mois),
+    )
+
 def stock_repartition():
     return [
         (
@@ -125,4 +156,44 @@ def delete_entry(numBon):
 def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
     execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
 
-    
+"""
+    @return Dict : Jour, Sens, NumBon, NumProduit,
+    Quantite.
+"""
+def derniers_mouvements(limite=12):
+    mouvements = []
+
+    for ligne in execute(
+        "SELECT NumBon, NumProduit, QteEntree AS Quantite, DateEntree AS Jour "
+        "FROM BondeEntree ORDER BY DateEntree DESC, NumBon DESC LIMIT 50",
+        fetch=True,
+    ):
+        mouvements.append(
+            {
+                "Jour": ligne["Jour"],
+                "Sens": "ENTREE",
+                "NumBon": ligne["NumBon"],
+                "NumProduit": ligne["NumProduit"],
+                "Quantite": ligne["Quantite"],
+            }
+        )
+
+    for ligne in execute(
+        "SELECT NumBon, NumProduit, QteSortie AS Quantite, DateSortie AS Jour "
+        "FROM BondeSortie ORDER BY DateSortie DESC, NumBon DESC LIMIT 50",
+        fetch=True,
+    ):
+        mouvements.append(
+            {
+                "Jour": ligne["Jour"],
+                "Sens": "SORTIE",
+                "NumBon": ligne["NumBon"],
+                "NumProduit": ligne["NumProduit"],
+                "Quantite": ligne["Quantite"],
+            }
+        )
+
+    mouvements.sort(
+        key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]), reverse=True
+    )
+    return mouvements[:limite]

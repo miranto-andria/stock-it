@@ -17,6 +17,7 @@ class StockWidget(QWidget):
         self.ui.btnSearch.clicked.connect(self.refresh)
 
 
+
     def refresh(self):
         produits = db.search_product(self.ui.search.text())
         tbm.fill_table(
@@ -26,3 +27,5 @@ class StockWidget(QWidget):
                 for produit in produits
             ],
         )
+
+
