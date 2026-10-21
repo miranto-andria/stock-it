@@ -74,6 +74,7 @@ class ProductWidget(QWidget):
         dialog = AddProductDialog()
         dialog.setWindowTitle("Confirmation")
         dialog.ui.numProdInput.setReadOnly(True)
+        dialog.ui.stockInput.setReadOnly(True)
 
         num_produit = self.ui.productTable.item(row , 0).text()
         designation = self.ui.productTable.item(row , 1).text()
@@ -86,7 +87,7 @@ class ProductWidget(QWidget):
         if dialog.exec() == QDialog.Accepted:
             NumProduit , Designation , Stock = dialog.get_dialog_data()
             products = db.product_lists()
-            if Designation.lower().strip() == designation.lower().strip() and str(Stock) == str(stock):
+            if Designation.lower().strip() == designation.lower().strip():
                 QMessageBox.warning(self , "Attention" , "Vous n'avez effectué aucune modification.")
                 return
             if any(

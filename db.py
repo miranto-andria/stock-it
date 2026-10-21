@@ -120,8 +120,9 @@ def add_entry(NumBon , NumProduit , QteEntree , Date):
 
 
 
-def delete_entry(numBon):
-    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [numBon])
+def delete_entry(NumBon , QteEntree , NumProduit):
+    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [NumBon])
+    execute("UPDATE produit p JOIN bondeentree b ON p.NumProduit = b.NumProduit SET p.Stock = p.Stock - %s WHERE p.NumProduit = %s" , [QteEntree , NumProduit])
 
 
 def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
@@ -134,6 +135,7 @@ def add_product(NumProduit , Designation , Stock):
 
 def delete_product(numProduit):
     execute("DELETE FROM produit WHERE NumProduit = %s" , [numProduit])
+    
 
 
 def update_product(NumProduit , Designation , Stock):

@@ -72,13 +72,15 @@ class EntryWidget(QWidget):
             return
         else:
             num_bon = self.ui.entryTable.item(row , 0).text()
+            num_produit = self.ui.entryTable.item(row , 1).text()
+            qte_entree = self.ui.entryTable.item(row , 2).text()
             dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_bon}")
             dialog.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
             dialog.setDefaultButton(QMessageBox.StandardButton.No)
               
             reponse =dialog.exec()
             if reponse == QMessageBox.StandardButton.Yes:
-                db.delete_entry(num_bon)
+                db.delete_entry(num_bon , int(qte_entree), num_produit )
                 self.set_entry_table()
                 QMessageBox.information(self, "Succès", "Suppression réussi !")
     def edit_row(self):
