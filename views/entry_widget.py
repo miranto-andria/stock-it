@@ -80,6 +80,7 @@ class EntryWidget(QWidget):
             if reponse == QMessageBox.StandardButton.Yes:
                 db.delete_entry(num_bon)
                 self.set_entry_table()
+                QMessageBox.information(self, "Succès", "Suppression réussi !")
     def edit_row(self):
         row = self.ui.entryTable.currentRow()
         if row == -1:
@@ -108,5 +109,23 @@ class EntryWidget(QWidget):
 
         if dialog.exec() == QDialog.Accepted:
             NumBon, NumProduit, QteEntree, DateEntree = dialog.get_dialog_data()
-            db.update_entry(NumBon, NumProduit, QteEntree, DateEntree)
-            self.set_entry_table()
+            entry = db.get_entry_pass()
+            produits_existants = [fp.get("NumProduit") for fp in entry]
+            if (NumProduit == num_produit
+            and str(QteEntree) == str(qte_entree)
+            and str(DateEntree) == str(date_str)):
+                QMessageBox.warning(self,"Attention","Vous n'avez effectué aucune modification.")
+                return
+            if NumProduit not in produits_existants:
+                QMessageBox.warning(self, "Erreur", f"Le produit '{NumProduit}' n'existe pas.")
+                return
+            if len(DateEntree) != 10:
+                QMessageBox.warning(self, "Erreur", "Format de date invalide.")
+                return
+            try:
+                db.update_entry(NumBon, NumProduit, QteEntree, DateEntree)
+                self.set_entry_table()
+                QMessageBox.information(self, "Succès", "Modification réussi !")
+            except Exception as e:
+                QMessageBox.critical(self, "Erreur BDD", f"Impossible d'ajouter : {e}")      
+            

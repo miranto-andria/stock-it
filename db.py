@@ -122,7 +122,20 @@ def add_entry(NumBon , NumProduit , QteEntree , Date):
 
 def delete_entry(numBon):
     execute("DELETE FROM bondeentree WHERE NumBon = %s" , [numBon])
+
+
 def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
     execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
 
+
+def add_product(NumProduit , Designation , Stock):
+    execute("INSERT INTO produit (NumProduit , Design , Stock) VALUES (%s , %s , %s)" , (NumProduit , Designation , Stock))
+
+
+def delete_product(numProduit):
+    execute("DELETE FROM produit WHERE NumProduit = %s" , [numProduit])
+
+
+def update_product(NumProduit , Designation , Stock):
+    execute("UPDATE produit SET Design = %s , Stock = %s WHERE NumProduit = %s"  , (Designation , Stock , NumProduit))
     
