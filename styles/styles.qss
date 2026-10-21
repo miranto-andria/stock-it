@@ -1,7 +1,7 @@
 
 QPushButton {
     background-color: #202132;
-    color: #f8f8ff;
+    color: #fff;
     border: 1px solid #303147;
     border-radius: 8px;
     padding: 9px 16px;
@@ -50,18 +50,15 @@ QComboBox:focus {
 }
 
 
-QTableWidget {
-    background-color: #13141F;
-    alternate-background-color: #0D0E19;
-    color: #f8f8ff;
-
+QTableWidget{
+    background-color: white;
     border: 1px solid rgba(255, 255, 255, 20%);
     border-radius: 10px;
-
+    alternate-background-color: #dbdbfe;         /* Couleur des lignes paires */
+         /* Couleur des lignes paires */
     gridline-color: rgba(255, 255, 255, 8%);
     selection-background-color: #6243FF;
     selection-color: #f8f8ff;
-
     outline: none;
     padding: 4px;
     show-decoration-selected: 1;

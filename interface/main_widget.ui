@@ -20,7 +20,7 @@ background-color : #433D9E ; color:#fff
 }
 
 *{
-background : #fff;
+background : #f8f8f8;
 padding : 0;
 margin : 0 ;
 text-transform : capitalize;
@@ -47,16 +47,46 @@ font-size : 24px;
 }
 #mainSection #stackedWidget{
 background-color : #f8f8f8
-}</string>
+} </string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QWidget" name="sideBar" native="true">
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>24</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
         <widget class="QFrame" name="titleContainer">
          <property name="autoFillBackground">
@@ -72,6 +102,9 @@ background-color : #f8f8f8
           <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="leftMargin">
+           <number>24</number>
+          </property>
           <item alignment="Qt::AlignmentFlag::AlignTop">
            <widget class="QLabel" name="title">
             <property name="text">

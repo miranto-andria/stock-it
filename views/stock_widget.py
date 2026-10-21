@@ -6,7 +6,7 @@ import utils.pdf_export
 from utils import pdf_export
 
 
-class stockWindow(QWidget):
+class stockWidget(QWidget):
     def __init__(self):
         super().__init__()
         self.ui = Ui_stockWidget()

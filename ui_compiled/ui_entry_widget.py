@@ -36,7 +36,7 @@ class Ui_entryWidget(object):
 "}\n"
 "\n"
 "#searchBar{\n"
-"\n"
+"background-color : #fff;\n"
 "border-radius : 8px;\n"
 "padding : 50px;\n"
 "border : 1px solid rgba(171, 173, 174, 40%);\n"
@@ -69,6 +69,7 @@ class Ui_entryWidget(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.frame_2 = QFrame(self.searchBar)
         self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame_2)
@@ -112,7 +113,8 @@ class Ui_entryWidget(object):
         self.btnAdd.setObjectName(u"btnAdd")
         self.btnAdd.setStyleSheet(u"background-color : #774cff;\n"
 "font : bold;\n"
-"border : none;")
+"border : none;\n"
+"color : white")
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
         self.btnAdd.setIcon(icon)
         self.btnAdd.setIconSize(QSize(12, 12))
@@ -127,6 +129,7 @@ class Ui_entryWidget(object):
 
         self.middle = QWidget(entryWidget)
         self.middle.setObjectName(u"middle")
+        self.middle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QVBoxLayout(self.middle)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame = QFrame(self.middle)
@@ -200,6 +203,7 @@ class Ui_entryWidget(object):
         self.entryTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.entryTable.setObjectName(u"entryTable")
         self.entryTable.setStyleSheet(u"")
+        self.entryTable.setAlternatingRowColors(True)
         self.entryTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.entryTable.verticalHeader().setVisible(False)
 

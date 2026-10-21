@@ -30,7 +30,7 @@ class Ui_Stock_It(object):
 "}\n"
 "\n"
 "*{\n"
-"background : #fff;\n"
+"background : #f8f8f8;\n"
 "padding : 0;\n"
 "margin : 0 ;\n"
 "text-transform : capitalize;\n"
@@ -57,16 +57,20 @@ class Ui_Stock_It(object):
 "}\n"
 "#mainSection #stackedWidget{\n"
 "background-color : #f8f8f8\n"
-"}")
+"} ")
         self.centralwidget = QWidget(Stock_It)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.sideBar = QWidget(self.centralwidget)
         self.sideBar.setObjectName(u"sideBar")
         self.sideBar.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.sideBar)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 24, 0, 0)
         self.titleContainer = QFrame(self.sideBar)
         self.titleContainer.setObjectName(u"titleContainer")
         self.titleContainer.setAutoFillBackground(False)
@@ -75,6 +79,7 @@ class Ui_Stock_It(object):
         self.titleContainer.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.titleContainer)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(24, -1, -1, -1)
         self.title = QLabel(self.titleContainer)
         self.title.setObjectName(u"title")
 

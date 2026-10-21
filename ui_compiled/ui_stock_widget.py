@@ -182,6 +182,7 @@ class Ui_stockWidget(object):
         self.middle = QWidget(stockWidget)
         self.middle.setObjectName(u"middle")
         self.middle.setMinimumSize(QSize(0, 290))
+        self.middle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout_11 = QVBoxLayout(self.middle)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.searchLayout = QHBoxLayout()
@@ -225,6 +226,8 @@ class Ui_stockWidget(object):
         font3.setFamilies([u"Montserrat"])
         font3.setPointSize(10)
         self.table.setFont(font3)
+        self.table.setStyleSheet(u"")
+        self.table.setAlternatingRowColors(True)
         self.table.horizontalHeader().setStretchLastSection(True)
         self.table.verticalHeader().setStretchLastSection(True)
 

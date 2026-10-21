@@ -262,6 +262,9 @@ background-color:transparent;
        <height>290</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
        <layout class="QHBoxLayout" name="searchLayout" stretch="0,1,0">
@@ -328,6 +331,12 @@ background-color:transparent;
           <family>Montserrat</family>
           <pointsize>10</pointsize>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
         </property>
         <attribute name="horizontalHeaderStretchLastSection">
          <bool>true</bool>
