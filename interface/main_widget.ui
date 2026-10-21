@@ -7,35 +7,35 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>844</height>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#sideBar , #mainSection{
-border : 1px solid #13141F
+   <string notr="true">#sideBar{
+border : 1px solid rgba(171, 173, 174, 40%);
+background-color : #433D9E ; color:#fff
 }
 
 *{
-background : #05060f;
+background : #fff;
 padding : 0;
 margin : 0 ;
 text-transform : capitalize;
-color : #F8F8FF;
+color : #000;
 }
 
 #sideBar QPushButton{
 text-align : left;
-font-weight : bold;
 border : none;
 padding : 8px 16px;
 border-radius : 8px;
 font-size : 17px;
 }
 QPushButton:hover{
-background : #13141F;
+background :#fff ;
 }
 
 #titleContainer{
@@ -44,6 +44,9 @@ margin-bottom : 24px;
 
 #title{
 font-size : 24px;
+}
+#mainSection #stackedWidget{
+background-color : #f8f8f8
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -56,6 +59,12 @@ font-size : 24px;
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
         <widget class="QFrame" name="titleContainer">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color : #433D9E ; color:#fff</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Shape::StyledPanel</enum>
          </property>
@@ -81,6 +90,15 @@ font-size : 24px;
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+background-color : #433D9E ; color:#fff
+}
+QPushButton:hover{
+background : rgba(119, 76, 255, 20%)
+}
+</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Shape::StyledPanel</enum>
          </property>
@@ -90,6 +108,9 @@ font-size : 24px;
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <widget class="QPushButton" name="stockBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="text">
              <string>Etat de stock</string>
             </property>
@@ -147,6 +168,14 @@ font-size : 24px;
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+background-color : #433D9E ; color:#fff
+}
+QPushButton:hover{
+background : rgba(119, 76, 255, 20%)
+}</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::Shape::StyledPanel</enum>
          </property>
@@ -157,7 +186,7 @@ font-size : 24px;
           <item>
            <widget class="QPushButton" name="exitBtn">
             <property name="text">
-             <string>Exit</string>
+             <string>Quitter</string>
             </property>
            </widget>
           </item>
@@ -193,5 +222,22 @@ font-size : 24px;
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>exitBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>Stock_It</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>619</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

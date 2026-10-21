@@ -1,6 +1,6 @@
 
 from PySide6.QtWidgets import QMainWindow
-from ui_compiled.main_widget import Ui_Stock_It
+from ui_compiled.ui_main_widget import Ui_Stock_It
 from views.entry_widget import EntryWidget
 from views.stock_window import stockWindow
 from views.exit_widget import exitWidget

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>874</width>
+    <width>659</width>
     <height>808</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
   <property name="styleSheet">
    <string notr="true">* {
     font-family: &quot;Montserrat&quot;;
-    background-color: #05060f;
+    background-color: #f8f8f8;
 }
 
 </string>
@@ -53,9 +53,10 @@ border-radius: 8px;
        <widget class="QFrame" name="cardHeader">
         <property name="styleSheet">
          <string notr="true">#cardHeader{
-background-color: #13141F;
+background-color: #fff;
 border-radius:8px;
 padding: 10px;
+border : 1px solid rgba(171, 173, 174, 40%);
 }</string>
         </property>
         <property name="frameShape">
@@ -114,6 +115,9 @@ background-color:transparent;
            </item>
            <item>
             <widget class="QLabel" name="textTotalStock">
+             <property name="styleSheet">
+              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -151,6 +155,9 @@ background-color:transparent;
            </item>
            <item>
             <widget class="QLabel" name="textTotalProduct">
+             <property name="styleSheet">
+              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -188,6 +195,9 @@ background-color:transparent;
            </item>
            <item>
             <widget class="QLabel" name="textTotalBondeEntree">
+             <property name="styleSheet">
+              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -225,6 +235,9 @@ background-color:transparent;
            </item>
            <item>
             <widget class="QLabel" name="textTotalBondeSortie">
+             <property name="styleSheet">
+              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -275,6 +288,9 @@ background-color:transparent;
             <width>0</width>
             <height>40</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
           </property>
           <property name="placeholderText">
            <string>Filtrer par code ou désignation…</string>
