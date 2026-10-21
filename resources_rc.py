@@ -1,0 +1,210 @@
+# Resource object code (Python 3)
+# Created by: object code
+# Created by: The Resource Compiler for Qt version 6.12.0
+# WARNING! All changes made in this file will be lost!
+
+from PySide6 import QtCore
+
+qt_resource_data = b"\
+\x00\x00\x01\xc2\
+<\
+?xml version=\x221.\
+0\x22 encoding=\x22utf\
+-8\x22?>\x0a\x0d<!-- Uplo\
+aded to: SVG Rep\
+o, www.svgrepo.c\
+om, Generator: S\
+VG Repo Mixer To\
+ols -->\x0a<svg wid\
+th=\x22800px\x22 heigh\
+t=\x22800px\x22 viewBo\
+x=\x220 0 24 24\x22 xm\
+lns=\x22http://www.\
+w3.org/2000/svg\x22\
+>\x0a\x0d<rect x=\x220\x22 f\
+ill=\x22none\x22 width\
+=\x2224\x22 height=\x2224\
+\x22/>\x0a\x0d<g>\x0a\x0d<path \
+fill=\x22#2d66e4\x22 d\
+=\x22M22 3H2v6h1v11\
+c0 1.105.895 2 2\
+ 2h14c1.105 0 2-\
+.895 2-2V9h1V3zM\
+4 5h16v2H4V5zm15\
+ 15H5V9h14v11zM9\
+ 11h6c0 1.105-.8\
+95 2-2 2h-2c-1.1\
+05 0-2-.895-2-2z\
+\x22/>\x0a\x0d</g>\x0a\x0d</svg\
+>\
+\x00\x00\x01\xe6\
+<\
+?xml version=\x221.\
+0\x22 encoding=\x22utf\
+-8\x22?>\x0a\x0d<!-- Uplo\
+aded to: SVG Rep\
+o, www.svgrepo.c\
+om, Generator: S\
+VG Repo Mixer To\
+ols -->\x0a<svg fil\
+l=\x22#2d66e4\x22 widt\
+h=\x22800px\x22 height\
+=\x22800px\x22 viewBox\
+=\x220 0 24 24\x22 xml\
+ns=\x22http://www.w\
+3.org/2000/svg\x22>\
+\x0a\x0d<g data-name=\x22\
+Layer 2\x22>\x0a\x0d<g da\
+ta-name=\x22diagona\
+l-arrow-left-dow\
+n\x22>\x0a\x0d<rect width\
+=\x2224\x22 height=\x2224\
+\x22 opacity=\x220\x22/>\x0a\
+\x0d<path d=\x22M17.71\
+ 6.29a1 1 0 0 0-\
+1.42 0L8 14.59V9\
+a1 1 0 0 0-2 0v8\
+a1 1 0 0 0 1 1h8\
+a1 1 0 0 0 0-2H9\
+.41l8.3-8.29a1 1\
+ 0 0 0 0-1.42z\x22/\
+>\x0a\x0d</g>\x0a\x0d</g>\x0a\x0d<\
+/svg>\
+\x00\x00\x02\x11\
+<\
+?xml version=\x221.\
+0\x22 encoding=\x22utf\
+-8\x22?>\x0a\x0d<!-- Uplo\
+aded to: SVG Rep\
+o, www.svgrepo.c\
+om, Generator: S\
+VG Repo Mixer To\
+ols -->\x0a<svg fil\
+l=\x22#2d66e4\x22 widt\
+h=\x22800px\x22 height\
+=\x22800px\x22 viewBox\
+=\x220 0 24 24\x22 xml\
+ns=\x22http://www.w\
+3.org/2000/svg\x22>\
+\x0a\x0d<g data-name=\x22\
+Layer 2\x22>\x0a\x0d<g da\
+ta-name=\x22diagona\
+l-arrow-right-up\
+\x22>\x0a\x0d<rect width=\
+\x2224\x22 height=\x2224\x22\
+ transform=\x22rota\
+te(180 12 12)\x22 o\
+pacity=\x220\x22/>\x0a\x0d<p\
+ath d=\x22M18 7.05a\
+1 1 0 0 0-1-1L9 \
+6a1 1 0 0 0 0 2h\
+5.56l-8.27 8.29a\
+1 1 0 0 0 0 1.42\
+ 1 1 0 0 0 1.42 \
+0L16 9.42V15a1 1\
+ 0 0 0 1 1 1 1 0\
+ 0 0 1-1z\x22/>\x0a\x0d</\
+g>\x0a\x0d</g>\x0a\x0d</svg>\
+\
+\x00\x00\x03G\
+<\
+?xml version=\x221.\
+0\x22 encoding=\x22utf\
+-8\x22?><!-- Upload\
+ed to: SVG Repo,\
+ www.svgrepo.com\
+, Generator: SVG\
+ Repo Mixer Tool\
+s -->\x0d\x0a<svg widt\
+h=\x22800px\x22 height\
+=\x22800px\x22 viewBox\
+=\x220 0 24 24\x22 fil\
+l=\x22none\x22 xmlns=\x22\
+http://www.w3.or\
+g/2000/svg\x22>\x0d\x0a<p\
+ath d=\x22M4 15.829\
+4V15.75V8C4 7.69\
+114 4.16659 7.40\
+629 4.43579 7.25\
+487L4.45131 7.24\
+614L11.6182 3.21\
+475L11.6727 3.18\
+411C11.8759 3.06\
+979 12.1241 3.06\
+979 12.3273 3.18\
+411L19.6105 7.28\
+092C19.8511 7.41\
+625 20 7.67083 2\
+0 7.94687V8V15.7\
+5V15.8294C20 16.\
+1119 19.8506 16.\
+3733 19.6073 16.\
+5167L12.379 20.7\
+766C12.1451 20.9\
+144 11.8549 20.9\
+144 11.621 20.77\
+66L4.39267 16.51\
+67C4.14935 16.37\
+33 4 16.1119 4 1\
+5.8294Z\x22 stroke=\
+\x22#2d66e4\x22 stroke\
+-width=\x222\x22/>\x0d\x0a<p\
+ath d=\x22M12 21V12\
+\x22 stroke=\x22#2d66e\
+4\x22 stroke-width=\
+\x222\x22/>\x0d\x0a<path d=\x22\
+M12 12L4 7.5\x22 st\
+roke=\x22#2d66e4\x22 s\
+troke-width=\x222\x22/\
+>\x0d\x0a<path d=\x22M20 \
+7.5L12 12\x22 strok\
+e=\x22#2d66e4\x22 stro\
+ke-width=\x222\x22/>\x0d\x0a\
+</svg>\
+"
+
+qt_resource_name = b"\
+\x00\x05\
+\x00o\xa6S\
+\x00i\
+\x00c\x00o\x00n\x00s\
+\x00\x0b\
+\x0bHq\xa7\
+\x00p\
+\x00r\x00o\x00d\x00u\x00c\x00t\x00.\x00s\x00v\x00g\
+\x00\x0a\
+\x08\x89Qg\
+\x00i\
+\x00n\x00w\x00a\x00r\x00d\x00.\x00s\x00v\x00g\
+\x00\x0b\
+\x08j\xcdg\
+\x00o\
+\x00u\x00t\x00w\x00a\x00r\x00d\x00.\x00s\x00v\x00g\
+\x00\x07\
+\x09kZ\x07\
+\x00b\
+\x00o\x00x\x00.\x00s\x00v\x00g\
+"
+
+qt_resource_struct = b"\
+\x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x01\
+\x00\x00\x00\x00\x00\x00\x00\x00\
+\x00\x00\x00\x00\x00\x02\x00\x00\x00\x04\x00\x00\x00\x02\
+\x00\x00\x00\x00\x00\x00\x00\x00\
+\x00\x00\x00F\x00\x00\x00\x00\x00\x01\x00\x00\x03\xb0\
+\x00\x00\x01\xa1_w\xc9{\
+\x00\x00\x00,\x00\x00\x00\x00\x00\x01\x00\x00\x01\xc6\
+\x00\x00\x01\xa1_w\xc9z\
+\x00\x00\x00b\x00\x00\x00\x00\x00\x01\x00\x00\x05\xc5\
+\x00\x00\x01\xa1_w\xc9y\
+\x00\x00\x00\x10\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\
+\x00\x00\x01\xa1_w\xc9{\
+"
+
+def qInitResources():
+    QtCore.qRegisterResourceData(0x03, qt_resource_struct, qt_resource_name, qt_resource_data)
+
+def qCleanupResources():
+    QtCore.qUnregisterResourceData(0x03, qt_resource_struct, qt_resource_name, qt_resource_data)
+
+qInitResources()

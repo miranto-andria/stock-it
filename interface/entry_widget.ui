@@ -17,7 +17,7 @@
    <string notr="true">
 #middle{
 border-radius : 8px;
-border : 1px solid rgba(171, 173, 174, 40%); 
+border : 1px solid #e5e7eb; 
 background-color : #fff;
 }
 #description{
@@ -28,7 +28,7 @@ color : #abadae
 background-color : #fff;
 border-radius : 8px;
 padding : 50px;
-border : 1px solid rgba(171, 173, 174, 40%);
+border : 1px solid #e5e7eb;
 
 }
  #pageName , #add {
@@ -82,7 +82,7 @@ padding : 8px 16px;
            </property>
            <property name="font">
             <font>
-             <pointsize>16</pointsize>
+             <pointsize>20</pointsize>
              <bold>true</bold>
             </font>
            </property>
@@ -184,7 +184,7 @@ color : white</string>
          <item>
           <widget class="QComboBox" name="searchChoice">
            <property name="styleSheet">
-            <string notr="true">border : 1px solid rgba(171, 173, 174, 40%);</string>
+            <string notr="true">border : 1px solid #e5e7eb;</string>
            </property>
           </widget>
          </item>
@@ -192,7 +192,7 @@ color : white</string>
           <widget class="QLineEdit" name="searchInput">
            <property name="styleSheet">
             <string notr="true">padding : 8px 16px;
-border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
+border : 1px solid #e5e7eb; background-color : #fff;</string>
            </property>
           </widget>
          </item>
@@ -218,7 +218,7 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnEdit">
            <property name="styleSheet">
-            <string notr="true">border : 1px solid rgba(171, 173, 174, 40%);</string>
+            <string notr="true">border : 1px solid #e5e7eb;</string>
            </property>
            <property name="text">
             <string>Modifier</string>
@@ -237,7 +237,7 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnDelete">
            <property name="styleSheet">
-            <string notr="true">background :#e74c3c;
+            <string notr="true">background :#b91c1c;
 border : none
 </string>
            </property>

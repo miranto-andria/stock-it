@@ -28,7 +28,7 @@ class Ui_productWidget(object):
         productWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
-"border : 1px solid rgba(171, 173, 174, 40%); \n"
+"border : 1px solid #e5e7eb; \n"
 "background-color : #fff;\n"
 "}\n"
 "#description{\n"
@@ -40,7 +40,7 @@ class Ui_productWidget(object):
 "	background-color: rgb(255, 255, 255);\n"
 "border-radius : 8px;\n"
 "padding : 50px;\n"
-"border : 1px solid rgba(171, 173, 174, 40%);\n"
+"border : 1px solid #e5e7eb;\n"
 "\n"
 "}\n"
 " #pageName , #add {\n"
@@ -83,7 +83,7 @@ class Ui_productWidget(object):
         sizePolicy1.setHeightForWidth(self.pageName.sizePolicy().hasHeightForWidth())
         self.pageName.setSizePolicy(sizePolicy1)
         font = QFont()
-        font.setPointSize(16)
+        font.setPointSize(20)
         font.setBold(True)
         self.pageName.setFont(font)
         self.pageName.setStyleSheet(u"")
@@ -148,14 +148,14 @@ class Ui_productWidget(object):
 
         self.searchChoice = QComboBox(self.frame)
         self.searchChoice.setObjectName(u"searchChoice")
-        self.searchChoice.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
+        self.searchChoice.setStyleSheet(u"border : 1px solid #e5e7eb;")
 
         self.horizontalLayout_5.addWidget(self.searchChoice)
 
         self.searchInput = QLineEdit(self.frame)
         self.searchInput.setObjectName(u"searchInput")
         self.searchInput.setStyleSheet(u"padding : 8px 16px;\n"
-"border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;")
+"border : 1px solid #e5e7eb; background-color : #fff;")
 
         self.horizontalLayout_5.addWidget(self.searchInput)
 
@@ -170,7 +170,7 @@ class Ui_productWidget(object):
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
+        self.btnEdit.setStyleSheet(u"border : 1px solid #e5e7eb;")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.btnEdit.setIcon(icon2)
         self.btnEdit.setIconSize(QSize(12, 12))
@@ -179,7 +179,7 @@ class Ui_productWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background :#e74c3c;\n"
+        self.btnDelete.setStyleSheet(u"background :#b91c1c;\n"
 "border : none\n"
 "")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))

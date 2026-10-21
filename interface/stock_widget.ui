@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
+    <width>874</width>
     <height>808</height>
    </rect>
   </property>
@@ -20,26 +20,35 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">* {
+   <string notr="true">#stockWidget {
     font-family: &quot;Montserrat&quot;;
-    background-color: #f8f8f8;
+    background-color: #f5f7f9;
 }
 
 </string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QWidget" name="top" native="true">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QWidget" name="middle" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>195</height>
+       <height>300</height>
       </size>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{
-background-color: #13141F;
-color: white;
+     <layout class="QVBoxLayout" name="verticalLayout_11">
+      <item>
+       <widget class="QWidget" name="top" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{
+background-color: #ffffff;
+color: #111827; border: 1px solid #e5e7eb;
 font:bold;
 font-size: 22px;
 qproperty-alignment: AlignCenter;
@@ -47,225 +56,49 @@ border-radius: 8px;
 }
 
 </string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_12">
-      <item alignment="Qt::AlignmentFlag::AlignTop">
-       <widget class="QFrame" name="cardHeader">
-        <property name="styleSheet">
-         <string notr="true">#cardHeader{
-background-color: #fff;
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_12">
+         <item alignment="Qt::AlignmentFlag::AlignTop">
+          <widget class="QFrame" name="cardHeader">
+           <property name="styleSheet">
+            <string notr="true">#cardHeader{
+background-color: #ffffff;
+border : 1px solid #e5e7eb;
 border-radius:8px;
 padding: 10px;
-border : 1px solid rgba(171, 173, 174, 40%);
 }</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_13">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="font">
-            <font>
-             <family>Montserrat</family>
-             <pointsize>17</pointsize>
-            </font>
            </property>
-           <property name="styleSheet">
-            <string notr="true">#label{
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <family>Montserrat</family>
+                <pointsize>20</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#label{
 background-color:transparent;
 }</string>
-           </property>
-           <property name="text">
-            <string>État de stock des produits</string>
-           </property>
+              </property>
+              <property name="text">
+               <string>État de stock des produits</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
        </widget>
       </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_12">
-        <item>
-         <widget class="QWidget" name="cardStock" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>104</height>
-           </size>
-          </property>
-          <property name="contextMenuPolicy">
-           <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-              </font>
-             </property>
-             <property name="text">
-              <string>Total Stock</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="textTotalStock">
-             <property name="styleSheet">
-              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QWidget" name="cardProduct" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>104</height>
-           </size>
-          </property>
-          <property name="contextMenuPolicy">
-           <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_8">
-           <item>
-            <widget class="QLabel" name="totalProduct">
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-              </font>
-             </property>
-             <property name="text">
-              <string>Produits</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="textTotalProduct">
-             <property name="styleSheet">
-              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QWidget" name="cardBondeEntree" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>104</height>
-           </size>
-          </property>
-          <property name="contextMenuPolicy">
-           <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_9">
-           <item>
-            <widget class="QLabel" name="totalBondeEntree">
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-              </font>
-             </property>
-             <property name="text">
-              <string>Bons d'entrée</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="textTotalBondeEntree">
-             <property name="styleSheet">
-              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QWidget" name="cardBondeSortie" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>104</height>
-           </size>
-          </property>
-          <property name="contextMenuPolicy">
-           <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_10">
-           <item>
-            <widget class="QLabel" name="totalBondeSortie">
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-              </font>
-             </property>
-             <property name="text">
-              <string>Bons de sortie</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="textTotalBondeSortie">
-             <property name="styleSheet">
-              <string notr="true">background-color : #fff;border : 1px solid rgba(171, 173, 174, 40%);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="middle" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>290</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
        <layout class="QHBoxLayout" name="searchLayout" stretch="0,1,0">
         <property name="topMargin">
@@ -291,9 +124,6 @@ background-color:transparent;
             <width>0</width>
             <height>40</height>
            </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
           </property>
           <property name="placeholderText">
            <string>Filtrer par code ou désignation…</string>
@@ -323,7 +153,7 @@ background-color:transparent;
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>210</height>
+          <height>230</height>
          </size>
         </property>
         <property name="font">
@@ -331,12 +161,6 @@ background-color:transparent;
           <family>Montserrat</family>
           <pointsize>10</pointsize>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
         </property>
         <attribute name="horizontalHeaderStretchLastSection">
          <bool>true</bool>
@@ -364,104 +188,15 @@ background-color:transparent;
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QWidget" name="bottom" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>293</height>
+       <height>50</height>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QTabWidget" name="tabWidget">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>200</height>
-         </size>
-        </property>
-        <property name="currentIndex">
-         <number>1</number>
-        </property>
-        <widget class="QWidget" name="histogrammeTab">
-         <attribute name="title">
-          <string>Histogramme</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_13">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="HistogramWidget" name="histogramme">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Shape::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Shadow::Raised</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="camembertTab">
-         <attribute name="title">
-          <string>Camembert</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_14">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="PieChartWidget" name="camembert">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Shape::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Shadow::Raised</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-      </item>
       <item>
        <layout class="QHBoxLayout" name="barreActions" stretch="0,0">
         <item>
@@ -500,20 +235,6 @@ background-color:transparent;
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>PieChartWidget</class>
-   <extends>QFrame</extends>
-   <header location="global">views.graphics</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>HistogramWidget</class>
-   <extends>QFrame</extends>
-   <header location="global">views.graphics</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
