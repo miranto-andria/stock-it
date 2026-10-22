@@ -13,7 +13,6 @@ class EntryWidget(QWidget):
         self.ui.setupUi(self)
         self.ui.btnSearch.clicked.connect(self.set_entry_table)
         self.set_entry_table()
-        self.ui.searchChoice.addItems(["Numero de bon" , "Numero du produit"])
         self.ui.btnAdd.clicked.connect(self.show_add_dialog)
         self.ui.btnDelete.clicked.connect(self.delete_row)
         self.ui.btnEdit.clicked.connect(self.edit_row)
@@ -21,20 +20,18 @@ class EntryWidget(QWidget):
     def set_entry_table(self):
         entry_passes = db.get_entry_pass()
         keywords = self.ui.searchInput.text() 
-        self.ui.entryTable.setColumnWidth(0 , 300)
-        self.ui.entryTable.setColumnWidth(1 , 300)
+        self.ui.entryTable.setColumnWidth(0 , 200)
+        self.ui.entryTable.setColumnWidth(1 , 100)
+        self.ui.entryTable.setColumnWidth(2 , 300)
         header = self.ui.entryTable.horizontalHeader()
-        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
-        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch) 
+        header.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(4, QHeaderView.ResizeMode.Stretch) 
         if keywords: 
-            if self.ui.searchChoice.currentText() == "Numero du produit":
-                self.filtered_passes = [e for e in entry_passes if keywords.lower() in e.get("NumProduit").lower()]
-            elif self.ui.searchChoice.currentText() == "Numero de bon":
-                self.filtered_passes = [e for e in entry_passes if keywords.lower() in e.get("NumBon").lower()]
+            self.filtered_passes = [ps for ps in entry_passes if keywords.lower() in ps.get("NumProduit").lower() or keywords.lower() in ps.get("NumBon").lower() or keywords.lower() in ps.get("Design").lower()]    
         else:
             self.filtered_passes = entry_passes
 
-        fill_table(self.ui.entryTable , [[fp.get("NumBon") , fp.get("NumProduit") , fp.get("QteEntree") , fp.get("DateEntree")] for fp in self.filtered_passes])
+        fill_table(self.ui.entryTable , [[fp.get("NumBon") , fp.get("NumProduit") ,fp.get("Design") , fp.get("QteEntree") , fp.get("DateEntree")] for fp in self.filtered_passes])
 
     def show_add_dialog(self):
         dialog = AddEntryDialog(self)

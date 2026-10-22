@@ -18,6 +18,7 @@ class ProductWidget(QWidget):
         tbm.columns_setting(self.ui.productTable, [160, 0, 110], colonne_etirable=1)
         self.ui.productTable.verticalHeader().setVisible(False)
         self.set_product_table()
+        self.ui.btnSearch.clicked.connect(self.set_product_table)
         self.ui.btnAdd.clicked.connect(self.add_product)
         self.ui.btnDelete.clicked.connect(self.delete_product)
         self.ui.btnEdit.clicked.connect(self.edit_product)
@@ -25,11 +26,17 @@ class ProductWidget(QWidget):
     
     def set_product_table(self):
         produits = db.product_lists()
+        keywords = self.ui.searchInput.text()
+        if keywords:
+            filtered_products = [pr for pr in produits if keywords.lower() in pr.get("NumProduit").lower() or keywords.lower() in pr.get("Design").lower()]
+        else:
+            filtered_products = produits
+        
         tbm.fill_table(
         self.ui.productTable,
         [
             [produit["NumProduit"], produit["Design"], produit["Stock"]]
-                for produit in produits
+                for produit in filtered_products
             ],
         )
 

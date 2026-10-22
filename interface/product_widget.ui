@@ -183,17 +183,13 @@ color:  white</string>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="searchChoice">
-           <property name="styleSheet">
-            <string notr="true">border : 1px solid rgba(171, 173, 174, 40%);</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QLineEdit" name="searchInput">
            <property name="styleSheet">
             <string notr="true">padding : 8px 16px;
 border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Numéro du produit ou designation</string>
            </property>
           </widget>
          </item>

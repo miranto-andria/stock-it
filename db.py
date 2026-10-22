@@ -52,7 +52,7 @@ def execute_many(requetes):
         conn.close()
 
 def get_entry_pass():
-    return execute("SELECT NumBon , NumProduit , QteEntree , DateEntree FROM bondeentree ORDER BY NumBon" , fetch=True)
+    return execute("SELECT b.NumBon , b.NumProduit , b.QteEntree , b.DateEntree , p.Design FROM bondeentree b JOIN produit p ORDER BY NumBon" , fetch=True)
 
 def product_lists():
     return execute(
