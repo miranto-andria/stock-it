@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_widget.ui'
+## Form generated from reading UI file 'main_window.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.12.0
 ##
@@ -23,58 +23,64 @@ class Ui_Stock_It(object):
     def setupUi(self, Stock_It):
         if not Stock_It.objectName():
             Stock_It.setObjectName(u"Stock_It")
-        Stock_It.resize(1280, 663)
+        Stock_It.resize(1280, 720)
         Stock_It.setStyleSheet(u"#sideBar{\n"
-"border : 1px solid rgba(171, 173, 174, 40%);\n"
-"background-color : #433D9E ; color:#fff\n"
+"background-color : #3c83f6;\n"
+"border-right : 1px solid rgba(255,255,255,0.25);\n"
+"color : #ffffff\n"
 "}\n"
 "\n"
-"*{\n"
+"#centralwidget{\n"
 "background : #fff;\n"
-"padding : 0;\n"
-"margin : 0 ;\n"
-"text-transform : capitalize;\n"
-"color : #000;\n"
 "}\n"
 "\n"
 "#sideBar QPushButton{\n"
 "text-align : left;\n"
 "border : none;\n"
-"padding : 8px 16px;\n"
+"margin : 2px 10px;\n"
+"padding : 11px 14px;\n"
 "border-radius : 8px;\n"
-"font-size : 17px;\n"
+"font-size : 10.5pt;\n"
+"color : #ffffff\n"
 "}\n"
-"QPushButton:hover{\n"
-"background :#fff ;\n"
+"#sideBar QPushButton:hover{\n"
+"background-color : rgba(255,255,255,0.15);\n"
+"color : #ffffff\n"
 "}\n"
-"\n"
 "#titleContainer{\n"
 "margin-bottom : 24px;\n"
 "}\n"
 "\n"
 "#title{\n"
-"font-size : 24px;\n"
+"font-size : 26px;\n"
+"font-weight : bold;\n"
+"color : #ffffff\n"
 "}\n"
 "#mainSection #stackedWidget{\n"
-"background-color : #f8f8f8\n"
-"}")
+"background-color : #f5f7f9\n"
+"} ")
         self.centralwidget = QWidget(Stock_It)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.sideBar = QWidget(self.centralwidget)
         self.sideBar.setObjectName(u"sideBar")
         self.sideBar.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.sideBar)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 24, 0, 0)
         self.titleContainer = QFrame(self.sideBar)
         self.titleContainer.setObjectName(u"titleContainer")
         self.titleContainer.setAutoFillBackground(False)
-        self.titleContainer.setStyleSheet(u"background-color : #433D9E ; color:#fff")
+        self.titleContainer.setStyleSheet(u"background-color : transparent ; color:#ffffff ; font-weight : bold")
         self.titleContainer.setFrameShape(QFrame.Shape.StyledPanel)
         self.titleContainer.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.titleContainer)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(24, -1, -1, -1)
         self.title = QLabel(self.titleContainer)
         self.title.setObjectName(u"title")
 
@@ -91,16 +97,21 @@ class Ui_Stock_It(object):
         sizePolicy.setHeightForWidth(self.sideBarConatainer.sizePolicy().hasHeightForWidth())
         self.sideBarConatainer.setSizePolicy(sizePolicy)
         self.sideBarConatainer.setStyleSheet(u"*{\n"
-"background-color : #433D9E ; color:#fff\n"
+"background-color : #3c83f6 ; color:#ffffff\n"
 "}\n"
 "QPushButton:hover{\n"
-"background : rgba(119, 76, 255, 20%)\n"
+"background-color : rgba(255,255,255,0.15) ; color:#ffffff\n"
 "}\n"
 "")
         self.sideBarConatainer.setFrameShape(QFrame.Shape.StyledPanel)
         self.sideBarConatainer.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.sideBarConatainer)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.dashboardBtn = QPushButton(self.sideBarConatainer)
+        self.dashboardBtn.setObjectName(u"dashboardBtn")
+
+        self.verticalLayout.addWidget(self.dashboardBtn)
+
         self.stockBtn = QPushButton(self.sideBarConatainer)
         self.stockBtn.setObjectName(u"stockBtn")
         self.stockBtn.setStyleSheet(u"")
@@ -139,10 +150,10 @@ class Ui_Stock_It(object):
         sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
         self.frame_3.setSizePolicy(sizePolicy)
         self.frame_3.setStyleSheet(u"*{\n"
-"background-color : #433D9E ; color:#fff\n"
+"background-color : #3c83f6 ; color:#ffffff\n"
 "}\n"
 "QPushButton:hover{\n"
-"background : rgba(119, 76, 255, 20%)\n"
+"background-color : rgba(255,255,255,0.15) ; color:#ffffff\n"
 "}")
         self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
@@ -192,6 +203,7 @@ class Ui_Stock_It(object):
     def retranslateUi(self, Stock_It):
         Stock_It.setWindowTitle(QCoreApplication.translate("Stock_It", u"MainWindow", None))
         self.title.setText(QCoreApplication.translate("Stock_It", u"Stock IT", None))
+        self.dashboardBtn.setText(QCoreApplication.translate("Stock_It", u"Tableau de bord", None))
         self.stockBtn.setText(QCoreApplication.translate("Stock_It", u"Etat de stock", None))
         self.entryBtn.setText(QCoreApplication.translate("Stock_It", u"Bon d'entr\u00e9e", None))
         self.sortieBtn.setText(QCoreApplication.translate("Stock_It", u"Bon de sortie", None))

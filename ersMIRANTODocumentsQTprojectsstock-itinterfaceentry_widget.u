@@ -1,0 +1,30 @@
+[33mc2b2f51[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/entryPass[m[33m, [m[1;31morigin/feat/entryPass[m[33m)[m refractor : change quelque ligne
+[33mbdc6974[m feat : ajout d'un systeme pour ajouter le qte entree du bon dans le stock
+[33m84a86e8[m refractor : optimisation du code pour le CRUD
+[33m1c395ab[m feat: ajout d'un systeme de modification
+[33m3466a1a[m feat : ajout d'un systeme de suppression
+[33m28f36b2[m feat : ajout d'une fenetre pour l'ajout de bon d'entree
+[33mac88ec1[m Merge branch 'dev' into feat/entryPass
+[33m5ca315c[m feat: add charts graphics, export_table_pdf, product search
+[33m74fa00e[m feat : add total product and entry count
+[33m1bceefc[m Merge branch 'feat/entryPass' into dev
+[33mc78ba56[m feat : ajout d'un systeme de recherche avec un choix
+[33m3535397[m feat(ui): add stock_list table
+[33ma288764[m "merge the fixed entryPass" Merge branch 'feat/entryPass' into dev
+[33mc1a749f[m fix : fix column disposition problem
+[33m4015c2e[m Merge branch 'feat/entryPass', remote-tracking branch 'origin' into dev
+[33mb8e8b1b[m feat : add entry pass in entry table interface
+[33m1a542e9[m fix :Resolve merge conflict between stock page and entry pages
+[33m31be526[m design(ui): card count style
+[33mb46f15a[m fix: resolve conflict
+[33m6e009cf[m chore: ignore Python cache files etc
+[33m996158e[m feat(ui): add stock state page
+[33m33fd9a1[m docs(readme): expliquer le workflow Git
+[33mb66119b[m feat: fetch all changes from dev branch
+[33m3dc7f60[m Merge branch 'dev' into feat/etat-stock
+[33m7300a11[m feat: add database management and seed
+[33mac4d882[m feat : ajout de entry widget dans la fenetre principale
+[33m39d861d[m[33m ([m[1;31morigin/feat/principale[m[33m, [m[1;32mfeat/principale[m[33m)[m feat : ajout de la fenetre principale et  main.py
+[33mac5faf9[m[33m ([m[1;32mmain[m[33m)[m add gitignore
+[33mb2b6948[m feat : initiate workflow
+[33m8353cb9[m Initial commit
