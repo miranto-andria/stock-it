@@ -186,9 +186,11 @@ def add_entry(NumBon, NumProduit, QteEntree, Date):
     )
 
 
-def delete_entry(numBon):
-    execute("DELETE FROM BondeEntree WHERE NumBon = %s", [numBon])
-
+def delete_product(numProduit):
+    execute(
+        "DELETE FROM Produit WHERE NumProduit = %s",
+        (numProduit,),
+    )
 
 def update_entry(NumBon, NumProduit, QteEntree, DateEntree):
     execute(
@@ -253,8 +255,12 @@ def add_product(NumProduit, Designation, Stock):
     )
 
 
-def delete_product(numProduit):
-    execute("DELETE FROM Produit WHERE NumProduit = %s", [numProduit])
+def delete_entry(numBon, QteSortie, NumProduit):
+    execute("DELETE FROM BondeSortie WHERE NumBon = %s", [numBon])
+    execute(
+        "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
+        (QteSortie, NumProduit),
+    )
 
 
 def update_product(NumProduit, Designation, Stock):
