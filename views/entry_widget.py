@@ -92,11 +92,11 @@ class EntryWidget(QWidget):
 
         num_bon = self.ui.entryTable.item(row, 0).text()
         num_produit = self.ui.entryTable.item(row, 1).text()
-        qte_entree = self.ui.entryTable.item(row, 2).text()
+        qte_entree = self.ui.entryTable.item(row, 3).text()
         
 
 
-        date_str = self.ui.entryTable.item(row, 3).text()
+        date_str = self.ui.entryTable.item(row, 4).text()
         annee, mois, jour = map(int, date_str.split("-"))
 
 

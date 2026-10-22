@@ -70,8 +70,8 @@ class ExitWidget(QWidget):
             return
         else:
             num_bon = self.ui.exitTable.item(row , 0).text()
-            num_produit = self.ui.exitTable.item(row , 1).text()
-            qte_sortie = self.ui.exitTable.item(row , 2).text()
+            num_produit = self.ui.exitTable.item(row , 2).text()
+            qte_sortie = self.ui.exitTable.item(row , 4).text()
             dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_bon}")
             dialog.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
             dialog.setDefaultButton(QMessageBox.StandardButton.No)
@@ -93,11 +93,11 @@ class ExitWidget(QWidget):
 
         num_bon = self.ui.exitTable.item(row, 0).text()
         num_produit = self.ui.exitTable.item(row, 1).text()
-        qte_sortie = self.ui.exitTable.item(row, 2).text()
+        qte_sortie = self.ui.exitTable.item(row, 3).text()
         
 
 
-        date_str = self.ui.exitTable.item(row, 3).text()
+        date_str = self.ui.exitTable.item(row, 4).text()
         annee, mois, jour = map(int, date_str.split("-"))
 
 
