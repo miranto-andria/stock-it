@@ -8,6 +8,7 @@ DB_CONFIG = {
     "user": "root",
     "password": "",
     "database": "stock_it",
+    "port": "3307"
 }
 
 
@@ -54,7 +55,10 @@ def execute_many(requetes):
         conn.close()
 
 def get_entry_pass():
-    return execute("SELECT NumBon , NumProduit , QteEntree , DateEntree FROM bondeentree ORDER BY NumBon" , fetch=True)
+    return execute("SELECT b.NumBon , b.NumProduit , b.QteEntree , b.DateEntree , p.Design FROM bondeentree b JOIN produit p ORDER BY NumBon" , fetch=True)
+
+def get_exit_pass():
+    return execute("SELECT b.NumBon , b.NumProduit , b.QteSortie , b.DateSortie , p.Design FROM bondesortie b JOIN produit p ORDER BY NumBon" , fetch=True)
 
 def product_lists():
     return execute(
@@ -151,8 +155,11 @@ def add_entry(NumBon , NumProduit , QteEntree , Date):
 
 
 
-def delete_entry(numBon):
-    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [numBon])
+def delete_entry(NumBon , QteEntree , NumProduit):
+    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [NumBon])
+    execute("UPDATE produit p JOIN bondeentree b ON p.NumProduit = b.NumProduit SET p.Stock = p.Stock - %s WHERE p.NumProduit = %s" , [QteEntree , NumProduit])
+
+
 def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
     execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
 
@@ -197,3 +204,16 @@ def derniers_mouvements(limite=12):
         key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]), reverse=True
     )
     return mouvements[:limite]
+
+def add_product(NumProduit , Designation , Stock):
+    execute("INSERT INTO produit (NumProduit , Design , Stock) VALUES (%s , %s , %s)" , (NumProduit , Designation , Stock))
+
+
+def delete_product(numProduit):
+    execute("DELETE FROM produit WHERE NumProduit = %s" , [numProduit])
+    
+
+
+def update_product(NumProduit , Designation , Stock):
+    execute("UPDATE produit SET Design = %s , Stock = %s WHERE NumProduit = %s"  , (Designation , Stock , NumProduit))
+    

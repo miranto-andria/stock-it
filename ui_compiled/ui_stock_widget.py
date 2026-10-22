@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 
-class Ui_stockWidget(object):
+class Ui_StockWidget(object):
     def setupUi(self, stockWidget):
         if not stockWidget.objectName():
             stockWidget.setObjectName(u"stockWidget")
@@ -166,17 +166,17 @@ class Ui_stockWidget(object):
     # setupUi
 
     def retranslateUi(self, stockWidget):
-        stockWidget.setWindowTitle(QCoreApplication.translate("stockWidget", u"Form", None))
-        self.label.setText(QCoreApplication.translate("stockWidget", u"\u00c9tat de stock des produits", None))
-        self.labelFilter.setText(QCoreApplication.translate("stockWidget", u"Filtre :", None))
-        self.search.setPlaceholderText(QCoreApplication.translate("stockWidget", u"Filtrer par code ou d\u00e9signation\u2026", None))
-        self.btnSearch.setText(QCoreApplication.translate("stockWidget", u"Recherche", None))
+        stockWidget.setWindowTitle(QCoreApplication.translate("StockWidget", u"Form", None))
+        self.label.setText(QCoreApplication.translate("StockWidget", u"\u00c9tat de stock des produits", None))
+        self.labelFilter.setText(QCoreApplication.translate("StockWidget", u"Filtre :", None))
+        self.search.setPlaceholderText(QCoreApplication.translate("StockWidget", u"Filtrer par code ou d\u00e9signation\u2026", None))
+        self.btnSearch.setText(QCoreApplication.translate("StockWidget", u"Recherche", None))
         ___qtablewidgetitem = self.table.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("stockWidget", u"N\u00b0 Produit", None))
+        ___qtablewidgetitem.setText(QCoreApplication.translate("StockWidget", u"N\u00b0 Produit", None))
         ___qtablewidgetitem1 = self.table.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("stockWidget", u"D\u00e9signation", None))
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("StockWidget", u"D\u00e9signation", None))
         ___qtablewidgetitem2 = self.table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("stockWidget", u"Stock", None))
-        self.btnPdf.setText(QCoreApplication.translate("stockWidget", u"G\u00e9n\u00e9rer le PDF", None))
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("StockWidget", u"Stock", None))
+        self.btnPdf.setText(QCoreApplication.translate("StockWidget", u"G\u00e9n\u00e9rer le PDF", None))
     # retranslateUi
 

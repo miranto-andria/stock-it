@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFrame,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_productWidget(object):
     def setupUi(self, productWidget):
@@ -28,7 +28,7 @@ class Ui_productWidget(object):
         productWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
-"border : 1px solid #e5e7eb; \n"
+"border : 1px solid rgba(171, 173, 174, 40%); \n"
 "background-color : #fff;\n"
 "}\n"
 "#description{\n"
@@ -40,7 +40,7 @@ class Ui_productWidget(object):
 "	background-color: rgb(255, 255, 255);\n"
 "border-radius : 8px;\n"
 "padding : 50px;\n"
-"border : 1px solid #e5e7eb;\n"
+"border : 1px solid rgba(171, 173, 174, 40%);\n"
 "\n"
 "}\n"
 " #pageName , #add {\n"
@@ -83,7 +83,7 @@ class Ui_productWidget(object):
         sizePolicy1.setHeightForWidth(self.pageName.sizePolicy().hasHeightForWidth())
         self.pageName.setSizePolicy(sizePolicy1)
         font = QFont()
-        font.setPointSize(20)
+        font.setPointSize(16)
         font.setBold(True)
         self.pageName.setFont(font)
         self.pageName.setStyleSheet(u"")
@@ -146,16 +146,10 @@ class Ui_productWidget(object):
 
         self.horizontalLayout_5.addWidget(self.label_2)
 
-        self.searchChoice = QComboBox(self.frame)
-        self.searchChoice.setObjectName(u"searchChoice")
-        self.searchChoice.setStyleSheet(u"border : 1px solid #e5e7eb;")
-
-        self.horizontalLayout_5.addWidget(self.searchChoice)
-
         self.searchInput = QLineEdit(self.frame)
         self.searchInput.setObjectName(u"searchInput")
         self.searchInput.setStyleSheet(u"padding : 8px 16px;\n"
-"border : 1px solid #e5e7eb; background-color : #fff;")
+"border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;")
 
         self.horizontalLayout_5.addWidget(self.searchInput)
 
@@ -170,7 +164,7 @@ class Ui_productWidget(object):
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid #e5e7eb;")
+        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.btnEdit.setIcon(icon2)
         self.btnEdit.setIconSize(QSize(12, 12))
@@ -179,7 +173,7 @@ class Ui_productWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background :#b91c1c;\n"
+        self.btnDelete.setStyleSheet(u"background :#e74c3c;\n"
 "border : none\n"
 "")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
@@ -223,6 +217,7 @@ class Ui_productWidget(object):
         self.description.setText(QCoreApplication.translate("productWidget", u"Consultez les \u00e9quipements disponibles et suivez les quantit\u00e9s en stock en temps r\u00e9el", None))
         self.btnAdd.setText(QCoreApplication.translate("productWidget", u"Ajouter un produit", None))
         self.label_2.setText(QCoreApplication.translate("productWidget", u"Filtrer par :", None))
+        self.searchInput.setPlaceholderText(QCoreApplication.translate("productWidget", u"Num\u00e9ro du produit ou designation", None))
         self.btnSearch.setText(QCoreApplication.translate("productWidget", u"Recherche", None))
         self.btnEdit.setText(QCoreApplication.translate("productWidget", u"Modifier", None))
         self.btnDelete.setText(QCoreApplication.translate("productWidget", u"Supprimer", None))

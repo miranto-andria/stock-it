@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget
-from  ui_compiled.ui_stock_widget import Ui_stockWidget
+from  ui_compiled.ui_stock_widget import Ui_StockWidget
 import db
 import  utils.table_management as tbm
 from utils import pdf_export
@@ -8,7 +8,7 @@ from utils import pdf_export
 class StockWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_stockWidget()
+        self.ui = Ui_StockWidget()
         self.ui.setupUi(self)
         tbm.columns_setting(self.ui.table, [160, 0, 110], colonne_etirable=1)
         self.ui.table.verticalHeader().setVisible(False)

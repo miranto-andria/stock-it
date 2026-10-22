@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
     QHeaderView, QLabel, QLineEdit, QPushButton,
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
@@ -24,7 +24,7 @@ class Ui_exitWidget(object):
     def setupUi(self, exitWidget):
         if not exitWidget.objectName():
             exitWidget.setObjectName(u"exitWidget")
-        exitWidget.resize(783, 532)
+        exitWidget.resize(696, 506)
         exitWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
@@ -36,7 +36,7 @@ class Ui_exitWidget(object):
 "}\n"
 "\n"
 "#searchBar{\n"
-"\n"
+"background-color : #fff;\n"
 "border-radius : 8px;\n"
 "padding : 50px;\n"
 "border : 1px solid rgba(171, 173, 174, 40%);\n"
@@ -69,6 +69,7 @@ class Ui_exitWidget(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.frame_2 = QFrame(self.searchBar)
         self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame_2)
@@ -112,7 +113,8 @@ class Ui_exitWidget(object):
         self.btnAdd.setObjectName(u"btnAdd")
         self.btnAdd.setStyleSheet(u"background-color : #774cff;\n"
 "font : bold;\n"
-"border : none;")
+"border : none;\n"
+"color : white")
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
         self.btnAdd.setIcon(icon)
         self.btnAdd.setIconSize(QSize(12, 12))
@@ -127,6 +129,7 @@ class Ui_exitWidget(object):
 
         self.middle = QWidget(exitWidget)
         self.middle.setObjectName(u"middle")
+        self.middle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QVBoxLayout(self.middle)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame = QFrame(self.middle)
@@ -141,12 +144,6 @@ class Ui_exitWidget(object):
         self.label_2.setObjectName(u"label_2")
 
         self.horizontalLayout_5.addWidget(self.label_2)
-
-        self.searchChoice = QComboBox(self.frame)
-        self.searchChoice.setObjectName(u"searchChoice")
-        self.searchChoice.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
-
-        self.horizontalLayout_5.addWidget(self.searchChoice)
 
         self.searchInput = QLineEdit(self.frame)
         self.searchInput.setObjectName(u"searchInput")
@@ -187,29 +184,26 @@ class Ui_exitWidget(object):
 
         self.verticalLayout_2.addWidget(self.frame)
 
-        self.table = QTableWidget(self.middle)
-        if (self.table.columnCount() < 5):
-            self.table.setColumnCount(5)
+        self.exitTable = QTableWidget(self.middle)
+        if (self.exitTable.columnCount() < 5):
+            self.exitTable.setColumnCount(5)
         __qtablewidgetitem = QTableWidgetItem()
-        self.table.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        self.exitTable.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        self.table.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        self.exitTable.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
-        self.table.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.exitTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        self.table.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        self.exitTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         __qtablewidgetitem4 = QTableWidgetItem()
-        self.table.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        self.table.setObjectName(u"table")
-        self.table.setMinimumSize(QSize(0, 210))
-        font1 = QFont()
-        font1.setFamilies([u"Montserrat"])
-        font1.setPointSize(10)
-        self.table.setFont(font1)
-        self.table.horizontalHeader().setStretchLastSection(True)
-        self.table.verticalHeader().setStretchLastSection(True)
+        self.exitTable.setHorizontalHeaderItem(4, __qtablewidgetitem4)
+        self.exitTable.setObjectName(u"exitTable")
+        self.exitTable.setStyleSheet(u"")
+        self.exitTable.setAlternatingRowColors(True)
+        self.exitTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.exitTable.verticalHeader().setVisible(False)
 
-        self.verticalLayout_2.addWidget(self.table)
+        self.verticalLayout_2.addWidget(self.exitTable)
 
 
         self.verticalLayout.addWidget(self.middle)
@@ -226,18 +220,19 @@ class Ui_exitWidget(object):
         self.description.setText(QCoreApplication.translate("exitWidget", u"G\u00e9rez les sorties de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
         self.btnAdd.setText(QCoreApplication.translate("exitWidget", u"Ajouter un bon", None))
         self.label_2.setText(QCoreApplication.translate("exitWidget", u"Filtrer par :", None))
+        self.searchInput.setPlaceholderText(QCoreApplication.translate("exitWidget", u"Num\u00e9ro du bon ,  produit ou par designation", None))
         self.btnSearch.setText(QCoreApplication.translate("exitWidget", u"Recherche", None))
         self.btnEdit.setText(QCoreApplication.translate("exitWidget", u"Modifier", None))
         self.btnDelete.setText(QCoreApplication.translate("exitWidget", u"Supprimer", None))
-        ___qtablewidgetitem = self.table.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("exitWidget", u"N\u00b0 Bon", None))
-        ___qtablewidgetitem1 = self.table.horizontalHeaderItem(1)
+        ___qtablewidgetitem = self.exitTable.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("exitWidget", u"N\u00b0BON", None))
+        ___qtablewidgetitem1 = self.exitTable.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("exitWidget", u"N\u00b0 Produit", None))
-        ___qtablewidgetitem2 = self.table.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("exitWidget", u"Designation", None))
-        ___qtablewidgetitem3 = self.table.horizontalHeaderItem(3)
+        ___qtablewidgetitem2 = self.exitTable.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("exitWidget", u"Nom du Produit", None))
+        ___qtablewidgetitem3 = self.exitTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("exitWidget", u"Quantite Sortie", None))
-        ___qtablewidgetitem4 = self.table.horizontalHeaderItem(4)
+        ___qtablewidgetitem4 = self.exitTable.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("exitWidget", u"Date", None))
     # retranslateUi
 

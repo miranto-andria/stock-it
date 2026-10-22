@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFrame,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_entryWidget(object):
     def setupUi(self, entryWidget):
@@ -28,7 +28,7 @@ class Ui_entryWidget(object):
         entryWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
-"border : 1px solid #e5e7eb; \n"
+"border : 1px solid rgba(171, 173, 174, 40%); \n"
 "background-color : #fff;\n"
 "}\n"
 "#description{\n"
@@ -39,7 +39,7 @@ class Ui_entryWidget(object):
 "background-color : #fff;\n"
 "border-radius : 8px;\n"
 "padding : 50px;\n"
-"border : 1px solid #e5e7eb;\n"
+"border : 1px solid rgba(171, 173, 174, 40%);\n"
 "\n"
 "}\n"
 " #pageName , #add {\n"
@@ -82,7 +82,7 @@ class Ui_entryWidget(object):
         sizePolicy1.setHeightForWidth(self.pageName.sizePolicy().hasHeightForWidth())
         self.pageName.setSizePolicy(sizePolicy1)
         font = QFont()
-        font.setPointSize(20)
+        font.setPointSize(16)
         font.setBold(True)
         self.pageName.setFont(font)
         self.pageName.setStyleSheet(u"")
@@ -145,16 +145,10 @@ class Ui_entryWidget(object):
 
         self.horizontalLayout_5.addWidget(self.label_2)
 
-        self.searchChoice = QComboBox(self.frame)
-        self.searchChoice.setObjectName(u"searchChoice")
-        self.searchChoice.setStyleSheet(u"border : 1px solid #e5e7eb;")
-
-        self.horizontalLayout_5.addWidget(self.searchChoice)
-
         self.searchInput = QLineEdit(self.frame)
         self.searchInput.setObjectName(u"searchInput")
         self.searchInput.setStyleSheet(u"padding : 8px 16px;\n"
-"border : 1px solid #e5e7eb; background-color : #fff;")
+"border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;")
 
         self.horizontalLayout_5.addWidget(self.searchInput)
 
@@ -169,7 +163,7 @@ class Ui_entryWidget(object):
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid #e5e7eb;")
+        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.btnEdit.setIcon(icon2)
         self.btnEdit.setIconSize(QSize(12, 12))
@@ -178,7 +172,7 @@ class Ui_entryWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background :#b91c1c;\n"
+        self.btnDelete.setStyleSheet(u"background :#e74c3c;\n"
 "border : none\n"
 "")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
@@ -191,8 +185,8 @@ class Ui_entryWidget(object):
         self.verticalLayout_2.addWidget(self.frame)
 
         self.entryTable = QTableWidget(self.middle)
-        if (self.entryTable.columnCount() < 4):
-            self.entryTable.setColumnCount(4)
+        if (self.entryTable.columnCount() < 5):
+            self.entryTable.setColumnCount(5)
         __qtablewidgetitem = QTableWidgetItem()
         self.entryTable.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -201,6 +195,8 @@ class Ui_entryWidget(object):
         self.entryTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
         self.entryTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.entryTable.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         self.entryTable.setObjectName(u"entryTable")
         self.entryTable.setStyleSheet(u"")
         self.entryTable.setAlternatingRowColors(True)
@@ -224,6 +220,7 @@ class Ui_entryWidget(object):
         self.description.setText(QCoreApplication.translate("entryWidget", u"G\u00e9rez les entr\u00e9es de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
         self.btnAdd.setText(QCoreApplication.translate("entryWidget", u"Ajouter un bon", None))
         self.label_2.setText(QCoreApplication.translate("entryWidget", u"Filtrer par :", None))
+        self.searchInput.setPlaceholderText(QCoreApplication.translate("entryWidget", u"Num\u00e9ro du bon ,  produit ou par designation", None))
         self.btnSearch.setText(QCoreApplication.translate("entryWidget", u"Recherche", None))
         self.btnEdit.setText(QCoreApplication.translate("entryWidget", u"Modifier", None))
         self.btnDelete.setText(QCoreApplication.translate("entryWidget", u"Supprimer", None))
@@ -232,8 +229,10 @@ class Ui_entryWidget(object):
         ___qtablewidgetitem1 = self.entryTable.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("entryWidget", u"N\u00b0 Produit", None))
         ___qtablewidgetitem2 = self.entryTable.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("entryWidget", u"Quantite Entr\u00e9e", None))
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("entryWidget", u"Nom du Produit", None))
         ___qtablewidgetitem3 = self.entryTable.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("entryWidget", u"Date", None))
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("entryWidget", u"Quantite Entr\u00e9e", None))
+        ___qtablewidgetitem4 = self.entryTable.horizontalHeaderItem(4)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("entryWidget", u"Date", None))
     # retranslateUi
 
