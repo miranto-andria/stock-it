@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 
-class Ui_productWidget(object):
+class Ui_ProductWidget(object):
     def setupUi(self, productWidget):
         if not productWidget.objectName():
             productWidget.setObjectName(u"productWidget")
@@ -212,20 +212,20 @@ class Ui_productWidget(object):
     # setupUi
 
     def retranslateUi(self, productWidget):
-        productWidget.setWindowTitle(QCoreApplication.translate("productWidget", u"Form", None))
-        self.pageName.setText(QCoreApplication.translate("productWidget", u"Gestion et listage des profuits", None))
-        self.description.setText(QCoreApplication.translate("productWidget", u"Consultez les \u00e9quipements disponibles et suivez les quantit\u00e9s en stock en temps r\u00e9el", None))
-        self.btnAdd.setText(QCoreApplication.translate("productWidget", u"Ajouter un produit", None))
-        self.label_2.setText(QCoreApplication.translate("productWidget", u"Filtrer par :", None))
-        self.searchInput.setPlaceholderText(QCoreApplication.translate("productWidget", u"Num\u00e9ro du produit ou designation", None))
-        self.btnSearch.setText(QCoreApplication.translate("productWidget", u"Recherche", None))
-        self.btnEdit.setText(QCoreApplication.translate("productWidget", u"Modifier", None))
-        self.btnDelete.setText(QCoreApplication.translate("productWidget", u"Supprimer", None))
+        productWidget.setWindowTitle(QCoreApplication.translate("ProductWidget", u"Form", None))
+        self.pageName.setText(QCoreApplication.translate("ProductWidget", u"Gestion et listage des profuits", None))
+        self.description.setText(QCoreApplication.translate("ProductWidget", u"Consultez les \u00e9quipements disponibles et suivez les quantit\u00e9s en stock en temps r\u00e9el", None))
+        self.btnAdd.setText(QCoreApplication.translate("ProductWidget", u"Ajouter un produit", None))
+        self.label_2.setText(QCoreApplication.translate("ProductWidget", u"Filtrer par :", None))
+        self.searchInput.setPlaceholderText(QCoreApplication.translate("ProductWidget", u"Num\u00e9ro du produit ou designation", None))
+        self.btnSearch.setText(QCoreApplication.translate("ProductWidget", u"Recherche", None))
+        self.btnEdit.setText(QCoreApplication.translate("ProductWidget", u"Modifier", None))
+        self.btnDelete.setText(QCoreApplication.translate("ProductWidget", u"Supprimer", None))
         ___qtablewidgetitem = self.productTable.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("productWidget", u"N\u00b0 Produit", None))
+        ___qtablewidgetitem.setText(QCoreApplication.translate("ProductWidget", u"N\u00b0 Produit", None))
         ___qtablewidgetitem1 = self.productTable.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("productWidget", u"Designation", None))
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("ProductWidget", u"Designation", None))
         ___qtablewidgetitem2 = self.productTable.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("productWidget", u"Stock", None))
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("ProductWidget", u"Stock", None))
     # retranslateUi
 

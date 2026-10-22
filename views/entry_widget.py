@@ -1,7 +1,7 @@
 
 from PySide6.QtWidgets import QWidget , QTableWidgetItem , QHeaderView , QDialog , QMessageBox
 from PySide6.QtCore import QDate
-from ui_compiled.ui_entry_widget import Ui_entryWidget
+from ui_compiled.ui_entry_widget import Ui_EntryWidget
 import db
 from views.entry_dialog import AddEntryDialog
 from ui_compiled.ui_add_entry_dialog import Ui_Dialog
@@ -9,7 +9,7 @@ from utils.table_management import fill_table
 class EntryWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_entryWidget()
+        self.ui = Ui_EntryWidget()
         self.ui.setupUi(self)
         self.ui.btnSearch.clicked.connect(self.set_entry_table)
         self.set_entry_table()

@@ -1,12 +1,12 @@
-import resources_rc
 from PySide6.QtCore import QRectF, Qt
 from PySide6.QtGui import QImage, QPainter, QPixmap
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import QWidget
 
-from db import get_total_products, get_total_stock
-from  ui_compiled.ui_dashboard_widget import Ui_dashboard
 import db
+import resources_rc
+from db import get_total_products, get_total_stock
+from ui_compiled.ui_dashboard_widget import Ui_Dashboard
 
 ICONES_PAR_CARTE = {
     "tile_ico_produits": "product.svg",
@@ -28,10 +28,10 @@ def icone_pixmap(nom_fichier, taille=22):
     return QPixmap.fromImage(image)
 
 
-class dashboardWindow(QWidget):
+class DashboardWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_dashboard()
+        self.ui = Ui_Dashboard()
         self.ui.setupUi(self)
         for nom_objet, nom_fichier in ICONES_PAR_CARTE.items():
             getattr(self.ui, nom_objet).setPixmap(icone_pixmap(nom_fichier))

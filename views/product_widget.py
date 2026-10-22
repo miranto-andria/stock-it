@@ -3,7 +3,7 @@ from tkinter import dialog
 
 from PySide6.QtWidgets import QWidget , QTableWidgetItem , QHeaderView , QDialog , QMessageBox
 from PySide6.QtCore import QDate
-from ui_compiled.ui_product_widget import Ui_productWidget
+from ui_compiled.ui_product_widget import Ui_ProductWidget
 import db
 from views import product_dialog
 from views.entry_dialog import AddEntryDialog
@@ -13,7 +13,7 @@ from views.product_dialog import AddProductDialog
 class ProductWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_productWidget()
+        self.ui = Ui_ProductWidget()
         self.ui.setupUi(self)
         tbm.columns_setting(self.ui.productTable, [160, 0, 110], colonne_etirable=1)
         self.ui.productTable.verticalHeader().setVisible(False)

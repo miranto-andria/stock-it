@@ -19,17 +19,16 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
     QStackedWidget, QVBoxLayout, QWidget)
 
-class Ui_Stock_It(object):
+class Ui_StockIt(object):
     def setupUi(self, Stock_It):
         if not Stock_It.objectName():
             Stock_It.setObjectName(u"Stock_It")
         Stock_It.resize(1280, 720)
         Stock_It.setStyleSheet(u"#sideBar{\n"
-"background-color : #3c83f6;\n"
+"background-color : #2563eb;\n"
 "border-right : 1px solid rgba(255,255,255,0.25);\n"
 "color : #ffffff\n"
 "}\n"
-"\n"
 "#centralwidget{\n"
 "background : #fff;\n"
 "}\n"
@@ -75,7 +74,9 @@ class Ui_Stock_It(object):
         self.titleContainer = QFrame(self.sideBar)
         self.titleContainer.setObjectName(u"titleContainer")
         self.titleContainer.setAutoFillBackground(False)
-        self.titleContainer.setStyleSheet(u"background-color : transparent ; color:#ffffff ; font-weight : bold")
+        self.titleContainer.setStyleSheet(u"background-color : transparent ; color:#ffffff ; font-weight : bold;\n"
+"\n"
+"border: none;")
         self.titleContainer.setFrameShape(QFrame.Shape.StyledPanel)
         self.titleContainer.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.titleContainer)
@@ -97,7 +98,9 @@ class Ui_Stock_It(object):
         sizePolicy.setHeightForWidth(self.sideBarConatainer.sizePolicy().hasHeightForWidth())
         self.sideBarConatainer.setSizePolicy(sizePolicy)
         self.sideBarConatainer.setStyleSheet(u"*{\n"
-"background-color : #3c83f6 ; color:#ffffff\n"
+"background-color : #2563eb ; color:#ffffff;\n"
+"\n"
+"border: none;\n"
 "}\n"
 "QPushButton:hover{\n"
 "background-color : rgba(255,255,255,0.15) ; color:#ffffff\n"
@@ -150,7 +153,9 @@ class Ui_Stock_It(object):
         sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
         self.frame_3.setSizePolicy(sizePolicy)
         self.frame_3.setStyleSheet(u"*{\n"
-"background-color : #3c83f6 ; color:#ffffff\n"
+"color:#ffffff;\n"
+"\n"
+"border: none;\n"
 "}\n"
 "QPushButton:hover{\n"
 "background-color : rgba(255,255,255,0.15) ; color:#ffffff\n"
@@ -201,14 +206,14 @@ class Ui_Stock_It(object):
     # setupUi
 
     def retranslateUi(self, Stock_It):
-        Stock_It.setWindowTitle(QCoreApplication.translate("Stock_It", u"MainWindow", None))
-        self.title.setText(QCoreApplication.translate("Stock_It", u"Stock IT", None))
-        self.dashboardBtn.setText(QCoreApplication.translate("Stock_It", u"Tableau de bord", None))
-        self.stockBtn.setText(QCoreApplication.translate("Stock_It", u"Etat de stock", None))
-        self.entryBtn.setText(QCoreApplication.translate("Stock_It", u"Bon d'entr\u00e9e", None))
-        self.sortieBtn.setText(QCoreApplication.translate("Stock_It", u"Bon de sortie", None))
-        self.mouvementBtn.setText(QCoreApplication.translate("Stock_It", u"Mouvements d'un produit", None))
-        self.gestionBtn.setText(QCoreApplication.translate("Stock_It", u"Gestion des stock", None))
-        self.exitBtn.setText(QCoreApplication.translate("Stock_It", u"Quitter", None))
+        Stock_It.setWindowTitle(QCoreApplication.translate("StockIt", u"MainWindow", None))
+        self.title.setText(QCoreApplication.translate("StockIt", u"Stock IT", None))
+        self.dashboardBtn.setText(QCoreApplication.translate("StockIt", u"Tableau de bord", None))
+        self.stockBtn.setText(QCoreApplication.translate("StockIt", u"Etat de stock", None))
+        self.entryBtn.setText(QCoreApplication.translate("StockIt", u"Bon d'entr\u00e9e", None))
+        self.sortieBtn.setText(QCoreApplication.translate("StockIt", u"Bon de sortie", None))
+        self.mouvementBtn.setText(QCoreApplication.translate("StockIt", u"Mouvements d'un produit", None))
+        self.gestionBtn.setText(QCoreApplication.translate("StockIt", u"Gestion des stock", None))
+        self.exitBtn.setText(QCoreApplication.translate("StockIt", u"Quitter", None))
     # retranslateUi
 

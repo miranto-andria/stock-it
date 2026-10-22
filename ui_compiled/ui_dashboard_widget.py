@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QGroupBox,
 from views.graphics import (HistogramWidget, PieChartWidget)
 import resources_rc
 
-class Ui_dashboard(object):
+class Ui_Dashboard(object):
     def setupUi(self, dashboard):
         if not dashboard.objectName():
             dashboard.setObjectName(u"dashboard")
@@ -261,21 +261,21 @@ class Ui_dashboard(object):
     # setupUi
 
     def retranslateUi(self, dashboard):
-        dashboard.setWindowTitle(QCoreApplication.translate("dashboard", u"Form", None))
-        self.label.setText(QCoreApplication.translate("dashboard", u"Tableau de bord des stocks", None))
+        dashboard.setWindowTitle(QCoreApplication.translate("Dashboard", u"Form", None))
+        self.label.setText(QCoreApplication.translate("Dashboard", u"Tableau de bord des stocks", None))
         self.stats.setText("")
         self.tile_ico_produits.setText("")
-        self.titre_produits.setText(QCoreApplication.translate("dashboard", u"Nombre de produits", None))
-        self.valeur_produits.setText(QCoreApplication.translate("dashboard", u"0", None))
+        self.titre_produits.setText(QCoreApplication.translate("Dashboard", u"Nombre de produits", None))
+        self.valeur_produits.setText(QCoreApplication.translate("Dashboard", u"0", None))
         self.tile_ico_stock.setText("")
-        self.titre_stock.setText(QCoreApplication.translate("dashboard", u"Quantit\u00e9 totale en stock", None))
-        self.valeur_stock.setText(QCoreApplication.translate("dashboard", u"0", None))
+        self.titre_stock.setText(QCoreApplication.translate("Dashboard", u"Quantit\u00e9 totale en stock", None))
+        self.valeur_stock.setText(QCoreApplication.translate("Dashboard", u"0", None))
         self.tile_ico_entrees.setText("")
-        self.titre_entrees.setText(QCoreApplication.translate("dashboard", u"Bons d'entr\u00e9e", None))
-        self.valeur_entrees.setText(QCoreApplication.translate("dashboard", u"0", None))
+        self.titre_entrees.setText(QCoreApplication.translate("Dashboard", u"Bons d'entr\u00e9e", None))
+        self.valeur_entrees.setText(QCoreApplication.translate("Dashboard", u"0", None))
         self.tile_ico_sorties.setText("")
-        self.titre_sorties.setText(QCoreApplication.translate("dashboard", u"Bons de sortie", None))
-        self.valeur_sorties.setText(QCoreApplication.translate("dashboard", u"0", None))
-        self.bloc_mouvements.setTitle(QCoreApplication.translate("dashboard", u"Derniers mouvements enregistr\u00e9s", None))
+        self.titre_sorties.setText(QCoreApplication.translate("Dashboard", u"Bons de sortie", None))
+        self.valeur_sorties.setText(QCoreApplication.translate("Dashboard", u"0", None))
+        self.bloc_mouvements.setTitle(QCoreApplication.translate("Dashboard", u"Derniers mouvements enregistr\u00e9s", None))
     # retranslateUi
 

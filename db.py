@@ -1,15 +1,18 @@
+from datetime import date
+
 import mysql.connector
 from mysql.connector import Error
-
-from datetime import date
 
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
     "password": "",
     "database": "stock_it",
-    "port": "3307"
+    "port": 3307,
 }
+TABLE_PRODUIT = "Produit"
+TABLE_ENTREE = "BondeEntree"
+TABLE_SORTIE = "BondeSortie"
 
 
 def connect():
@@ -34,11 +37,14 @@ def execute(query, params=None, fetch=False):
     finally:
         cursor.close()
         conn.close()
+
+
 def execute_one(query, params=None):
     lignes = execute(query, params, fetch=True)
     if not lignes:
         return None
     return lignes[0]
+
 
 def execute_many(requetes):
     conn = connect()
@@ -54,17 +60,31 @@ def execute_many(requetes):
         cursor.close()
         conn.close()
 
+
 def get_entry_pass():
-    return execute("SELECT b.NumBon , b.NumProduit , b.QteEntree , b.DateEntree , p.Design FROM bondeentree b JOIN produit p ORDER BY NumBon" , fetch=True)
+    return execute(
+        "SELECT b.NumBon, b.NumProduit, b.QteEntree, b.DateEntree, p.Design "
+        "FROM BondeEntree b JOIN Produit p ON b.NumProduit = p.NumProduit "
+        "ORDER BY b.NumBon",
+        fetch=True,
+    )
+
 
 def get_exit_pass():
-    return execute("SELECT b.NumBon , b.NumProduit , b.QteSortie , b.DateSortie , p.Design FROM bondesortie b JOIN produit p ORDER BY NumBon" , fetch=True)
+    return execute(
+        "SELECT b.NumBon, b.NumProduit, b.QteSortie, b.DateSortie, p.Design "
+        "FROM BondeSortie b JOIN Produit p ON b.NumProduit = p.NumProduit "
+        "ORDER BY b.NumBon",
+        fetch=True,
+    )
+
 
 def product_lists():
     return execute(
         "SELECT NumProduit, Design, Stock FROM Produit ORDER BY NumProduit",
         fetch=True,
     )
+
 
 def search_product(texte):
     texte = (texte or "").strip()
@@ -77,6 +97,7 @@ def search_product(texte):
         (modele, modele),
         fetch=True,
     )
+
 
 def count(query, params=None):
     ligne = execute_one(query, params)
@@ -123,11 +144,14 @@ def get_bons_entree_mois_dernier():
     mois, annee = aujourdhui.month, aujourdhui.year
     if mois == 1:
         mois, annee = 12, annee - 1
+    else:
+        mois -= 1
     return count(
         "SELECT COUNT(*) AS total FROM BondeEntree "
         "WHERE YEAR(DateEntree) = %s AND MONTH(DateEntree) = %s",
         (annee, mois),
     )
+
 
 def stock_repartition():
     return [
@@ -149,24 +173,39 @@ def stock_repartition():
         ),
     ]
 
-def add_entry(NumBon , NumProduit , QteEntree , Date):
-    execute("INSERT INTO bondeentree (NumBon , NumProduit , QteEntree , DateEntree) VALUES (%s , %s , %s , %s)" , (NumBon , NumProduit , QteEntree , Date))
-    execute("UPDATE produit p JOIN bondeentree b ON p.NumProduit = b.NumProduit SET p.Stock = p.stock + %s WHERE p.NumProduit = %s" , [ QteEntree ,NumProduit])
+
+def add_entry(NumBon, NumProduit, QteEntree, Date):
+    execute(
+        "INSERT INTO BondeEntree (NumBon, NumProduit, QteEntree, DateEntree) "
+        "VALUES (%s, %s, %s, %s)",
+        (NumBon, NumProduit, QteEntree, Date),
+    )
+    execute(
+        "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
+        (QteEntree, NumProduit),
+    )
 
 
-
-def delete_entry(NumBon , QteEntree , NumProduit):
-    execute("DELETE FROM bondeentree WHERE NumBon = %s" , [NumBon])
-    execute("UPDATE produit p JOIN bondeentree b ON p.NumProduit = b.NumProduit SET p.Stock = p.Stock - %s WHERE p.NumProduit = %s" , [QteEntree , NumProduit])
+def delete_entry(numBon):
+    execute("DELETE FROM BondeEntree WHERE NumBon = %s", [numBon])
 
 
-def update_entry(NumBon , NumProduit , QteEntree , DateEntree):
-    execute("UPDATE bondeentree SET NumProduit = %s , QteEntree = %s , DateEntree = %s WHERE NumBon = %s"  , (NumProduit , QteEntree , DateEntree , NumBon))
+def update_entry(NumBon, NumProduit, QteEntree, DateEntree):
+    execute(
+        "UPDATE BondeEntree SET NumProduit = %s, QteEntree = %s, "
+        "DateEntree = %s WHERE NumBon = %s",
+        (NumProduit, QteEntree, DateEntree, NumBon),
+    )
 
-"""
-    @return Dict : Jour, Sens, NumBon, NumProduit,
-    Quantite.
-"""
+
+def produit(num_produit):
+    """Renvoie le produit demandé, ou None s'il n'existe pas."""
+    return execute_one(
+        "SELECT NumProduit, Design, Stock FROM Produit WHERE NumProduit = %s",
+        (num_produit,),
+    )
+
+
 def derniers_mouvements(limite=12):
     mouvements = []
 
@@ -201,19 +240,94 @@ def derniers_mouvements(limite=12):
         )
 
     mouvements.sort(
-        key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]), reverse=True
+        key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]),
+        reverse=True,
     )
     return mouvements[:limite]
 
-def add_product(NumProduit , Designation , Stock):
-    execute("INSERT INTO produit (NumProduit , Design , Stock) VALUES (%s , %s , %s)" , (NumProduit , Designation , Stock))
+
+def add_product(NumProduit, Designation, Stock):
+    execute(
+        "INSERT INTO Produit (NumProduit, Design, Stock) VALUES (%s, %s, %s)",
+        (NumProduit, Designation, Stock),
+    )
 
 
 def delete_product(numProduit):
-    execute("DELETE FROM produit WHERE NumProduit = %s" , [numProduit])
-    
+    execute("DELETE FROM Produit WHERE NumProduit = %s", [numProduit])
 
 
-def update_product(NumProduit , Designation , Stock):
-    execute("UPDATE produit SET Design = %s , Stock = %s WHERE NumProduit = %s"  , (Designation , Stock , NumProduit))
-    
+def update_product(NumProduit, Designation, Stock):
+    execute(
+        "UPDATE Produit SET Design = %s, Stock = %s WHERE NumProduit = %s",
+        (Designation, Stock, NumProduit),
+    )
+
+
+def _table_bon(sens):
+    """Nom de la table correspondant au sens (« ENTREE » ou « SORTIE »)."""
+    return TABLE_ENTREE if sens == "ENTREE" else TABLE_SORTIE
+
+
+def _colonne_quantite(sens):
+    """Nom de la colonne de quantité dans la table du bon."""
+    return "QteEntree" if sens == "ENTREE" else "QteSortie"
+
+
+def _colonne_date(sens):
+    """Nom de la colonne de date dans la table du bon."""
+    return "DateEntree" if sens == "ENTREE" else "DateSortie"
+
+
+def _libelle_bon(sens):
+    return "d'entrée" if sens == "ENTREE" else "de sortie"
+
+
+def _lignes_produit(sens, num_produit, debut, fin):
+    """Lignes de bons d'un produit, entre deux dates (facultatives)."""
+    colonne_qte = _colonne_quantite(sens)
+    colonne_date = _colonne_date(sens)
+
+    requete = (
+        f"SELECT NumBon, {colonne_qte} AS Quantite, {colonne_date} AS Jour "
+        f"FROM {_table_bon(sens)} WHERE NumProduit = %s"
+    )
+    parametres = [num_produit]
+
+    if debut is not None:
+        requete += f" AND {colonne_date} >= %s"
+        parametres.append(debut)
+
+    if fin is not None:
+        requete += f" AND {colonne_date} <= %s"
+        parametres.append(fin)
+
+    requete += f" ORDER BY {colonne_date}, NumBon"
+    return execute(requete, tuple(parametres), fetch=True)
+
+
+def liste_mouvements(num_produit, debut=None, fin=None):
+    mouvements = []
+
+    for ligne in _lignes_produit("ENTREE", num_produit, debut, fin):
+        mouvements.append(
+            {
+                "Jour": ligne["Jour"],
+                "NumBon": ligne["NumBon"],
+                "Entree": ligne["Quantite"],
+                "Sortie": 0,
+            }
+        )
+
+    for ligne in _lignes_produit("SORTIE", num_produit, debut, fin):
+        mouvements.append(
+            {
+                "Jour": ligne["Jour"],
+                "NumBon": ligne["NumBon"],
+                "Entree": 0,
+                "Sortie": ligne["Quantite"],
+            }
+        )
+
+    mouvements.sort(key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]))
+    return mouvements

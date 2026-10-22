@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 
-class Ui_entryWidget(object):
+class Ui_EntryWidget(object):
     def setupUi(self, entryWidget):
         if not entryWidget.objectName():
             entryWidget.setObjectName(u"entryWidget")
@@ -215,24 +215,24 @@ class Ui_entryWidget(object):
     # setupUi
 
     def retranslateUi(self, entryWidget):
-        entryWidget.setWindowTitle(QCoreApplication.translate("entryWidget", u"Form", None))
-        self.pageName.setText(QCoreApplication.translate("entryWidget", u"Bon d'entr\u00e9e", None))
-        self.description.setText(QCoreApplication.translate("entryWidget", u"G\u00e9rez les entr\u00e9es de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
-        self.btnAdd.setText(QCoreApplication.translate("entryWidget", u"Ajouter un bon", None))
-        self.label_2.setText(QCoreApplication.translate("entryWidget", u"Filtrer par :", None))
-        self.searchInput.setPlaceholderText(QCoreApplication.translate("entryWidget", u"Num\u00e9ro du bon ,  produit ou par designation", None))
-        self.btnSearch.setText(QCoreApplication.translate("entryWidget", u"Recherche", None))
-        self.btnEdit.setText(QCoreApplication.translate("entryWidget", u"Modifier", None))
-        self.btnDelete.setText(QCoreApplication.translate("entryWidget", u"Supprimer", None))
+        entryWidget.setWindowTitle(QCoreApplication.translate("EntryWidget", u"Form", None))
+        self.pageName.setText(QCoreApplication.translate("EntryWidget", u"Bon d'entr\u00e9e", None))
+        self.description.setText(QCoreApplication.translate("EntryWidget", u"G\u00e9rez les entr\u00e9es de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
+        self.btnAdd.setText(QCoreApplication.translate("EntryWidget", u"Ajouter un bon", None))
+        self.label_2.setText(QCoreApplication.translate("EntryWidget", u"Filtrer par :", None))
+        self.searchInput.setPlaceholderText(QCoreApplication.translate("EntryWidget", u"Num\u00e9ro du bon ,  produit ou par designation", None))
+        self.btnSearch.setText(QCoreApplication.translate("EntryWidget", u"Recherche", None))
+        self.btnEdit.setText(QCoreApplication.translate("EntryWidget", u"Modifier", None))
+        self.btnDelete.setText(QCoreApplication.translate("EntryWidget", u"Supprimer", None))
         ___qtablewidgetitem = self.entryTable.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("entryWidget", u"N\u00b0BON", None))
+        ___qtablewidgetitem.setText(QCoreApplication.translate("EntryWidget", u"N\u00b0BON", None))
         ___qtablewidgetitem1 = self.entryTable.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("entryWidget", u"N\u00b0 Produit", None))
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("EntryWidget", u"N\u00b0 Produit", None))
         ___qtablewidgetitem2 = self.entryTable.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("entryWidget", u"Nom du Produit", None))
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("EntryWidget", u"Nom du Produit", None))
         ___qtablewidgetitem3 = self.entryTable.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("entryWidget", u"Quantite Entr\u00e9e", None))
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("EntryWidget", u"Quantite Entr\u00e9e", None))
         ___qtablewidgetitem4 = self.entryTable.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("entryWidget", u"Date", None))
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("EntryWidget", u"Date", None))
     # retranslateUi
 

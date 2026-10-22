@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Stock_It</class>
+ <class>StockIt</class>
  <widget class="QMainWindow" name="Stock_It">
   <property name="geometry">
    <rect>

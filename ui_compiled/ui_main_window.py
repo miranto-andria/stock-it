@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
     QStackedWidget, QVBoxLayout, QWidget)
 
-class Ui_Stock_It(object):
+class Ui_StockIt(object):
     def setupUi(self, Stock_It):
         if not Stock_It.objectName():
             Stock_It.setObjectName(u"Stock_It")
@@ -206,14 +206,14 @@ class Ui_Stock_It(object):
     # setupUi
 
     def retranslateUi(self, Stock_It):
-        Stock_It.setWindowTitle(QCoreApplication.translate("Stock_It", u"MainWindow", None))
-        self.title.setText(QCoreApplication.translate("Stock_It", u"Stock IT", None))
-        self.dashboardBtn.setText(QCoreApplication.translate("Stock_It", u"Tableau de bord", None))
-        self.stockBtn.setText(QCoreApplication.translate("Stock_It", u"Etat de stock", None))
-        self.entryBtn.setText(QCoreApplication.translate("Stock_It", u"Bon d'entr\u00e9e", None))
-        self.sortieBtn.setText(QCoreApplication.translate("Stock_It", u"Bon de sortie", None))
-        self.mouvementBtn.setText(QCoreApplication.translate("Stock_It", u"Mouvements d'un produit", None))
-        self.gestionBtn.setText(QCoreApplication.translate("Stock_It", u"Gestion des stock", None))
-        self.exitBtn.setText(QCoreApplication.translate("Stock_It", u"Quitter", None))
+        Stock_It.setWindowTitle(QCoreApplication.translate("StockIt", u"MainWindow", None))
+        self.title.setText(QCoreApplication.translate("StockIt", u"Stock IT", None))
+        self.dashboardBtn.setText(QCoreApplication.translate("StockIt", u"Tableau de bord", None))
+        self.stockBtn.setText(QCoreApplication.translate("StockIt", u"Etat de stock", None))
+        self.entryBtn.setText(QCoreApplication.translate("StockIt", u"Bon d'entr\u00e9e", None))
+        self.sortieBtn.setText(QCoreApplication.translate("StockIt", u"Bon de sortie", None))
+        self.mouvementBtn.setText(QCoreApplication.translate("StockIt", u"Mouvements d'un produit", None))
+        self.gestionBtn.setText(QCoreApplication.translate("StockIt", u"Gestion des stock", None))
+        self.exitBtn.setText(QCoreApplication.translate("StockIt", u"Quitter", None))
     # retranslateUi
 
