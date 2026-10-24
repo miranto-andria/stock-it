@@ -21,19 +21,22 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QDate
     QTableWidget, QTableWidgetItem, QWidget)
 
 class Ui_MovementWidget(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(811, 635)
-        self.gridLayout = QGridLayout(Form)
+    def setupUi(self, MovementWidget):
+        if not MovementWidget.objectName():
+            MovementWidget.setObjectName(u"MovementWidget")
+        MovementWidget.resize(811, 635)
+        self.gridLayout = QGridLayout(MovementWidget)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.resume = QLabel(Form)
+        self.gridLayout.setHorizontalSpacing(16)
+        self.gridLayout.setVerticalSpacing(12)
+        self.gridLayout.setContentsMargins(16, 16, 16, 16)
+        self.resume = QLabel(MovementWidget)
         self.resume.setObjectName(u"resume")
         self.resume.setTextFormat(Qt.TextFormat.RichText)
 
         self.gridLayout.addWidget(self.resume, 5, 0, 1, 1)
 
-        self.table = QTableWidget(Form)
+        self.table = QTableWidget(MovementWidget)
         if (self.table.columnCount() < 4):
             self.table.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
@@ -58,7 +61,7 @@ class Ui_MovementWidget(object):
 
         self.haut = QHBoxLayout()
         self.haut.setObjectName(u"haut")
-        self.cadre_produit = QGroupBox(Form)
+        self.cadre_produit = QGroupBox(MovementWidget)
         self.cadre_produit.setObjectName(u"cadre_produit")
         self.ligne_produit = QHBoxLayout(self.cadre_produit)
         self.ligne_produit.setObjectName(u"ligne_produit")
@@ -89,7 +92,7 @@ class Ui_MovementWidget(object):
 
         self.haut.addWidget(self.cadre_produit, 0, Qt.AlignmentFlag.AlignTop)
 
-        self.cadre_periode = QGroupBox(Form)
+        self.cadre_periode = QGroupBox(MovementWidget)
         self.cadre_periode.setObjectName(u"cadre_periode")
         self.grille_periode = QGridLayout(self.cadre_periode)
         self.grille_periode.setObjectName(u"grille_periode")
@@ -169,12 +172,12 @@ class Ui_MovementWidget(object):
 
         self.gridLayout.addLayout(self.haut, 2, 0, 1, 1)
 
-        self.sous_titre = QLabel(Form)
+        self.sous_titre = QLabel(MovementWidget)
         self.sous_titre.setObjectName(u"sous_titre")
 
         self.gridLayout.addWidget(self.sous_titre, 1, 0, 1, 1)
 
-        self.fiche = QGroupBox(Form)
+        self.fiche = QGroupBox(MovementWidget)
         self.fiche.setObjectName(u"fiche")
         self.fiche_grille = QGridLayout(self.fiche)
         self.fiche_grille.setObjectName(u"fiche_grille")
@@ -215,7 +218,7 @@ class Ui_MovementWidget(object):
 
         self.gridLayout.addWidget(self.fiche, 3, 0, 1, 1)
 
-        self.titre = QLabel(Form)
+        self.titre = QLabel(MovementWidget)
         self.titre.setObjectName(u"titre")
 
         self.gridLayout.addWidget(self.titre, 0, 0, 1, 1)
@@ -225,13 +228,13 @@ class Ui_MovementWidget(object):
         self.gridLayout.addItem(self.verticalSpacer, 6, 0, 1, 1)
 
 
-        self.retranslateUi(Form)
+        self.retranslateUi(MovementWidget)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(MovementWidget)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("MovementWidget", u"Form", None))
+    def retranslateUi(self, MovementWidget):
+        MovementWidget.setWindowTitle(QCoreApplication.translate("MovementWidget", u"Form", None))
         self.resume.setText("")
         ___qtablewidgetitem = self.table.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MovementWidget", u"N\u00b0 Bon", None))
@@ -251,7 +254,7 @@ class Ui_MovementWidget(object):
         self.mode.setItemText(2, QCoreApplication.translate("MovementWidget", u"Dans une ann\u00e9e", None))
         self.mode.setItemText(3, QCoreApplication.translate("MovementWidget", u"Tout l'historique", None))
 
-        self.periode.setText(QCoreApplication.translate("MovementWidget", u"P\u00e9riode : \u2014", None))
+        self.periode.setText(QCoreApplication.translate("MovementWidget", u"-", None))
         self.label_du.setText(QCoreApplication.translate("MovementWidget", u"Du :", None))
         self.date_debut.setDisplayFormat(QCoreApplication.translate("MovementWidget", u"dd/MM/yyyy", None))
         self.label_au.setText(QCoreApplication.translate("MovementWidget", u"Au :", None))
@@ -260,14 +263,14 @@ class Ui_MovementWidget(object):
         self.date_mois.setDisplayFormat(QCoreApplication.translate("MovementWidget", u"MM/yyyy", None))
         self.label_annee.setText(QCoreApplication.translate("MovementWidget", u"Ann\u00e9e :", None))
         self.date_annee.setDisplayFormat(QCoreApplication.translate("MovementWidget", u"yyyy", None))
-        self.sous_titre.setText(QCoreApplication.translate("MovementWidget", u"S\u00e9lection par num\u00e9ro : N\u00b0 bon, quantit\u00e9 entr\u00e9e, quantit\u00e9 sortie et par date (entre 2 dates)", None))
+        self.sous_titre.setText(QCoreApplication.translate("MovementWidget", u"Consultez les entr\u00e9es et sorties selon le produit et la p\u00e9riode s\u00e9lectionn\u00e9s.", None))
         self.fiche.setTitle(QCoreApplication.translate("MovementWidget", u"Fiche produit", None))
         self.label_fiche_num.setText(QCoreApplication.translate("MovementWidget", u"N\u00b0 Produit :", None))
-        self.lbl_num.setText(QCoreApplication.translate("MovementWidget", u"\u2014", None))
+        self.lbl_num.setText(QCoreApplication.translate("MovementWidget", u"-", None))
         self.label_fiche_design.setText(QCoreApplication.translate("MovementWidget", u"D\u00e9signation :", None))
-        self.lbl_design.setText(QCoreApplication.translate("MovementWidget", u"\u2014", None))
+        self.lbl_design.setText(QCoreApplication.translate("MovementWidget", u"-", None))
         self.label_fiche_stock.setText(QCoreApplication.translate("MovementWidget", u"Stock actuel :", None))
-        self.lbl_stock.setText(QCoreApplication.translate("MovementWidget", u"\u2014", None))
+        self.lbl_stock.setText(QCoreApplication.translate("MovementWidget", u"-", None))
         self.titre.setText(QCoreApplication.translate("MovementWidget", u"Mouvements de stock d'un produit", None))
     # retranslateUi
 

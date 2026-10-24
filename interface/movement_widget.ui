@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MovementWidget</class>
- <widget class="QWidget" name="Form">
+ <widget class="QWidget" name="MovementWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,6 +14,24 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="horizontalSpacing">
+    <number>16</number>
+   </property>
+   <property name="verticalSpacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>16</number>
+   </property>
+   <property name="topMargin">
+    <number>16</number>
+   </property>
+   <property name="rightMargin">
+    <number>16</number>
+   </property>
+   <property name="bottomMargin">
+    <number>16</number>
+   </property>
    <item row="5" column="0">
     <widget class="QLabel" name="resume">
      <property name="text">
@@ -163,7 +181,7 @@
         <item row="0" column="3">
          <widget class="QLabel" name="periode">
           <property name="text">
-           <string>Période : —</string>
+           <string>-</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -259,7 +277,7 @@
    <item row="1" column="0">
     <widget class="QLabel" name="sous_titre">
      <property name="text">
-      <string>Sélection par numéro : N° bon, quantité entrée, quantité sortie et par date (entre 2 dates)</string>
+      <string>Consultez les entrées et sorties selon le produit et la période sélectionnés.</string>
      </property>
     </widget>
    </item>
@@ -279,7 +297,7 @@
       <item row="0" column="1">
        <widget class="QLabel" name="lbl_num">
         <property name="text">
-         <string>—</string>
+         <string>-</string>
         </property>
        </widget>
       </item>
@@ -293,7 +311,7 @@
       <item row="0" column="3">
        <widget class="QLabel" name="lbl_design">
         <property name="text">
-         <string>—</string>
+         <string>-</string>
         </property>
        </widget>
       </item>
@@ -307,7 +325,7 @@
       <item row="1" column="1">
        <widget class="QLabel" name="lbl_stock">
         <property name="text">
-         <string>—</string>
+         <string>-</string>
         </property>
        </widget>
       </item>

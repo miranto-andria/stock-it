@@ -1,31 +1,27 @@
-from PySide6.QtCore import QRectF, Qt
-from PySide6.QtGui import QImage, QPainter, QPixmap
-from PySide6.QtSvg import QSvgRenderer
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QWidget
 
 import db
 import resources_rc
-from db import get_total_products, get_total_stock
 from ui_compiled.ui_dashboard_widget import Ui_Dashboard
 
 ICONES_PAR_CARTE = {
-    "tile_ico_produits": "product.svg",
-    "tile_ico_stock": "box.svg",
-    "tile_ico_entrees": "inward.svg",
-    "tile_ico_sorties": "outward.svg",
+    "tile_ico_produits": "product.png",
+    "tile_ico_stock": "box.png",
+    "tile_ico_entrees": "inward.png",
+    "tile_ico_sorties": "outward.png",
 }
 
 
 def icone_pixmap(nom_fichier, taille=22):
-    rendu = QSvgRenderer(f":/icons/{nom_fichier}")
-    image = QImage(taille, taille, QImage.Format.Format_ARGB32)
-    image.fill(Qt.GlobalColor.transparent)
-    peintre = QPainter(image)
-    peintre.setRenderHint(QPainter.RenderHint.Antialiasing)
-    peintre.setRenderHint(QPainter.RenderHint.SmoothPixmapTransform)
-    rendu.render(peintre, QRectF(0, 0, taille, taille))
-    peintre.end()
-    return QPixmap.fromImage(image)
+    pixmap = QPixmap(f":/icons/{nom_fichier}")
+    return pixmap.scaled(
+        taille,
+        taille,
+        Qt.AspectRatioMode.KeepAspectRatio,
+        Qt.TransformationMode.SmoothTransformation,
+    )
 
 
 class DashboardWidget(QWidget):
@@ -37,35 +33,49 @@ class DashboardWidget(QWidget):
             getattr(self.ui, nom_objet).setPixmap(icone_pixmap(nom_fichier))
         self.refresh()
 
-    def init_count(self):
-        total_stock = db.get_total_stock()
-        total_products = db.get_total_products()
-        nb_bons_entree = db.get_nb_bons_entree()
-        nb_bons_sortie = db.get_nb_bons_sortie()
-        self.ui.valeur_stock.setText(str(total_stock))
-        self.ui.valeur_produits.setText(str(total_products))
-        self.ui.valeur_entrees.setText(str(nb_bons_entree))
-        self.ui.valeur_sorties.setText(str(nb_bons_sortie))
-        repartition = dict(db.stock_repartition())
-        rupture = repartition["Rupture(0)"]
-        faible = repartition["Faible(1-5)"]
-        moyen = repartition["Moyen(6-10)"]
-        eleve = repartition["Élevé(> 10)"]
+    def init_count(self, stats):
+        self.ui.valeur_stock.setText(str(stats["total_stock"]))
+        self.ui.valeur_produits.setText(str(stats["total_products"]))
+        self.ui.valeur_entrees.setText(str(stats["bons_entree"]))
+        self.ui.valeur_sorties.setText(str(stats["bons_sortie"]))
         self.ui.stats.setText(
-            f"{get_total_products()} produits - {get_total_stock()} unités "
-            f"- {rupture} en rupture - {faible} stock faible"
-            f"- {moyen} Moyen - {eleve} Élevé"
+            f"{stats['rupture']} en rupture  |  {stats['faible']} à surveiller  |  "
+            f"{stats['moyen']} niveau moyen  |  {stats['eleve']} niveau confortable"
         )
 
     def refresh(self):
-        self.init_count()
-        produits = db.product_lists()
+        stats = {
+            "total_products": 0,
+            "total_stock": 0,
+            "bons_entree": 0,
+            "bons_sortie": 0,
+            "rupture": 0,
+            "faible": 0,
+            "moyen": 0,
+            "eleve": 0,
+        }
+        produits = []
+        mouvements = []
+        try:
+            stats.update(db.get_dashboard_stats() or {})
+            produits = db.get_low_stock_products() or []
+            mouvements = db.derniers_mouvements(12) or []
+        except Exception:
+            # Les widgets restent utilisables si la base est indisponible.
+            pass
+        self.init_count(stats)
         self.ui.histogramme.set_data(
             [(produit["Design"], produit["Stock"]) for produit in produits]
         )
-        self.ui.camembert.set_data(db.stock_repartition())
+        self.ui.camembert.set_data(
+            [
+                ("Rupture", stats["rupture"]),
+                ("Faible", stats["faible"]),
+                ("Moyen", stats["moyen"]),
+                ("Confortable", stats["eleve"]),
+            ]
+        )
         self.ui.derniers_mouvements.clear()
-        mouvements = db.derniers_mouvements(12)
         for mouvement in mouvements:
             entre = mouvement["Sens"] == "ENTREE"
             signe = "+" if entre else "-"

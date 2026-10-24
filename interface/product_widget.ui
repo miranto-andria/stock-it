@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>ProductWidget</class>
- <widget class="QWidget" name="productWidget">
+ <widget class="QWidget" name="ProductWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -91,7 +91,7 @@ padding : 8px 16px;
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>Gestion et listage des profuits</string>
+            <string>Gestion et listage des produits</string>
            </property>
           </widget>
          </item>
@@ -126,7 +126,7 @@ padding : 8px 16px;
          <item>
           <widget class="QPushButton" name="btnAdd">
            <property name="styleSheet">
-            <string notr="true">background-color : #774cff;
+            <string notr="true">background-color : #2d66e4;
 font : bold;
 border : none;
 color:  white</string>
@@ -234,9 +234,7 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnDelete">
            <property name="styleSheet">
-            <string notr="true">background :#e74c3c;
-border : none
-</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Supprimer</string>

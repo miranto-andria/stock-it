@@ -21,11 +21,11 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QWidget)
 
 class Ui_ProductWidget(object):
-    def setupUi(self, productWidget):
-        if not productWidget.objectName():
-            productWidget.setObjectName(u"productWidget")
-        productWidget.resize(783, 532)
-        productWidget.setStyleSheet(u"\n"
+    def setupUi(self, ProductWidget):
+        if not ProductWidget.objectName():
+            ProductWidget.setObjectName(u"ProductWidget")
+        ProductWidget.resize(783, 532)
+        ProductWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
 "border : 1px solid rgba(171, 173, 174, 40%); \n"
@@ -55,10 +55,10 @@ class Ui_ProductWidget(object):
 "\n"
 "\n"
 "")
-        self.verticalLayout = QVBoxLayout(productWidget)
+        self.verticalLayout = QVBoxLayout(ProductWidget)
         self.verticalLayout.setSpacing(16)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.searchBar = QWidget(productWidget)
+        self.searchBar = QWidget(ProductWidget)
         self.searchBar.setObjectName(u"searchBar")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -112,7 +112,7 @@ class Ui_ProductWidget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btnAdd = QPushButton(self.add)
         self.btnAdd.setObjectName(u"btnAdd")
-        self.btnAdd.setStyleSheet(u"background-color : #774cff;\n"
+        self.btnAdd.setStyleSheet(u"background-color : #2d66e4;\n"
 "font : bold;\n"
 "border : none;\n"
 "color:  white")
@@ -128,7 +128,7 @@ class Ui_ProductWidget(object):
 
         self.verticalLayout.addWidget(self.searchBar)
 
-        self.middle = QWidget(productWidget)
+        self.middle = QWidget(ProductWidget)
         self.middle.setObjectName(u"middle")
         self.middle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QVBoxLayout(self.middle)
@@ -173,9 +173,7 @@ class Ui_ProductWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background :#e74c3c;\n"
-"border : none\n"
-"")
+        self.btnDelete.setStyleSheet(u"")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
         self.btnDelete.setIcon(icon3)
         self.btnDelete.setIconSize(QSize(12, 12))
@@ -206,14 +204,14 @@ class Ui_ProductWidget(object):
         self.verticalLayout.addWidget(self.middle)
 
 
-        self.retranslateUi(productWidget)
+        self.retranslateUi(ProductWidget)
 
-        QMetaObject.connectSlotsByName(productWidget)
+        QMetaObject.connectSlotsByName(ProductWidget)
     # setupUi
 
-    def retranslateUi(self, productWidget):
-        productWidget.setWindowTitle(QCoreApplication.translate("ProductWidget", u"Form", None))
-        self.pageName.setText(QCoreApplication.translate("ProductWidget", u"Gestion et listage des profuits", None))
+    def retranslateUi(self, ProductWidget):
+        ProductWidget.setWindowTitle(QCoreApplication.translate("ProductWidget", u"Form", None))
+        self.pageName.setText(QCoreApplication.translate("ProductWidget", u"Gestion et listage des produits", None))
         self.description.setText(QCoreApplication.translate("ProductWidget", u"Consultez les \u00e9quipements disponibles et suivez les quantit\u00e9s en stock en temps r\u00e9el", None))
         self.btnAdd.setText(QCoreApplication.translate("ProductWidget", u"Ajouter un produit", None))
         self.label_2.setText(QCoreApplication.translate("ProductWidget", u"Filtrer par :", None))

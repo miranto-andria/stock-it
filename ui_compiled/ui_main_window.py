@@ -30,7 +30,7 @@ class Ui_StockIt(object):
 "color : #ffffff\n"
 "}\n"
 "#centralwidget{\n"
-"background : #fff;\n"
+"background : #f5f7f9;\n"
 "}\n"
 "\n"
 "#sideBar QPushButton{\n"
@@ -55,7 +55,7 @@ class Ui_StockIt(object):
 "font-weight : bold;\n"
 "color : #ffffff\n"
 "}\n"
-"#mainSection #stackedWidget{\n"
+"#mainSection, #mainSection #stackedWidget{\n"
 "background-color : #f5f7f9\n"
 "} ")
         self.centralwidget = QWidget(Stock_It)

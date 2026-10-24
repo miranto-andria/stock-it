@@ -1,8 +1,8 @@
 <RCC>
   <qresource>
-    <file>icons/box.svg</file>
-    <file>icons/inward.svg</file>
-    <file>icons/outward.svg</file>
-    <file>icons/product.svg</file>
+    <file>icons/box.png</file>
+    <file>icons/inward.png</file>
+    <file>icons/outward.png</file>
+    <file>icons/product.png</file>
   </qresource>
 </RCC>

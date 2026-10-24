@@ -27,7 +27,7 @@ BAR_HOVER_COLOR = "#4a80f0"
 
 PALETTE = [
     "#2d66e4",
-    "#774cff",
+    "#38bdf8",
     "#0ea5e9",
     "#14b8a6",
     "#f59e0b",
@@ -123,7 +123,7 @@ class BaseChart(QChartView):
 
 
 class HistogramWidget(BaseChart):
-    title = "État du stock par produit"
+    title = "Produits à surveiller - stock disponible"
 
     def _build(self):
         chart = self._empty_chart()
@@ -158,6 +158,9 @@ class HistogramWidget(BaseChart):
             ])
         )
         axis_x.setLabelsFont(self._axis_font())
+        axis_x.setTitleText("Produits au stock le plus faible")
+        axis_x.setTitleFont(self._axis_font())
+        axis_x.setTitleBrush(QColor(AXIS_COLOR))
         axis_x.setLabelsColor(QColor(SOFT_TEXT_COLOR))
         axis_x.setGridLineVisible(False)
         axis_x.setLinePen(QPen(QColor(GRID_COLOR), 1))
@@ -176,6 +179,9 @@ class HistogramWidget(BaseChart):
         axis_y.setTickCount(6)
         axis_y.setLabelFormat("%.0f")
         axis_y.setLabelsFont(self._axis_font())
+        axis_y.setTitleText("Unités disponibles")
+        axis_y.setTitleFont(self._axis_font())
+        axis_y.setTitleBrush(QColor(AXIS_COLOR))
         axis_y.setLabelsColor(QColor(AXIS_COLOR))
         axis_y.setGridLineColor(QColor(GRID_COLOR))
         axis_y.setLineVisible(False)

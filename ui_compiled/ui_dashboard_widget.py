@@ -23,24 +23,22 @@ from views.graphics import (HistogramWidget, PieChartWidget)
 import resources_rc
 
 class Ui_Dashboard(object):
-    def setupUi(self, dashboard):
-        if not dashboard.objectName():
-            dashboard.setObjectName(u"dashboard")
-        dashboard.resize(837, 636)
-        dashboard.setStyleSheet(u"QPushButton{\n"
-"background: transparent;\n"
-"border: none;\n"
-"}")
-        self.verticalLayout_2 = QVBoxLayout(dashboard)
+    def setupUi(self, Dashboard):
+        if not Dashboard.objectName():
+            Dashboard.setObjectName(u"Dashboard")
+        Dashboard.resize(837, 636)
+        Dashboard.setStyleSheet(u"")
+        self.verticalLayout_2 = QVBoxLayout(Dashboard)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.frame = QFrame(dashboard)
+        self.frame = QFrame(Dashboard)
         self.frame.setObjectName(u"frame")
-        self.frame.setMinimumSize(QSize(0, 60))
-        self.frame.setStyleSheet(u"padding: 2px 3px;")
+        self.frame.setMinimumSize(QSize(0, 92))
+        self.frame.setStyleSheet(u"")
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout = QVBoxLayout(self.frame)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(16, 12, 16, 12)
         self.label = QLabel(self.frame)
         self.label.setObjectName(u"label")
         font = QFont()
@@ -65,15 +63,16 @@ class Ui_Dashboard(object):
         self.verticalLayout_2.addWidget(self.frame)
 
         self.grille = QGridLayout()
-        self.grille.setSpacing(12)
+        self.grille.setSpacing(16)
         self.grille.setObjectName(u"grille")
-        self.carte_produits = QWidget(dashboard)
+        self.grille.setContentsMargins(-1, 3, -1, 3)
+        self.carte_produits = QWidget(Dashboard)
         self.carte_produits.setObjectName(u"carte_produits")
         self.carte_produits.setStyleSheet(u"")
         self.layout_carte_produits = QHBoxLayout(self.carte_produits)
         self.layout_carte_produits.setSpacing(12)
         self.layout_carte_produits.setObjectName(u"layout_carte_produits")
-        self.layout_carte_produits.setContentsMargins(14, 12, 14, 12)
+        self.layout_carte_produits.setContentsMargins(16, 14, 16, 14)
         self.tile_ico_produits = QLabel(self.carte_produits)
         self.tile_ico_produits.setObjectName(u"tile_ico_produits")
         self.tile_ico_produits.setMinimumSize(QSize(40, 40))
@@ -101,12 +100,12 @@ class Ui_Dashboard(object):
 
         self.grille.addWidget(self.carte_produits, 0, 0, 1, 1)
 
-        self.carte_stock = QWidget(dashboard)
+        self.carte_stock = QWidget(Dashboard)
         self.carte_stock.setObjectName(u"carte_stock")
         self.layout_carte_stock = QHBoxLayout(self.carte_stock)
         self.layout_carte_stock.setSpacing(12)
         self.layout_carte_stock.setObjectName(u"layout_carte_stock")
-        self.layout_carte_stock.setContentsMargins(14, 12, 14, 12)
+        self.layout_carte_stock.setContentsMargins(16, 14, 16, 14)
         self.tile_ico_stock = QLabel(self.carte_stock)
         self.tile_ico_stock.setObjectName(u"tile_ico_stock")
         self.tile_ico_stock.setMinimumSize(QSize(40, 40))
@@ -134,12 +133,12 @@ class Ui_Dashboard(object):
 
         self.grille.addWidget(self.carte_stock, 0, 1, 1, 1)
 
-        self.carte_entrees = QWidget(dashboard)
+        self.carte_entrees = QWidget(Dashboard)
         self.carte_entrees.setObjectName(u"carte_entrees")
         self.layout_carte_entrees = QHBoxLayout(self.carte_entrees)
         self.layout_carte_entrees.setSpacing(12)
         self.layout_carte_entrees.setObjectName(u"layout_carte_entrees")
-        self.layout_carte_entrees.setContentsMargins(14, 12, 14, 12)
+        self.layout_carte_entrees.setContentsMargins(16, 14, 16, 14)
         self.tile_ico_entrees = QLabel(self.carte_entrees)
         self.tile_ico_entrees.setObjectName(u"tile_ico_entrees")
         self.tile_ico_entrees.setMinimumSize(QSize(40, 40))
@@ -167,12 +166,12 @@ class Ui_Dashboard(object):
 
         self.grille.addWidget(self.carte_entrees, 0, 2, 1, 1)
 
-        self.carte_sorties = QWidget(dashboard)
+        self.carte_sorties = QWidget(Dashboard)
         self.carte_sorties.setObjectName(u"carte_sorties")
         self.layout_carte_sorties = QHBoxLayout(self.carte_sorties)
         self.layout_carte_sorties.setSpacing(12)
         self.layout_carte_sorties.setObjectName(u"layout_carte_sorties")
-        self.layout_carte_sorties.setContentsMargins(14, 12, 14, 12)
+        self.layout_carte_sorties.setContentsMargins(16, 14, 16, 14)
         self.tile_ico_sorties = QLabel(self.carte_sorties)
         self.tile_ico_sorties.setObjectName(u"tile_ico_sorties")
         self.tile_ico_sorties.setMinimumSize(QSize(40, 40))
@@ -206,13 +205,13 @@ class Ui_Dashboard(object):
         self.verticalLayout_2.addLayout(self.grille)
 
         self.ligne_graphiques = QHBoxLayout()
-        self.ligne_graphiques.setSpacing(12)
+        self.ligne_graphiques.setSpacing(16)
         self.ligne_graphiques.setObjectName(u"ligne_graphiques")
-        self.cadre_histogramme = QWidget(dashboard)
+        self.cadre_histogramme = QWidget(Dashboard)
         self.cadre_histogramme.setObjectName(u"cadre_histogramme")
         self.layout_cadre_histogramme = QVBoxLayout(self.cadre_histogramme)
         self.layout_cadre_histogramme.setObjectName(u"layout_cadre_histogramme")
-        self.layout_cadre_histogramme.setContentsMargins(6, 6, 6, 6)
+        self.layout_cadre_histogramme.setContentsMargins(12, 12, 12, 12)
         self.histogramme = HistogramWidget(self.cadre_histogramme)
         self.histogramme.setObjectName(u"histogramme")
 
@@ -221,11 +220,11 @@ class Ui_Dashboard(object):
 
         self.ligne_graphiques.addWidget(self.cadre_histogramme)
 
-        self.cadre_camembert = QWidget(dashboard)
+        self.cadre_camembert = QWidget(Dashboard)
         self.cadre_camembert.setObjectName(u"cadre_camembert")
         self.layout_cadre_camembert = QVBoxLayout(self.cadre_camembert)
         self.layout_cadre_camembert.setObjectName(u"layout_cadre_camembert")
-        self.layout_cadre_camembert.setContentsMargins(6, 4, 6, 6)
+        self.layout_cadre_camembert.setContentsMargins(12, 12, 12, 12)
         self.camembert = PieChartWidget(self.cadre_camembert)
         self.camembert.setObjectName(u"camembert")
 
@@ -239,11 +238,11 @@ class Ui_Dashboard(object):
 
         self.verticalLayout_2.addLayout(self.ligne_graphiques)
 
-        self.bloc_mouvements = QGroupBox(dashboard)
+        self.bloc_mouvements = QGroupBox(Dashboard)
         self.bloc_mouvements.setObjectName(u"bloc_mouvements")
         self.layout_mouvements = QVBoxLayout(self.bloc_mouvements)
         self.layout_mouvements.setObjectName(u"layout_mouvements")
-        self.layout_mouvements.setContentsMargins(-1, -1, -1, 6)
+        self.layout_mouvements.setContentsMargins(-1, -1, -1, 12)
         self.derniers_mouvements = QListWidget(self.bloc_mouvements)
         self.derniers_mouvements.setObjectName(u"derniers_mouvements")
         self.derniers_mouvements.setMinimumSize(QSize(0, 150))
@@ -255,13 +254,13 @@ class Ui_Dashboard(object):
 
         self.verticalLayout_2.setStretch(2, 1)
 
-        self.retranslateUi(dashboard)
+        self.retranslateUi(Dashboard)
 
-        QMetaObject.connectSlotsByName(dashboard)
+        QMetaObject.connectSlotsByName(Dashboard)
     # setupUi
 
-    def retranslateUi(self, dashboard):
-        dashboard.setWindowTitle(QCoreApplication.translate("Dashboard", u"Form", None))
+    def retranslateUi(self, Dashboard):
+        Dashboard.setWindowTitle(QCoreApplication.translate("Dashboard", u"Form", None))
         self.label.setText(QCoreApplication.translate("Dashboard", u"Tableau de bord des stocks", None))
         self.stats.setText("")
         self.tile_ico_produits.setText("")

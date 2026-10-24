@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Dashboard</class>
- <widget class="QWidget" name="dashboard">
+ <widget class="QWidget" name="Dashboard">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,10 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton{
-background: transparent;
-border: none;
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,0">
    <item>
@@ -25,11 +22,11 @@ border: none;
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>60</height>
+       <height>92</height>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">padding: 2px 3px;</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
@@ -38,6 +35,18 @@ border: none;
       <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>16</number>
+      </property>
+      <property name="topMargin">
+       <number>12</number>
+      </property>
+      <property name="rightMargin">
+       <number>16</number>
+      </property>
+      <property name="bottomMargin">
+       <number>12</number>
+      </property>
       <item>
        <widget class="QLabel" name="label">
         <property name="font">
@@ -71,8 +80,14 @@ border: none;
    </item>
    <item>
     <layout class="QGridLayout" name="grille">
+     <property name="topMargin">
+      <number>3</number>
+     </property>
+     <property name="bottomMargin">
+      <number>3</number>
+     </property>
      <property name="spacing">
-      <number>12</number>
+      <number>16</number>
      </property>
      <item row="0" column="0">
       <widget class="QWidget" name="carte_produits" native="true">
@@ -84,16 +99,16 @@ border: none;
          <number>12</number>
         </property>
         <property name="leftMargin">
-         <number>14</number>
+         <number>16</number>
         </property>
         <property name="topMargin">
-         <number>12</number>
-        </property>
-        <property name="rightMargin">
          <number>14</number>
         </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
         <property name="bottomMargin">
-         <number>12</number>
+         <number>14</number>
         </property>
         <item>
          <widget class="QLabel" name="tile_ico_produits">
@@ -148,16 +163,16 @@ border: none;
          <number>12</number>
         </property>
         <property name="leftMargin">
-         <number>14</number>
+         <number>16</number>
         </property>
         <property name="topMargin">
-         <number>12</number>
-        </property>
-        <property name="rightMargin">
          <number>14</number>
         </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
         <property name="bottomMargin">
-         <number>12</number>
+         <number>14</number>
         </property>
         <item>
          <widget class="QLabel" name="tile_ico_stock">
@@ -212,16 +227,16 @@ border: none;
          <number>12</number>
         </property>
         <property name="leftMargin">
-         <number>14</number>
+         <number>16</number>
         </property>
         <property name="topMargin">
-         <number>12</number>
-        </property>
-        <property name="rightMargin">
          <number>14</number>
         </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
         <property name="bottomMargin">
-         <number>12</number>
+         <number>14</number>
         </property>
         <item>
          <widget class="QLabel" name="tile_ico_entrees">
@@ -276,16 +291,16 @@ border: none;
          <number>12</number>
         </property>
         <property name="leftMargin">
-         <number>14</number>
+         <number>16</number>
         </property>
         <property name="topMargin">
-         <number>12</number>
-        </property>
-        <property name="rightMargin">
          <number>14</number>
         </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
         <property name="bottomMargin">
-         <number>12</number>
+         <number>14</number>
         </property>
         <item>
          <widget class="QLabel" name="tile_ico_sorties">
@@ -341,22 +356,22 @@ border: none;
    <item>
     <layout class="QHBoxLayout" name="ligne_graphiques" stretch="1,1">
      <property name="spacing">
-      <number>12</number>
+      <number>16</number>
      </property>
      <item>
       <widget class="QWidget" name="cadre_histogramme" native="true">
        <layout class="QVBoxLayout" name="layout_cadre_histogramme">
         <property name="leftMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <property name="topMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <property name="rightMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <property name="bottomMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <item>
          <widget class="HistogramWidget" name="histogramme"/>
@@ -368,16 +383,16 @@ border: none;
       <widget class="QWidget" name="cadre_camembert" native="true">
        <layout class="QVBoxLayout" name="layout_cadre_camembert">
         <property name="leftMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <property name="topMargin">
-         <number>4</number>
+         <number>12</number>
         </property>
         <property name="rightMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <property name="bottomMargin">
-         <number>6</number>
+         <number>12</number>
         </property>
         <item>
          <widget class="PieChartWidget" name="camembert" native="true"/>
@@ -394,7 +409,7 @@ border: none;
      </property>
      <layout class="QVBoxLayout" name="layout_mouvements">
       <property name="bottomMargin">
-       <number>6</number>
+       <number>12</number>
       </property>
       <item>
        <widget class="QListWidget" name="derniers_mouvements">

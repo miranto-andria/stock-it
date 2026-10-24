@@ -125,7 +125,7 @@ padding : 8px 16px;
          <item>
           <widget class="QPushButton" name="btnAdd">
            <property name="styleSheet">
-            <string notr="true">background-color : #774cff;
+            <string notr="true">background-color : #2d66e4;
 font : bold;
 border : none;
 color : white</string>
@@ -233,9 +233,7 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnDelete">
            <property name="styleSheet">
-            <string notr="true">background :#e74c3c;
-border : none
-</string>
+            <string notr="true"/>
            </property>
            <property name="text">
             <string>Supprimer</string>

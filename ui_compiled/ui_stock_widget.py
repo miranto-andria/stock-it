@@ -15,29 +15,29 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QPushButton,
-    QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QSpacerItem, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_StockWidget(object):
-    def setupUi(self, stockWidget):
-        if not stockWidget.objectName():
-            stockWidget.setObjectName(u"stockWidget")
-        stockWidget.resize(874, 808)
+    def setupUi(self, StockWidget):
+        if not StockWidget.objectName():
+            StockWidget.setObjectName(u"StockWidget")
+        StockWidget.resize(874, 808)
         font = QFont()
         font.setFamilies([u"Montserrat"])
         font.setBold(True)
-        stockWidget.setFont(font)
-        stockWidget.setStyleSheet(u"#stockWidget {\n"
+        StockWidget.setFont(font)
+        StockWidget.setStyleSheet(u"#stockWidget {\n"
 "    font-family: \"Montserrat\";\n"
 "    background-color: #f5f7f9;\n"
 "}\n"
 "\n"
 "")
-        self.gridLayout = QGridLayout(stockWidget)
+        self.gridLayout = QGridLayout(StockWidget)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.middle = QWidget(stockWidget)
+        self.middle = QWidget(StockWidget)
         self.middle.setObjectName(u"middle")
         self.middle.setMinimumSize(QSize(0, 300))
         self.verticalLayout_11 = QVBoxLayout(self.middle)
@@ -63,11 +63,11 @@ class Ui_StockWidget(object):
 "background-color: #ffffff;\n"
 "border : 1px solid #e5e7eb;\n"
 "border-radius:8px;\n"
-"padding: 10px;\n"
+"padding: 8px;\n"
 "}")
         self.cardHeader.setFrameShape(QFrame.Shape.StyledPanel)
         self.cardHeader.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_13 = QHBoxLayout(self.cardHeader)
+        self.horizontalLayout_13 = QVBoxLayout(self.cardHeader)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.label = QLabel(self.cardHeader)
         self.label.setObjectName(u"label")
@@ -81,8 +81,13 @@ class Ui_StockWidget(object):
 
         self.horizontalLayout_13.addWidget(self.label)
 
+        self.description = QLabel(self.cardHeader)
+        self.description.setObjectName(u"description")
 
-        self.verticalLayout_12.addWidget(self.cardHeader, 0, Qt.AlignmentFlag.AlignTop)
+        self.horizontalLayout_13.addWidget(self.description)
+
+
+        self.verticalLayout_12.addWidget(self.cardHeader)
 
 
         self.verticalLayout_11.addWidget(self.top)
@@ -127,6 +132,10 @@ class Ui_StockWidget(object):
         font2.setFamilies([u"Montserrat"])
         font2.setPointSize(10)
         self.table.setFont(font2)
+        self.table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.table.setAlternatingRowColors(True)
+        self.table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.table.horizontalHeader().setStretchLastSection(True)
         self.table.verticalHeader().setStretchLastSection(True)
 
@@ -135,7 +144,7 @@ class Ui_StockWidget(object):
 
         self.gridLayout.addWidget(self.middle, 1, 0, 1, 1)
 
-        self.bottom = QWidget(stockWidget)
+        self.bottom = QWidget(StockWidget)
         self.bottom.setObjectName(u"bottom")
         self.bottom.setMinimumSize(QSize(0, 50))
         self.verticalLayout_2 = QVBoxLayout(self.bottom)
@@ -160,14 +169,15 @@ class Ui_StockWidget(object):
         self.gridLayout.addWidget(self.bottom, 2, 0, 1, 1)
 
 
-        self.retranslateUi(stockWidget)
+        self.retranslateUi(StockWidget)
 
-        QMetaObject.connectSlotsByName(stockWidget)
+        QMetaObject.connectSlotsByName(StockWidget)
     # setupUi
 
-    def retranslateUi(self, stockWidget):
-        stockWidget.setWindowTitle(QCoreApplication.translate("StockWidget", u"Form", None))
+    def retranslateUi(self, StockWidget):
+        StockWidget.setWindowTitle(QCoreApplication.translate("StockWidget", u"Form", None))
         self.label.setText(QCoreApplication.translate("StockWidget", u"\u00c9tat de stock des produits", None))
+        self.description.setText(QCoreApplication.translate("StockWidget", u"Consultez les quantit\u00e9s disponibles et recherchez un produit par son code ou sa d\u00e9signation.", None))
         self.labelFilter.setText(QCoreApplication.translate("StockWidget", u"Filtre :", None))
         self.search.setPlaceholderText(QCoreApplication.translate("StockWidget", u"Filtrer par code ou d\u00e9signation\u2026", None))
         self.btnSearch.setText(QCoreApplication.translate("StockWidget", u"Recherche", None))

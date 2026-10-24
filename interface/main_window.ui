@@ -20,7 +20,7 @@ border-right : 1px solid rgba(255,255,255,0.25);
 color : #ffffff
 }
 #centralwidget{
-background : #fff;
+background : #f5f7f9;
 }
 
 #sideBar QPushButton{
@@ -45,7 +45,7 @@ font-size : 26px;
 font-weight : bold;
 color : #ffffff
 }
-#mainSection #stackedWidget{
+#mainSection, #mainSection #stackedWidget{
 background-color : #f5f7f9
 } </string>
   </property>

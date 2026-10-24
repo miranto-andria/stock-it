@@ -2,6 +2,7 @@ from calendar import monthrange
 from datetime import date
 
 from PySide6.QtCore import QDate
+from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QInputDialog, QMessageBox, QWidget
 
 import db
@@ -54,10 +55,7 @@ class MovementWidget(QWidget):
         self.ui.choix_produit.blockSignals(False)
 
     def _charger_produit(self, num_produit):
-        return db.execute_one(
-            "SELECT NumProduit, Design, Stock FROM Produit WHERE NumProduit = %s",
-            (num_produit,),
-        )
+        return db.produit(num_produit)
 
     def _produit_change(self):
         num_produit = self.ui.choix_produit.currentData()
@@ -142,20 +140,20 @@ class MovementWidget(QWidget):
             d2 = date(fin.year(), fin.month(), fin.day())
             if d1 > d2:
                 d1, d2 = d2, d1
-            return d1, d2, f"du {d1.strftime('%d/%m/%Y')} au {d2.strftime('%d/%m/%Y')}"
+            return d1, d2, f"{d1.strftime('%d/%m/%y')} - {d2.strftime('%d/%m/%y')}"
 
         if mode == MODE_MOIS:
             mois = self.ui.date_mois.date()
             d1 = date(mois.year(), mois.month(), 1)
             dernier_jour = monthrange(mois.year(), mois.month())[1]
             d2 = date(mois.year(), mois.month(), dernier_jour)
-            return d1, d2, f"mois de {d1.strftime('%m/%Y')}"
+            return d1, d2, f"Mois : {d1.strftime('%m/%Y')}"
 
         if mode == MODE_ANNEE:
             annee = self.ui.date_annee.date().year()
-            return date(annee, 1, 1), date(annee, 12, 31), f"année {annee}"
+            return date(annee, 1, 1), date(annee, 12, 31), f"Année : {annee}"
 
-        return None, None, "tout l'historique"
+        return None, None, "Tout l'historique"
 
     @staticmethod
     def _format_jour(jour):
@@ -166,50 +164,7 @@ class MovementWidget(QWidget):
         return str(jour)
 
     def _mouvements(self, num_produit, debut, fin):
-        filtre_entree = "NumProduit = %s"
-        params_entree = [num_produit]
-        filtre_sortie = "NumProduit = %s"
-        params_sortie = [num_produit]
-
-        if debut is not None:
-            filtre_entree += " AND DateEntree BETWEEN %s AND %s"
-            params_entree += [debut, fin]
-            filtre_sortie += " AND DateSortie BETWEEN %s AND %s"
-            params_sortie += [debut, fin]
-
-        mouvements = []
-        for ligne in db.execute(
-            f"SELECT NumBon, QteEntree, DateEntree FROM BondeEntree "
-            f"WHERE {filtre_entree}",
-            tuple(params_entree),
-            fetch=True,
-        ):
-            mouvements.append(
-                {
-                    "NumBon": ligne["NumBon"],
-                    "Entree": ligne["QteEntree"],
-                    "Sortie": None,
-                    "Jour": ligne["DateEntree"],
-                }
-            )
-
-        for ligne in db.execute(
-            f"SELECT NumBon, QteSortie, DateSortie FROM BondeSortie "
-            f"WHERE {filtre_sortie}",
-            tuple(params_sortie),
-            fetch=True,
-        ):
-            mouvements.append(
-                {
-                    "NumBon": ligne["NumBon"],
-                    "Entree": None,
-                    "Sortie": ligne["QteSortie"],
-                    "Jour": ligne["DateSortie"],
-                }
-            )
-
-        mouvements.sort(key=lambda m: (m["Jour"], m["NumBon"]), reverse=True)
-        return mouvements
+        return db.resume_mouvements(num_produit, debut, fin)
 
     def afficher_mouvements(self):
         if self.produit_courant is None:
@@ -219,7 +174,7 @@ class MovementWidget(QWidget):
 
         if self.produit_courant is None:
             tbm.fill_table(self.ui.table, [])
-            self.ui.periode.setText("Période : -")
+            self.ui.periode.setText("-")
             self.ui.lbl_num.setText("-")
             self.ui.lbl_design.setText("-")
             self.ui.lbl_stock.setText("-")
@@ -242,9 +197,10 @@ class MovementWidget(QWidget):
         self.produit_courant = produit
 
         debut, fin, libelle = self._periode()
-        self.ui.periode.setText(f"Période : {libelle}")
+        self.ui.periode.setText(libelle)
 
-        mouvements = self._mouvements(num_produit, debut, fin)
+        resume = self._mouvements(num_produit, debut, fin)
+        mouvements = list(reversed(resume["mouvements"]))
         tbm.fill_table(
             self.ui.table,
             [
@@ -257,15 +213,27 @@ class MovementWidget(QWidget):
                 for mouvement in mouvements
             ],
         )
+        self._mettre_en_valeur_mouvements(mouvements)
 
-        total_entree = sum(mouvement["Entree"] or 0 for mouvement in mouvements)
-        total_sortie = sum(mouvement["Sortie"] or 0 for mouvement in mouvements)
+        total_entree = resume["total_entree"]
+        total_sortie = resume["total_sortie"]
 
         self.ui.lbl_num.setText(str(num_produit))
         self.ui.lbl_design.setText(str(produit["Design"]))
         self.ui.lbl_stock.setText(str(produit["Stock"]))
         self.ui.resume.setText(
-            f"Total Entrée : {total_entree} &nbsp;•&nbsp; Total Sortie : {total_sortie} "
-            f"&nbsp;•&nbsp; Solde des mouvements : {total_entree - total_sortie} "
-            f"&nbsp;•&nbsp; {len(mouvements)} mouvement(s) affiché(s)"
+            f"<span style='color:#15803d;'>Total entrée : {total_entree}</span>"
+            f"&nbsp;&nbsp;|&nbsp;&nbsp;"
+            f"<span style='color:#b91c1c;'>Total sortie : {total_sortie}</span>"
+            f"&nbsp;&nbsp;|&nbsp;&nbsp;"
+            f"Solde des mouvements : {total_entree - total_sortie}"
+            f"&nbsp;&nbsp;|&nbsp;&nbsp;{len(mouvements)} mouvement(s) affiché(s)"
         )
+
+    def _mettre_en_valeur_mouvements(self, mouvements):
+        for ligne, mouvement in enumerate(mouvements):
+            colonne = 1 if (mouvement["Entree"] or 0) > 0 else 2
+            couleur = QColor("#15803d" if colonne == 1 else "#b91c1c")
+            item = self.ui.table.item(ligne, colonne)
+            if item is not None:
+                item.setForeground(couleur)

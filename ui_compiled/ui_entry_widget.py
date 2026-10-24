@@ -21,11 +21,11 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QWidget)
 
 class Ui_EntryWidget(object):
-    def setupUi(self, entryWidget):
-        if not entryWidget.objectName():
-            entryWidget.setObjectName(u"entryWidget")
-        entryWidget.resize(783, 532)
-        entryWidget.setStyleSheet(u"\n"
+    def setupUi(self, EntryWidget):
+        if not EntryWidget.objectName():
+            EntryWidget.setObjectName(u"EntryWidget")
+        EntryWidget.resize(783, 532)
+        EntryWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
 "border : 1px solid rgba(171, 173, 174, 40%); \n"
@@ -54,10 +54,10 @@ class Ui_EntryWidget(object):
 "\n"
 "\n"
 "")
-        self.verticalLayout = QVBoxLayout(entryWidget)
+        self.verticalLayout = QVBoxLayout(EntryWidget)
         self.verticalLayout.setSpacing(16)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.searchBar = QWidget(entryWidget)
+        self.searchBar = QWidget(EntryWidget)
         self.searchBar.setObjectName(u"searchBar")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -81,7 +81,83 @@ class Ui_EntryWidget(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.pageName.sizePolicy().hasHeightForWidth())
         self.pageName.setSizePolicy(sizePolicy1)
+        palette = QPalette()
+        brush = QBrush(QColor(255, 255, 255, 255))
+        brush.setStyle(Qt.BrushStyle.SolidPattern)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush)
+        brush1 = QBrush(QColor(0, 0, 0, 255))
+        brush1.setStyle(Qt.BrushStyle.SolidPattern)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Light, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Midlight, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Mid, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.BrightText, brush)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.ButtonText, brush)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Shadow, brush1)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.AlternateBase, brush1)
+        brush2 = QBrush(QColor(255, 255, 220, 255))
+        brush2.setStyle(Qt.BrushStyle.SolidPattern)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.ToolTipBase, brush2)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.ToolTipText, brush1)
+        brush3 = QBrush(QColor(255, 255, 255, 127))
+        brush3.setStyle(Qt.BrushStyle.SolidPattern)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.PlaceholderText, brush3)
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Accent, brush1)
+#endif
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Light, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Midlight, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Mid, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.BrightText, brush)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ButtonText, brush)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Shadow, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.AlternateBase, brush1)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipBase, brush2)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipText, brush1)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.PlaceholderText, brush3)
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Accent, brush1)
+#endif
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Light, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Midlight, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Mid, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.BrightText, brush)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Shadow, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.AlternateBase, brush1)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ToolTipBase, brush2)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ToolTipText, brush1)
+        brush4 = QBrush(QColor(0, 0, 0, 127))
+        brush4.setStyle(Qt.BrushStyle.SolidPattern)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.PlaceholderText, brush4)
+#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush1)
+#endif
+        self.pageName.setPalette(palette)
         font = QFont()
+        font.setFamilies([u"Montserrat"])
         font.setPointSize(16)
         font.setBold(True)
         self.pageName.setFont(font)
@@ -111,7 +187,7 @@ class Ui_EntryWidget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btnAdd = QPushButton(self.add)
         self.btnAdd.setObjectName(u"btnAdd")
-        self.btnAdd.setStyleSheet(u"background-color : #774cff;\n"
+        self.btnAdd.setStyleSheet(u"background-color : #2d66e4;\n"
 "font : bold;\n"
 "border : none;\n"
 "color : white")
@@ -127,7 +203,7 @@ class Ui_EntryWidget(object):
 
         self.verticalLayout.addWidget(self.searchBar)
 
-        self.middle = QWidget(entryWidget)
+        self.middle = QWidget(EntryWidget)
         self.middle.setObjectName(u"middle")
         self.middle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QVBoxLayout(self.middle)
@@ -154,7 +230,7 @@ class Ui_EntryWidget(object):
 
         self.btnSearch = QPushButton(self.frame)
         self.btnSearch.setObjectName(u"btnSearch")
-        self.btnSearch.setStyleSheet(u"")
+        self.btnSearch.setStyleSheet(u"background: #2d66e4;")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
         self.btnSearch.setIcon(icon1)
         self.btnSearch.setIconSize(QSize(12, 12))
@@ -163,7 +239,8 @@ class Ui_EntryWidget(object):
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
+        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);\n"
+"background: #15803d;")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.btnEdit.setIcon(icon2)
         self.btnEdit.setIconSize(QSize(12, 12))
@@ -172,9 +249,7 @@ class Ui_EntryWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background :#e74c3c;\n"
-"border : none\n"
-"")
+        self.btnDelete.setStyleSheet(u"background:#dc4a4a;")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
         self.btnDelete.setIcon(icon3)
         self.btnDelete.setIconSize(QSize(12, 12))
@@ -209,13 +284,13 @@ class Ui_EntryWidget(object):
         self.verticalLayout.addWidget(self.middle)
 
 
-        self.retranslateUi(entryWidget)
+        self.retranslateUi(EntryWidget)
 
-        QMetaObject.connectSlotsByName(entryWidget)
+        QMetaObject.connectSlotsByName(EntryWidget)
     # setupUi
 
-    def retranslateUi(self, entryWidget):
-        entryWidget.setWindowTitle(QCoreApplication.translate("EntryWidget", u"Form", None))
+    def retranslateUi(self, EntryWidget):
+        EntryWidget.setWindowTitle(QCoreApplication.translate("EntryWidget", u"Form", None))
         self.pageName.setText(QCoreApplication.translate("EntryWidget", u"Bon d'entr\u00e9e", None))
         self.description.setText(QCoreApplication.translate("EntryWidget", u"G\u00e9rez les entr\u00e9es de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
         self.btnAdd.setText(QCoreApplication.translate("EntryWidget", u"Ajouter un bon", None))

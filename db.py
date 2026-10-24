@@ -8,7 +8,6 @@ DB_CONFIG = {
     "user": "root",
     "password": "",
     "database": "stock_it",
-    "port": 3307,
 }
 TABLE_PRODUIT = "Produit"
 TABLE_ENTREE = "BondeEntree"
@@ -128,6 +127,43 @@ def get_total_entrees():
 
 def get_total_sorties():
     return count("SELECT COALESCE(SUM(QteSortie), 0) AS total FROM BondeSortie")
+
+
+def get_dashboard_stats():
+    """Retourne en une requête les indicateurs nécessaires au tableau de bord."""
+    ligne = execute_one(
+        "SELECT "
+        "COUNT(*) AS total_products, "
+        "COALESCE(SUM(Stock), 0) AS total_stock, "
+        "COALESCE(SUM(Stock <= 0), 0) AS rupture, "
+        "COALESCE(SUM(Stock BETWEEN 1 AND 5), 0) AS faible, "
+        "COALESCE(SUM(Stock BETWEEN 6 AND 10), 0) AS moyen, "
+        "COALESCE(SUM(Stock > 10), 0) AS eleve, "
+        "(SELECT COUNT(*) FROM BondeEntree) AS bons_entree, "
+        "(SELECT COUNT(*) FROM BondeSortie) AS bons_sortie "
+        "FROM Produit"
+    ) or {}
+
+    return {
+        "total_products": int(ligne.get("total_products") or 0),
+        "total_stock": int(ligne.get("total_stock") or 0),
+        "rupture": int(ligne.get("rupture") or 0),
+        "faible": int(ligne.get("faible") or 0),
+        "moyen": int(ligne.get("moyen") or 0),
+        "eleve": int(ligne.get("eleve") or 0),
+        "bons_entree": int(ligne.get("bons_entree") or 0),
+        "bons_sortie": int(ligne.get("bons_sortie") or 0),
+    }
+
+
+def get_low_stock_products(limite=8):
+    """Produits à surveiller, du stock le plus faible au plus élevé."""
+    return execute(
+        "SELECT NumProduit, Design, Stock FROM Produit "
+        "ORDER BY Stock ASC, Design ASC, NumProduit ASC LIMIT %s",
+        (limite,),
+        fetch=True,
+    )
 
 
 def get_bons_entree_mois():
@@ -337,3 +373,13 @@ def liste_mouvements(num_produit, debut=None, fin=None):
 
     mouvements.sort(key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]))
     return mouvements
+
+
+def resume_mouvements(num_produit, debut=None, fin=None):
+    """Retourne les mouvements et leurs totaux pour un produit."""
+    mouvements = liste_mouvements(num_produit, debut, fin)
+    return {
+        "mouvements": mouvements,
+        "total_entree": sum(mouvement["Entree"] or 0 for mouvement in mouvements),
+        "total_sortie": sum(mouvement["Sortie"] or 0 for mouvement in mouvements),
+    }

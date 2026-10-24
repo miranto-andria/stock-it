@@ -111,7 +111,7 @@ class Ui_exitWidget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btnAdd = QPushButton(self.add)
         self.btnAdd.setObjectName(u"btnAdd")
-        self.btnAdd.setStyleSheet(u"background-color : #774cff;\n"
+        self.btnAdd.setStyleSheet(u"background-color : #2d66e4;\n"
 "font : bold;\n"
 "border : none;\n"
 "color : white")
@@ -172,9 +172,7 @@ class Ui_exitWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background :#e74c3c;\n"
-"border : none\n"
-"")
+        self.btnDelete.setStyleSheet(u"")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
         self.btnDelete.setIcon(icon3)
         self.btnDelete.setIconSize(QSize(12, 12))
