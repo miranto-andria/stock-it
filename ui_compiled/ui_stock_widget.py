@@ -72,8 +72,9 @@ class Ui_StockWidget(object):
         self.label = QLabel(self.cardHeader)
         self.label.setObjectName(u"label")
         font1 = QFont()
-        font1.setFamilies([u"Montserrat"])
-        font1.setPointSize(20)
+        font1.setFamilies([u"Segoe UI"])
+        font1.setPointSize(22)
+        font1.setBold(True)
         self.label.setFont(font1)
         self.label.setStyleSheet(u"#label{\n"
 "background-color:transparent;\n"
@@ -110,6 +111,12 @@ class Ui_StockWidget(object):
         self.btnSearch = QPushButton(self.middle)
         self.btnSearch.setObjectName(u"btnSearch")
         self.btnSearch.setMinimumSize(QSize(0, 40))
+        self.btnSearch.setStyleSheet(u"background-color : #2d66e4;\n"
+"font : bold;\n"
+"border : none;\n"
+"color:  white")
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.btnSearch.setIcon(icon)
 
         self.searchLayout.addWidget(self.btnSearch)
 

@@ -95,9 +95,9 @@ padding : 8px 16px;
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
@@ -167,18 +167,18 @@ padding : 8px 16px;
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
@@ -250,9 +250,9 @@ padding : 8px 16px;
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
@@ -322,18 +322,18 @@ padding : 8px 16px;
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
@@ -405,9 +405,9 @@ padding : 8px 16px;
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
@@ -477,18 +477,18 @@ padding : 8px 16px;
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
                 </color>
                </brush>
               </colorrole>
@@ -551,8 +551,8 @@ padding : 8px 16px;
            </property>
            <property name="font">
             <font>
-             <family>Montserrat</family>
-             <pointsize>16</pointsize>
+             <family>Segoe UI</family>
+             <pointsize>22</pointsize>
              <bold>true</bold>
             </font>
            </property>
@@ -664,8 +664,17 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          </item>
          <item>
           <widget class="QPushButton" name="btnSearch">
+           <property name="font">
+            <font>
+             <italic>false</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">background: #2d66e4;</string>
+            <string notr="true">background-color : #2d66e4;
+font : bold;
+border : none;
+color : white</string>
            </property>
            <property name="text">
             <string>Recherche</string>
@@ -684,8 +693,9 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnEdit">
            <property name="styleSheet">
-            <string notr="true">border : 1px solid rgba(171, 173, 174, 40%);
-background: #15803d;</string>
+            <string notr="true">border : 1px solid #15803d;
+color : black;
+</string>
            </property>
            <property name="text">
             <string>Modifier</string>
@@ -703,8 +713,13 @@ background: #15803d;</string>
          </item>
          <item>
           <widget class="QPushButton" name="btnDelete">
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">background:#dc4a4a;</string>
+            <string notr="true">background:#dc4a4a;color:white;</string>
            </property>
            <property name="text">
             <string>Supprimer</string>

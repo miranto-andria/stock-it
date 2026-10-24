@@ -70,7 +70,7 @@ class EntryWidget(QWidget):
         else:
             num_bon = self.ui.entryTable.item(row , 0).text()
             num_produit = self.ui.entryTable.item(row , 1).text()
-            qte_entree = self.ui.entryTable.item(row , 2).text()
+            qte_entree = self.ui.entryTable.item(row , 3).text()
             dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_bon}")
             dialog.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
             dialog.setDefaultButton(QMessageBox.StandardButton.No)

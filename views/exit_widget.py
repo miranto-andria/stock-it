@@ -1,16 +1,15 @@
 
 from PySide6.QtWidgets import QWidget , QTableWidgetItem , QHeaderView , QDialog , QMessageBox
 from PySide6.QtCore import QDate
-from ui_compiled.ui_exit_widget import Ui_exitWidget
+from ui_compiled.ui_exit_widget import Ui_ExitWidget
 import db
-from views.entry_dialog import AddEntryDialog
-from ui_compiled.ui_add_entry_dialog import Ui_Dialog
+from views.exit_dialog import AddExitDialog
 from utils.table_management import fill_table
 
 class ExitWidget(QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_exitWidget()
+        self.ui = Ui_ExitWidget()
         self.ui.setupUi(self)
         self.ui.btnSearch.clicked.connect(self.set_exit_table)
         self.set_exit_table()
@@ -35,7 +34,7 @@ class ExitWidget(QWidget):
         fill_table(self.ui.exitTable , [[fp.get("NumBon") , fp.get("NumProduit") ,fp.get("Design") , fp.get("QteSortie") , fp.get("DateSortie")] for fp in self.filtered_passes])
 
     def show_add_dialog(self):
-        dialog = AddEntryDialog(self)
+        dialog = AddExitDialog(self)
         if dialog.exec() == QDialog.Accepted:
             NumBon, NumProduit, QteSortie, DateSortie = dialog.get_dialog_data()
             entry = db.get_exit_pass()
@@ -54,7 +53,7 @@ class ExitWidget(QWidget):
                 QMessageBox.warning(self, "Erreur", "Format de date invalide.")
                 return
             try:
-                db.add_entry(NumBon, NumProduit, QteSortie, DateSortie)
+                db.add_exit(NumBon, NumProduit, QteSortie, DateSortie)
                 QMessageBox.information(self, "Succès", "Ajout réussi !")
 
                 self.set_exit_table()
@@ -78,7 +77,7 @@ class ExitWidget(QWidget):
               
             reponse =dialog.exec()
             if reponse == QMessageBox.StandardButton.Yes:
-                db.delete_entry(num_bon , int(qte_sortie), num_produit )
+                db.delete_exit(num_bon , int(qte_sortie), num_produit )
                 self.set_exit_table()
                 QMessageBox.information(self, "Succès", "Suppression réussi !")
     def edit_row(self):
@@ -87,7 +86,7 @@ class ExitWidget(QWidget):
             QMessageBox.warning(self, "Attention", "Veuillez sélectionner le bon à modifier")
             return
 
-        dialog = AddEntryDialog(self)
+        dialog = AddExitDialog(self)
         dialog.ui.numBonInput.setReadOnly(True)
         
 
@@ -123,7 +122,7 @@ class ExitWidget(QWidget):
                 QMessageBox.warning(self, "Erreur", "Format de date invalide.")
                 return
             try:
-                db.update_entry(NumBon, NumProduit, QteSortie, DateSortie)
+                db.update_exit(NumBon, NumProduit, QteSortie, DateSortie)
                 self.set_exit_table()
                 QMessageBox.information(self, "Succès", "Modification réussi !")
             except Exception as e:

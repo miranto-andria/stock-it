@@ -144,6 +144,12 @@ font-size : 14px
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="styleSheet">
+      <string notr="true">background-color : #2d66e4;
+font : bold;
+border : none;
+color:  white</string>
+     </property>
      <property name="orientation">
       <enum>Qt::Orientation::Horizontal</enum>
      </property>

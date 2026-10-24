@@ -120,6 +120,10 @@ class Ui_Dialog(object):
 
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setStyleSheet(u"background-color : #2d66e4;\n"
+"font : bold;\n"
+"border : none;\n"
+"color:  white")
         self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
 

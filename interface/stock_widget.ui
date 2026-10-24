@@ -79,8 +79,9 @@ padding: 8px;
              <widget class="QLabel" name="label">
               <property name="font">
                <font>
-                <family>Montserrat</family>
-                <pointsize>20</pointsize>
+                <family>Segoe UI</family>
+                <pointsize>22</pointsize>
+                <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -95,6 +96,9 @@ background-color:transparent;
             </item>
             <item>
              <widget class="QLabel" name="description">
+              <property name="styleSheet">
+               <string notr="true">color : #abadae</string>
+              </property>
               <property name="text">
                <string>Consultez les quantités disponibles et recherchez un produit par son code ou sa désignation.</string>
               </property>
@@ -148,8 +152,17 @@ background-color:transparent;
             <height>40</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : #2d66e4;
+font : bold;
+border : none;
+color:  white</string>
+          </property>
           <property name="text">
            <string>Recherche</string>
+          </property>
+          <property name="icon">
+           <iconset theme="QIcon::ThemeIcon::EditFind"/>
           </property>
          </widget>
         </item>

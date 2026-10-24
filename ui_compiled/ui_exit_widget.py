@@ -20,12 +20,12 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 
-class Ui_exitWidget(object):
-    def setupUi(self, exitWidget):
-        if not exitWidget.objectName():
-            exitWidget.setObjectName(u"exitWidget")
-        exitWidget.resize(696, 506)
-        exitWidget.setStyleSheet(u"\n"
+class Ui_ExitWidget(object):
+    def setupUi(self, ExitWidget):
+        if not ExitWidget.objectName():
+            ExitWidget.setObjectName(u"ExitWidget")
+        ExitWidget.resize(696, 506)
+        ExitWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
 "border : 1px solid rgba(171, 173, 174, 40%); \n"
@@ -54,10 +54,10 @@ class Ui_exitWidget(object):
 "\n"
 "\n"
 "")
-        self.verticalLayout = QVBoxLayout(exitWidget)
+        self.verticalLayout = QVBoxLayout(ExitWidget)
         self.verticalLayout.setSpacing(16)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.searchBar = QWidget(exitWidget)
+        self.searchBar = QWidget(ExitWidget)
         self.searchBar.setObjectName(u"searchBar")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -82,7 +82,7 @@ class Ui_exitWidget(object):
         sizePolicy1.setHeightForWidth(self.pageName.sizePolicy().hasHeightForWidth())
         self.pageName.setSizePolicy(sizePolicy1)
         font = QFont()
-        font.setPointSize(16)
+        font.setPointSize(22)
         font.setBold(True)
         self.pageName.setFont(font)
         self.pageName.setStyleSheet(u"")
@@ -127,7 +127,7 @@ class Ui_exitWidget(object):
 
         self.verticalLayout.addWidget(self.searchBar)
 
-        self.middle = QWidget(exitWidget)
+        self.middle = QWidget(ExitWidget)
         self.middle.setObjectName(u"middle")
         self.middle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QVBoxLayout(self.middle)
@@ -154,7 +154,10 @@ class Ui_exitWidget(object):
 
         self.btnSearch = QPushButton(self.frame)
         self.btnSearch.setObjectName(u"btnSearch")
-        self.btnSearch.setStyleSheet(u"")
+        self.btnSearch.setStyleSheet(u"background-color : #2d66e4;\n"
+"font : bold;\n"
+"border : none;\n"
+"color : white")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
         self.btnSearch.setIcon(icon1)
         self.btnSearch.setIconSize(QSize(12, 12))
@@ -163,7 +166,7 @@ class Ui_exitWidget(object):
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
+        self.btnEdit.setStyleSheet(u"border : 1px solid #15803d;color : black;")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.btnEdit.setIcon(icon2)
         self.btnEdit.setIconSize(QSize(12, 12))
@@ -172,7 +175,7 @@ class Ui_exitWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"")
+        self.btnDelete.setStyleSheet(u"background:#dc4a4a;color:white;")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
         self.btnDelete.setIcon(icon3)
         self.btnDelete.setIconSize(QSize(12, 12))
@@ -207,30 +210,30 @@ class Ui_exitWidget(object):
         self.verticalLayout.addWidget(self.middle)
 
 
-        self.retranslateUi(exitWidget)
+        self.retranslateUi(ExitWidget)
 
-        QMetaObject.connectSlotsByName(exitWidget)
+        QMetaObject.connectSlotsByName(ExitWidget)
     # setupUi
 
-    def retranslateUi(self, exitWidget):
-        exitWidget.setWindowTitle(QCoreApplication.translate("exitWidget", u"Form", None))
-        self.pageName.setText(QCoreApplication.translate("exitWidget", u"Bon de Sortie", None))
-        self.description.setText(QCoreApplication.translate("exitWidget", u"G\u00e9rez les sorties de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
-        self.btnAdd.setText(QCoreApplication.translate("exitWidget", u"Ajouter un bon", None))
-        self.label_2.setText(QCoreApplication.translate("exitWidget", u"Filtrer par :", None))
-        self.searchInput.setPlaceholderText(QCoreApplication.translate("exitWidget", u"Num\u00e9ro du bon ,  produit ou par designation", None))
-        self.btnSearch.setText(QCoreApplication.translate("exitWidget", u"Recherche", None))
-        self.btnEdit.setText(QCoreApplication.translate("exitWidget", u"Modifier", None))
-        self.btnDelete.setText(QCoreApplication.translate("exitWidget", u"Supprimer", None))
+    def retranslateUi(self, ExitWidget):
+        ExitWidget.setWindowTitle(QCoreApplication.translate("ExitWidget", u"Form", None))
+        self.pageName.setText(QCoreApplication.translate("ExitWidget", u"Bon de Sortie", None))
+        self.description.setText(QCoreApplication.translate("ExitWidget", u"G\u00e9rez les sorties de stock et suivez les approvisionnements en \u00e9quipements informatiques", None))
+        self.btnAdd.setText(QCoreApplication.translate("ExitWidget", u"Ajouter un bon", None))
+        self.label_2.setText(QCoreApplication.translate("ExitWidget", u"Filtrer par :", None))
+        self.searchInput.setPlaceholderText(QCoreApplication.translate("ExitWidget", u"Num\u00e9ro du bon ,  produit ou par designation", None))
+        self.btnSearch.setText(QCoreApplication.translate("ExitWidget", u"Recherche", None))
+        self.btnEdit.setText(QCoreApplication.translate("ExitWidget", u"Modifier", None))
+        self.btnDelete.setText(QCoreApplication.translate("ExitWidget", u"Supprimer", None))
         ___qtablewidgetitem = self.exitTable.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("exitWidget", u"N\u00b0BON", None))
+        ___qtablewidgetitem.setText(QCoreApplication.translate("ExitWidget", u"N\u00b0BON", None))
         ___qtablewidgetitem1 = self.exitTable.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("exitWidget", u"N\u00b0 Produit", None))
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("ExitWidget", u"N\u00b0 Produit", None))
         ___qtablewidgetitem2 = self.exitTable.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("exitWidget", u"Nom du Produit", None))
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("ExitWidget", u"Nom du Produit", None))
         ___qtablewidgetitem3 = self.exitTable.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("exitWidget", u"Quantite Sortie", None))
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("ExitWidget", u"Quantite Sortie", None))
         ___qtablewidgetitem4 = self.exitTable.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("exitWidget", u"Date", None))
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("ExitWidget", u"Date", None))
     # retranslateUi
 

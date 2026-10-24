@@ -103,9 +103,6 @@ QGroupBox::title {
     background: #f5f7f9;
 }
 #MovementWidget #titre {
-    color: #111827;
-    font-size: 18pt;
-    font-weight: 700;
     padding-top: 4px;
 }
 #MovementWidget #sous_titre {
@@ -213,14 +210,13 @@ QTableCornerButton::section {
 }
 
 QPushButton {
-    border: 1px solid #d5dbe3;
     border-radius: 8px;
     padding: 7px 14px;
-    color: #374151;
 }
 QPushButton:hover {
     background: #f5f7f9;
     border-color: #abadae;
+
     color: #111827;
 }
 QPushButton:pressed {
@@ -341,9 +337,9 @@ QPushButton#btnSearch:hover {
     font-size: 18pt;
     font-weight: 700;
 }
-#entryWidget #description, #exitWidget #description,
-#productWidget #description, #stockWidget #description {
-    color: #6b7280;
+#EntryWidget #description, #ExitWidget #description,
+#ProductWidget #description, #StockWidget #description {
+    color: #abadae;
     font-size: 10pt;
     font-weight: 500;
 }

@@ -83,7 +83,7 @@ padding : 8px 16px;
            </property>
            <property name="font">
             <font>
-             <pointsize>16</pointsize>
+             <pointsize>22</pointsize>
              <bold>true</bold>
             </font>
            </property>
@@ -196,7 +196,10 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnSearch">
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">background-color : #2d66e4;
+font : bold;
+border : none;
+color:  white</string>
            </property>
            <property name="text">
             <string>Recherche</string>
@@ -215,7 +218,9 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnEdit">
            <property name="styleSheet">
-            <string notr="true">border : 1px solid rgba(171, 173, 174, 40%);</string>
+            <string notr="true">border : 1px solid #15803d;
+color : black;
+</string>
            </property>
            <property name="text">
             <string>Modifier</string>
@@ -234,7 +239,7 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnDelete">
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">background:#dc4a4a;color:white;</string>
            </property>
            <property name="text">
             <string>Supprimer</string>

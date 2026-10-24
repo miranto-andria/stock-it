@@ -79,6 +79,12 @@ class Ui_MovementWidget(object):
 
         self.btn_rechercher = QPushButton(self.cadre_produit)
         self.btn_rechercher.setObjectName(u"btn_rechercher")
+        self.btn_rechercher.setStyleSheet(u"background-color : #2d66e4;\n"
+"font : bold;\n"
+"border : none;\n"
+"color : white")
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.btn_rechercher.setIcon(icon)
         self.btn_rechercher.setProperty(u"primaire", True)
 
         self.ligne_produit.addWidget(self.btn_rechercher)
@@ -220,6 +226,10 @@ class Ui_MovementWidget(object):
 
         self.titre = QLabel(MovementWidget)
         self.titre.setObjectName(u"titre")
+        font = QFont()
+        font.setPointSize(22)
+        font.setBold(True)
+        self.titre.setFont(font)
 
         self.gridLayout.addWidget(self.titre, 0, 0, 1, 1)
 

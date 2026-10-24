@@ -83,7 +83,7 @@ class Ui_ProductWidget(object):
         sizePolicy1.setHeightForWidth(self.pageName.sizePolicy().hasHeightForWidth())
         self.pageName.setSizePolicy(sizePolicy1)
         font = QFont()
-        font.setPointSize(16)
+        font.setPointSize(22)
         font.setBold(True)
         self.pageName.setFont(font)
         self.pageName.setStyleSheet(u"")
@@ -155,7 +155,10 @@ class Ui_ProductWidget(object):
 
         self.btnSearch = QPushButton(self.frame)
         self.btnSearch.setObjectName(u"btnSearch")
-        self.btnSearch.setStyleSheet(u"")
+        self.btnSearch.setStyleSheet(u"background-color : #2d66e4;\n"
+"font : bold;\n"
+"border : none;\n"
+"color:  white")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
         self.btnSearch.setIcon(icon1)
         self.btnSearch.setIconSize(QSize(12, 12))
@@ -164,7 +167,9 @@ class Ui_ProductWidget(object):
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid rgba(171, 173, 174, 40%);")
+        self.btnEdit.setStyleSheet(u"border : 1px solid #15803d;\n"
+"color : black;\n"
+"")
         icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
         self.btnEdit.setIcon(icon2)
         self.btnEdit.setIconSize(QSize(12, 12))
@@ -173,7 +178,7 @@ class Ui_ProductWidget(object):
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"")
+        self.btnDelete.setStyleSheet(u"background:#dc4a4a;color:white;")
         icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
         self.btnDelete.setIcon(icon3)
         self.btnDelete.setIconSize(QSize(12, 12))
