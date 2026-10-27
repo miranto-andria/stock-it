@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StockWidget</class>
+ <widget class="QWidget" name="StockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>874</width>
+    <height>808</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Montserrat</family>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#StockWidget { background: #f5f7f9; }
+#StockWidget #cardHeader { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; }
+#StockWidget #label { color: #111827; font-size: 18pt; font-weight: 700; background: transparent; }
+#StockWidget #description { color: #abadae; font-size: 10pt; font-weight: 500; }
+#StockWidget #btnSearch { background: #0d6efd; color: #ffffff; border: 1px solid #0d6efd; font-weight: 700; }
+#StockWidget QTableWidget { alternate-background-color: #f3f6fb; selection-background-color: #dce8ff; }</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QWidget" name="middle" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>300</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_11">
+      <item>
+       <widget class="QWidget" name="searchBar" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_12">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QFrame" name="cardHeader">
+           <property name="styleSheet">
+            <string notr="true">#cardHeader { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; padding: 12px;}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="horizontalLayout_13">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>18</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#label{
+background-color:transparent;
+}</string>
+              </property>
+              <property name="text">
+               <string>État de stock des produits</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="description">
+              <property name="styleSheet">
+               <string notr="true">color : #abadae</string>
+              </property>
+              <property name="text">
+               <string>Consultez les quantités disponibles et recherchez un produit par son code ou sa désignation.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="searchLayout" stretch="0,1,0">
+        <property name="topMargin">
+         <number>8</number>
+        </property>
+        <property name="rightMargin">
+         <number>8</number>
+        </property>
+        <property name="bottomMargin">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="labelFilter">
+          <property name="text">
+           <string>Filtre :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="search">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="placeholderText">
+           <string>Filtrer par code ou désignation…</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnSearch">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton { background-color : #0d6efd;
+color : #ffffff;
+border : none;
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #0b5ed7; }
+QPushButton:pressed { background-color : #0a58ca; }</string>
+          </property>
+          <property name="text">
+           <string>Recherche</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>17</width>
+            <height>17</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="table">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>230</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Montserrat</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>N° Produit</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Désignation</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Stock</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QWidget" name="bottom" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="barreActions" stretch="0,0">
+        <item>
+         <spacer name="espaceActions">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnPdf">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Générer le PDF</string>
+          </property>
+          <property name="primaire" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>  <resources>
+   <include location="../assets/resources.qrc"/>
+  </resources>
+ <connections/>
+</ui>

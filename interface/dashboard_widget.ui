@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dashboard</class>
+ <widget class="QWidget" name="Dashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>837</width>
+    <height>636</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Dashboard { background: #f5f7f9; }
+#Dashboard #frame { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }
+#Dashboard #label { color: #111827; font-size: 18pt; font-weight: 700; }
+#Dashboard #stats { color: #6b7280; font-size: 9.5pt; font-weight: 600; }
+#carte_produits, #carte_stock, #carte_entrees, #carte_sorties { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }
+#cadre_histogramme, #cadre_camembert { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; }
+QLabel#tile_ico_produits, QLabel#tile_ico_stock, QLabel#tile_ico_entrees, QLabel#tile_ico_sorties { background: #e8effc; border-radius: 10px; }
+QLabel#titre_produits, QLabel#titre_stock, QLabel#titre_entrees, QLabel#titre_sorties { font-size: 9pt; font-weight: 600; color: #6b7280; }
+QLabel#valeur_produits, QLabel#valeur_stock, QLabel#valeur_entrees, QLabel#valeur_sorties { font-size: 22pt; font-weight: 700; color: #111827; }
+#derniers_mouvements { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; font-family: Consolas; font-size: 9pt; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,0">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>92</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>16</number>
+      </property>
+      <property name="topMargin">
+       <number>12</number>
+      </property>
+      <property name="rightMargin">
+       <number>16</number>
+      </property>
+      <property name="bottomMargin">
+       <number>12</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Montserrat</family>
+          <pointsize>22</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Tableau de bord des stocks</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="stats">
+        <property name="font">
+         <font>
+          <family>Montserrat</family>
+          <pointsize>8</pointsize>
+          <kerning>false</kerning>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="grille">
+     <property name="topMargin">
+      <number>3</number>
+     </property>
+     <property name="bottomMargin">
+      <number>3</number>
+     </property>
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QWidget" name="carte_produits" native="true">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QHBoxLayout" name="layout_carte_produits">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <property name="leftMargin">
+         <number>16</number>
+        </property>
+        <property name="topMargin">
+         <number>14</number>
+        </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
+        <property name="bottomMargin">
+         <number>14</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="tile_ico_produits">
+          <property name="minimumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="colonne_produits">
+          <property name="spacing">
+           <number>3</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="titre_produits">
+            <property name="text">
+             <string>Nombre de produits</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="valeur_produits">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QWidget" name="carte_stock" native="true">
+       <layout class="QHBoxLayout" name="layout_carte_stock">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <property name="leftMargin">
+         <number>16</number>
+        </property>
+        <property name="topMargin">
+         <number>14</number>
+        </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
+        <property name="bottomMargin">
+         <number>14</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="tile_ico_stock">
+          <property name="minimumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="colonne_stock">
+          <property name="spacing">
+           <number>3</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="titre_stock">
+            <property name="text">
+             <string>Quantité totale en stock</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="valeur_stock">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QWidget" name="carte_entrees" native="true">
+       <layout class="QHBoxLayout" name="layout_carte_entrees">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <property name="leftMargin">
+         <number>16</number>
+        </property>
+        <property name="topMargin">
+         <number>14</number>
+        </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
+        <property name="bottomMargin">
+         <number>14</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="tile_ico_entrees">
+          <property name="minimumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="colonne_entrees">
+          <property name="spacing">
+           <number>3</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="titre_entrees">
+            <property name="text">
+             <string>Bons d'entrée</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="valeur_entrees">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QWidget" name="carte_sorties" native="true">
+       <layout class="QHBoxLayout" name="layout_carte_sorties">
+        <property name="spacing">
+         <number>12</number>
+        </property>
+        <property name="leftMargin">
+         <number>16</number>
+        </property>
+        <property name="topMargin">
+         <number>14</number>
+        </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
+        <property name="bottomMargin">
+         <number>14</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="tile_ico_sorties">
+          <property name="minimumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="colonne_sorties" stretch="0,3">
+          <property name="spacing">
+           <number>3</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="titre_sorties">
+            <property name="text">
+             <string>Bons de sortie</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="valeur_sorties">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="ligne_graphiques" stretch="1,1">
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item>
+      <widget class="QWidget" name="cadre_histogramme" native="true">
+       <layout class="QVBoxLayout" name="layout_cadre_histogramme">
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>12</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>12</number>
+        </property>
+        <item>
+         <widget class="HistogramWidget" name="histogramme"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="cadre_camembert" native="true">
+       <layout class="QVBoxLayout" name="layout_cadre_camembert">
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>12</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>12</number>
+        </property>
+        <item>
+         <widget class="PieChartWidget" name="camembert" native="true"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="bloc_mouvements">
+     <property name="title">
+      <string>Derniers mouvements enregistrés</string>
+     </property>
+     <layout class="QVBoxLayout" name="layout_mouvements">
+      <property name="bottomMargin">
+       <number>12</number>
+      </property>
+      <item>
+       <widget class="QListWidget" name="derniers_mouvements">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>150</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PieChartWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">views.graphics</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HistogramWidget</class>
+   <extends>QFrame</extends>
+   <header location="global">views.graphics</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../assets/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

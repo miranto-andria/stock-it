@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StockIt</class>
+ <widget class="QMainWindow" name="Stock_It">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#sideBar{
+background-color : #2563eb;
+border-right : 1px solid rgba(255,255,255,0.25);
+color : #ffffff
+}
+#centralwidget{
+background : #f5f7f9;
+}
+
+#sideBar QPushButton{
+text-align : left;
+border : none;
+margin : 2px 10px;
+padding : 11px 14px;
+border-radius : 8px;
+font-size : 10.5pt;
+background-color : transparent;
+color : #ffffff
+}
+#sideBar QPushButton:hover{
+background-color : rgba(255,255,255,0.15);
+color : #ffffff
+}
+#titleContainer{
+margin-bottom : 24px;
+}
+
+#title{
+font-size : 26px;
+font-weight : bold;
+color : #ffffff
+}
+#mainSection, #mainSection #stackedWidget{
+background-color : #f5f7f9
+}
+
+QWidget {
+    font-family: &quot;Montserrat&quot;, &quot;Segoe UI&quot;, sans-serif;
+    color: #111827;
+}
+QMainWindow, QDialog, QMessageBox {
+    background: #f5f7f9;
+}
+QStackedWidget, QScrollArea {
+    background: #f5f7f9;
+}
+
+QGroupBox {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-top: 14px;
+    padding: 10px;
+    font-weight: bold;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 4px;
+    color: #2d66e4;
+}
+
+QTableWidget {
+    background: #ffffff;
+    alternate-background-color: #f8f8f8;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    gridline-color: #eef0f3;
+    selection-background-color: #e8effc;
+    selection-color: #111827;
+    outline: none;
+}
+QHeaderView::section {
+    background: rgba(45, 102, 228, 0.08);
+    color: #2d66e4;
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid #dfe7f7;
+    font-weight: bold;
+}
+QTableWidget::item {
+    padding: 6px 8px;
+}
+QTableWidget::item:selected {
+    background: #e8effc;
+    color: #111827;
+}
+QTableCornerButton::section {
+    background: #f5f7f9;
+    border: none;
+}
+
+QPushButton {
+    border-radius: 8px;
+    padding: 7px 14px;
+}
+QPushButton:hover {
+    background: #f5f7f9;
+    border-color: #abadae;
+
+    color: #111827;
+}
+QPushButton:pressed {
+    background: #eef0f3;
+}
+QPushButton:focus {
+    border: 1px solid #2d66e4;
+}
+QPushButton:disabled {
+    color: #abadae;
+    background: #f8f8f8;
+    border-color: #e5e7eb;
+}
+
+QPushButton[primaire=&quot;true&quot;] {
+    background: #2d66e4;
+    color: #ffffff;
+    border: 1px solid #2d66e4;
+    font-weight: bold;
+}
+QPushButton[primaire=&quot;true&quot;]:hover {
+    background: #2456c6;
+}
+QPushButton[primaire=&quot;true&quot;]:pressed {
+    background: #1c46a5;
+}
+
+QPushButton[accent=&quot;true&quot;] {
+    background: #2d66e4;
+    color: #ffffff;
+    border: 1px solid #2d66e4;
+    font-weight: bold;
+}
+QPushButton[accent=&quot;true&quot;]:hover {
+    background: #2456c6;
+}
+QPushButton[accent=&quot;true&quot;]:pressed {
+    background: #1c46a5;
+}
+
+QPushButton[danger=&quot;true&quot;] {
+    background: #dc4a4a;
+    color: #ffffff;
+    border: 1px solid #dc4a4a;
+    font-weight: bold;
+}
+QPushButton[danger=&quot;true&quot;]:hover {
+    background: #c83d3d;
+    border-color: #c83d3d;
+}
+QPushButton[danger=&quot;true&quot;]:pressed {
+    background: #ad3030;
+    border-color: #ad3030;
+}
+
+QPushButton[success=&quot;true&quot;] {
+    background: #15803d;
+    color: #ffffff;
+    border: 1px solid #15803d;
+    font-weight: bold;
+}
+QPushButton[success=&quot;true&quot;]:hover {
+    background: #126b34;
+}
+
+QPushButton[secondary=&quot;true&quot;] {
+    background: #ffffff;
+    color: #374151;
+    border: 1px solid #d5dbe3;
+    font-weight: 600;
+}
+QPushButton[secondary=&quot;true&quot;]:hover {
+    background: #eef3fb;
+    border-color: #b8c7df;
+}
+
+QPushButton[primaire=&quot;true&quot;]:disabled,
+QPushButton[accent=&quot;true&quot;]:disabled,
+QPushButton[danger=&quot;true&quot;]:disabled {
+    background: #f8f8f8;
+    color: #abadae;
+    border: 1px solid #e5e7eb;
+}
+QPushButton[success=&quot;true&quot;]:disabled,
+QPushButton[secondary=&quot;true&quot;]:disabled {
+    background: #f1f3f5;
+    color: #9ca3af;
+    border: 1px solid #e5e7eb;
+}
+
+QPushButton#btnSearch {
+    background: #0d6efd;
+    color: #ffffff;
+    border: 1px solid #0d6efd;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+QPushButton#btnSearch:hover {
+    background: #0b5ed7;
+    border-color: #0b5ed7;
+}
+
+QMessageBox QPushButton {
+    min-width: 72px;
+}
+QDialogButtonBox QPushButton {
+    min-width: 84px;
+}
+
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox {
+    background: #ffffff;
+    border: 1px solid #d5dbe3;
+    border-radius: 8px;
+    padding: 6px 8px;
+    selection-background-color: #2d66e4;
+    selection-color: #ffffff;
+}
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid #2d66e4;
+    background: #ffffff;
+}
+QLineEdit:disabled, QComboBox:disabled,
+QSpinBox:disabled, QDoubleSpinBox:disabled {
+    background: #f8f8f8;
+    color: #abadae;
+    border: 1px solid #e5e7eb;
+}
+QComboBox::drop-down {
+    border-left: 1px solid #eef0f3;
+    width: 22px;
+}
+
+QMenu {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 4px;
+}
+QMenu::item {
+    padding: 5px 18px;
+    border-radius: 6px;
+}
+QMenu::item:selected {
+    background: #f5f7f9;
+    color: #2d66e4;
+}
+
+QListWidget {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+}
+QListWidget::item {
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+QListWidget::item:selected {
+    background: #e8effc;
+    color: #111827;
+}
+
+QTabWidget::pane {
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-radius: 8px;
+    top: -1px;
+}
+QTabBar::tab {
+    background: #f8f8f8;
+    color: #6b7280;
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+QTabBar::tab:selected {
+    background: #2d66e4;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: transparent;
+    border: none;
+}
+QScrollBar:vertical {
+    width: 10px;
+}
+QScrollBar:horizontal {
+    height: 10px;
+}
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #d5dbe3;
+    border-radius: 5px;
+    min-height: 30px;
+    min-width: 30px;
+}
+QScrollBar::handle:vertical:hover,
+QScrollBar::handle:horizontal:hover {
+    background: #abadae;
+}
+QScrollBar::add-line, QScrollBar::sub-line {
+    height: 0;
+    width: 0;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="sideBar" native="true">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>24</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
+        <widget class="QFrame" name="titleContainer">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color : transparent ; color:#ffffff ; font-weight : bold;
+
+border: none;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="leftMargin">
+           <number>24</number>
+          </property>
+          <item alignment="Qt::AlignmentFlag::AlignTop">
+           <widget class="QLabel" name="title">
+            <property name="text">
+             <string>Stock IT</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignmentFlag::AlignTop">
+        <widget class="QFrame" name="sideBarConatainer">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+background-color : #2563eb ; color:#ffffff;
+
+border: none;
+}
+QPushButton:hover{
+background-color : rgba(255,255,255,0.15) ; color:#ffffff
+}
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="dashboardBtn">
+            <property name="text">
+             <string>Tableau de bord</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stockBtn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Etat de stock</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="entryBtn">
+            <property name="text">
+             <string>Bon d'entrée</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="sortieBtn">
+            <property name="text">
+             <string>Bon de sortie</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="mouvementBtn">
+            <property name="text">
+             <string>Mouvements d'un produit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="gestionBtn">
+            <property name="text">
+             <string>Gestion des stock</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignBottom">
+        <widget class="QFrame" name="frame_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">*{
+color:#ffffff;
+
+border: none;
+}
+QPushButton:hover{
+background-color : rgba(255,255,255,0.15) ; color:#ffffff
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QPushButton" name="exitBtn">
+            <property name="text">
+             <string>Quitter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="mainSection" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>exitBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>Stock_It</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>619</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
