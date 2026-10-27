@@ -36,48 +36,50 @@ class ExitWidget(QWidget):
     def show_add_dialog(self):
         dialog = AddExitDialog(self)
         if dialog.exec() == QDialog.Accepted:
-            NumBon, NumProduit, QteSortie, DateSortie = dialog.get_dialog_data()
+            new_num_voucher, new_num_product, new_exit_qty, new_exit_date = dialog.get_dialog_data()
             entry = db.get_exit_pass()
-            bons_existants = [fp.get("NumBon") for fp in entry]
-            produits_existants = [fp.get("NumProduit") for fp in entry]
-            if len(NumBon) < 5 or not NumBon.startswith("BE-"):
-                QMessageBox.warning(self, "Erreur", "Numéro de bon invalide (doit commencer par BE- et faire 5 caractères min).")
+            existing_vouchers = [fp.get("NumBon") for fp in entry]
+            existing_products = [fp.get("NumProduit") for fp in entry]
+            if len(new_num_voucher) < 5 or not new_num_voucher.startswith("BS-"):
+                QMessageBox.warning(self, "Erreur", "Numéro de bon invalide (doit commencer par BS- et faire 5 caractères min).")
                 return
-            if NumBon in bons_existants:
+            if new_num_voucher in existing_vouchers:
                 QMessageBox.warning(self, "Erreur", "Ce numéro de bon existe déjà dans la base !")
                 return
-            if NumProduit not in produits_existants:
-                QMessageBox.warning(self, "Erreur", f"Le produit '{NumProduit}' n'existe pas.")
+            if new_num_product not in existing_products:
+                QMessageBox.warning(self, "Erreur", f"Le produit '{new_num_product}' n'existe pas.")
                 return
-            if len(DateSortie) != 10:
+            if len(new_exit_date) != 10:
                 QMessageBox.warning(self, "Erreur", "Format de date invalide.")
                 return
             try:
-                db.add_exit(NumBon, NumProduit, QteSortie, DateSortie)
+                db.add_exit(new_num_voucher, new_num_product, new_exit_qty, new_exit_date)
                 QMessageBox.information(self, "Succès", "Ajout réussi !")
 
                 self.set_exit_table()
+            except ValueError as e:
+                QMessageBox.warning(self, "Attention", str(e))
             except Exception as e:
                 QMessageBox.critical(self, "Erreur BDD", f"Impossible d'ajouter : {e}")      
 
     def delete_row(self):
         row = self.ui.exitTable.currentRow()
-        dialog = QMessageBox()
+        dialog = QMessageBox(self)
         dialog.setWindowTitle("Confirmation")
         if row == -1:
             QMessageBox.warning(self , "Attention" , "Veuillez selectionner le bon à supprimer")
             return
         else:
-            num_bon = self.ui.exitTable.item(row , 0).text()
-            num_produit = self.ui.exitTable.item(row , 2).text()
-            qte_sortie = self.ui.exitTable.item(row , 3).text()
-            dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_bon}")
+            num_voucher = self.ui.exitTable.item(row , 0).text()
+            num_product = self.ui.exitTable.item(row , 1).text()
+            exit_qty = self.ui.exitTable.item(row , 3).text()
+            dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_voucher}")
             dialog.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
             dialog.setDefaultButton(QMessageBox.StandardButton.No)
               
-            reponse =dialog.exec()
-            if reponse == QMessageBox.StandardButton.Yes:
-                db.delete_exit(num_bon , int(qte_sortie), num_produit )
+            answer =dialog.exec()
+            if answer == QMessageBox.StandardButton.Yes:
+                db.delete_exit(num_voucher , int(exit_qty), num_product )
                 self.set_exit_table()
                 QMessageBox.information(self, "Succès", "Suppression réussi !")
     def edit_row(self):
@@ -90,41 +92,43 @@ class ExitWidget(QWidget):
         dialog.ui.numBonInput.setReadOnly(True)
         
 
-        num_bon = self.ui.exitTable.item(row, 0).text()
-        num_produit = self.ui.exitTable.item(row, 1).text()
-        qte_sortie = self.ui.exitTable.item(row, 3).text()
+        num_voucher = self.ui.exitTable.item(row, 0).text()
+        num_product = self.ui.exitTable.item(row, 1).text()
+        exit_qty = self.ui.exitTable.item(row, 3).text()
         
 
 
         date_str = self.ui.exitTable.item(row, 4).text()
-        annee, mois, jour = map(int, date_str.split("-"))
+        year, month, day = map(int, date_str.split("-"))
 
 
-        dialog.ui.numBonInput.setText(num_bon)
-        dialog.ui.numProdInput.setText(num_produit)
-        dialog.ui.qteInput.setValue(int(qte_sortie))
-        dialog.ui.dateInput.setDate(QDate(annee, mois, jour))
+        dialog.ui.numBonInput.setText(num_voucher)
+        dialog.ui.numProdInput.setText(num_product)
+        dialog.ui.qteInput.setValue(int(exit_qty))
+        dialog.ui.dateInput.setDate(QDate(year, month, day))
 
 
         if dialog.exec() == QDialog.Accepted:
-            NumBon, NumProduit, QteSortie, DateSortie = dialog.get_dialog_data()
+            new_num_voucher, new_num_product, new_exit_qty, new_exit_date = dialog.get_dialog_data()
             entry = db.get_exit_pass()
-            produits_existants = [fp.get("NumProduit") for fp in entry]
-            if (NumProduit == num_produit
-            and str(QteSortie) == str(qte_sortie)
-            and str(DateSortie) == str(date_str)):
+            existing_products = [fp.get("NumProduit") for fp in entry]
+            if (new_num_product == num_product
+            and str(new_exit_qty) == str(exit_qty)
+            and str(new_exit_date) == str(date_str)):
                 QMessageBox.warning(self,"Attention","Vous n'avez effectué aucune modification.")
                 return
-            if NumProduit not in produits_existants:
-                QMessageBox.warning(self, "Erreur", f"Le produit '{NumProduit}' n'existe pas.")
+            if new_num_product not in existing_products:
+                QMessageBox.warning(self, "Erreur", f"Le produit '{new_num_product}' n'existe pas.")
                 return
-            if len(DateSortie) != 10:
+            if len(new_exit_date) != 10:
                 QMessageBox.warning(self, "Erreur", "Format de date invalide.")
                 return
             try:
-                db.update_exit(NumBon, NumProduit, QteSortie, DateSortie)
+                db.update_exit(new_num_voucher, new_num_product, new_exit_qty, new_exit_date)
                 self.set_exit_table()
                 QMessageBox.information(self, "Succès", "Modification réussi !")
+            except ValueError as e:
+                QMessageBox.warning(self, "Attention", str(e))
             except Exception as e:
                 QMessageBox.critical(self, "Erreur BDD", f"Impossible d'ajouter : {e}")      
             

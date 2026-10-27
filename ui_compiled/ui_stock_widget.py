@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'stock_widget.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -19,6 +11,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLay
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QPushButton, QSizePolicy, QSpacerItem, QTableWidget,
     QTableWidgetItem, QVBoxLayout, QWidget)
+import resources_rc
 
 class Ui_StockWidget(object):
     def setupUi(self, StockWidget):
@@ -29,12 +22,12 @@ class Ui_StockWidget(object):
         font.setFamilies([u"Montserrat"])
         font.setBold(True)
         StockWidget.setFont(font)
-        StockWidget.setStyleSheet(u"#stockWidget {\n"
-"    font-family: \"Montserrat\";\n"
-"    background-color: #f5f7f9;\n"
-"}\n"
-"\n"
-"")
+        StockWidget.setStyleSheet(u"#StockWidget { background: #f5f7f9; }\n"
+"#StockWidget #cardHeader { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; }\n"
+"#StockWidget #label { color: #111827; font-size: 18pt; font-weight: 700; background: transparent; }\n"
+"#StockWidget #description { color: #abadae; font-size: 10pt; font-weight: 500; }\n"
+"#StockWidget #btnSearch { background: #0d6efd; color: #ffffff; border: 1px solid #0d6efd; font-weight: 700; }\n"
+"#StockWidget QTableWidget { alternate-background-color: #f3f6fb; selection-background-color: #dce8ff; }")
         self.gridLayout = QGridLayout(StockWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.middle = QWidget(StockWidget)
@@ -42,38 +35,27 @@ class Ui_StockWidget(object):
         self.middle.setMinimumSize(QSize(0, 300))
         self.verticalLayout_11 = QVBoxLayout(self.middle)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.top = QWidget(self.middle)
-        self.top.setObjectName(u"top")
-        self.top.setMinimumSize(QSize(0, 40))
-        self.top.setStyleSheet(u"QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{\n"
-"background-color: #ffffff;\n"
-"color: #111827; border: 1px solid #e5e7eb;\n"
-"font:bold;\n"
-"font-size: 22px;\n"
-"qproperty-alignment: AlignCenter;\n"
-"border-radius: 8px;\n"
-"}\n"
-"\n"
-"")
-        self.verticalLayout_12 = QVBoxLayout(self.top)
+        self.searchBar = QWidget(self.middle)
+        self.searchBar.setObjectName(u"searchBar")
+        self.searchBar.setMinimumSize(QSize(0, 40))
+        self.verticalLayout_12 = QVBoxLayout(self.searchBar)
+        self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
-        self.cardHeader = QFrame(self.top)
+        self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.cardHeader = QFrame(self.searchBar)
         self.cardHeader.setObjectName(u"cardHeader")
-        self.cardHeader.setStyleSheet(u"#cardHeader{\n"
-"background-color: #ffffff;\n"
-"border : 1px solid #e5e7eb;\n"
-"border-radius:8px;\n"
-"padding: 8px;\n"
-"}")
+        self.cardHeader.setStyleSheet(u"#cardHeader { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; padding: 12px;}")
         self.cardHeader.setFrameShape(QFrame.Shape.StyledPanel)
         self.cardHeader.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_13 = QVBoxLayout(self.cardHeader)
+        self.horizontalLayout_13.setSpacing(6)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.label = QLabel(self.cardHeader)
         self.label.setObjectName(u"label")
         font1 = QFont()
         font1.setFamilies([u"Segoe UI"])
-        font1.setPointSize(22)
+        font1.setPointSize(18)
         font1.setBold(True)
         self.label.setFont(font1)
         self.label.setStyleSheet(u"#label{\n"
@@ -84,6 +66,7 @@ class Ui_StockWidget(object):
 
         self.description = QLabel(self.cardHeader)
         self.description.setObjectName(u"description")
+        self.description.setStyleSheet(u"color : #abadae")
 
         self.horizontalLayout_13.addWidget(self.description)
 
@@ -91,7 +74,7 @@ class Ui_StockWidget(object):
         self.verticalLayout_12.addWidget(self.cardHeader)
 
 
-        self.verticalLayout_11.addWidget(self.top)
+        self.verticalLayout_11.addWidget(self.searchBar)
 
         self.searchLayout = QHBoxLayout()
         self.searchLayout.setObjectName(u"searchLayout")
@@ -111,12 +94,18 @@ class Ui_StockWidget(object):
         self.btnSearch = QPushButton(self.middle)
         self.btnSearch.setObjectName(u"btnSearch")
         self.btnSearch.setMinimumSize(QSize(0, 40))
-        self.btnSearch.setStyleSheet(u"background-color : #2d66e4;\n"
-"font : bold;\n"
+        self.btnSearch.setStyleSheet(u"QPushButton { background-color : #0d6efd;\n"
+"color : #ffffff;\n"
 "border : none;\n"
-"color:  white")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #0b5ed7; }\n"
+"QPushButton:pressed { background-color : #0a58ca; }")
+        icon = QIcon()
+        icon.addFile(u":/icons/search.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnSearch.setIcon(icon)
+        self.btnSearch.setIconSize(QSize(17, 17))
 
         self.searchLayout.addWidget(self.btnSearch)
 
@@ -179,7 +168,6 @@ class Ui_StockWidget(object):
         self.retranslateUi(StockWidget)
 
         QMetaObject.connectSlotsByName(StockWidget)
-    # setupUi
 
     def retranslateUi(self, StockWidget):
         StockWidget.setWindowTitle(QCoreApplication.translate("StockWidget", u"Form", None))
@@ -195,5 +183,4 @@ class Ui_StockWidget(object):
         ___qtablewidgetitem2 = self.table.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("StockWidget", u"Stock", None))
         self.btnPdf.setText(QCoreApplication.translate("StockWidget", u"G\u00e9n\u00e9rer le PDF", None))
-    # retranslateUi
 

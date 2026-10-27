@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'add_entry_dialog.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -25,6 +17,8 @@ class Ui_Dialog(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(500, 400)
+        Dialog.setStyleSheet(u"QDialog { background: #f5f7f9; }\n"
+"QDialogButtonBox QPushButton { min-width: 84px; }")
         Dialog.setStyleSheet(u"QLineEdit, QSpinBox , QDateEdit{\n"
 "padding : 8px 16px;\n"
 "border-radius : 8px;\n"
@@ -135,7 +129,6 @@ class Ui_Dialog(object):
         self.buttonBox.rejected.connect(Dialog.reject)
 
         QMetaObject.connectSlotsByName(Dialog)
-    # setupUi
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
@@ -143,7 +136,6 @@ class Ui_Dialog(object):
         self.numBonInput.setPlaceholderText(QCoreApplication.translate("Dialog", u"BE-0000", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Num\u00e9ro du produit", None))
         self.numProdInput.setPlaceholderText(QCoreApplication.translate("Dialog", u"PRD-0000", None))
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"Quantite Entr\u00e9e", None))
+        self.label_3.setText(QCoreApplication.translate("Dialog", u"Quantit\u00e9 d'entr\u00e9e", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Date", None))
-    # retranslateUi
 

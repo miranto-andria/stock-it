@@ -18,7 +18,7 @@ class StockWidget(QWidget):
             QAbstractItemView.SelectionMode.SingleSelection
         )
         self.ui.table.setAlternatingRowColors(True)
-        tbm.columns_setting(self.ui.table, [160, 0, 110], colonne_etirable=1)
+        tbm.columns_setting(self.ui.table, [160, 0, 110], stretch_column=1)
         self.ui.table.verticalHeader().setVisible(False)
         self.ui.btnPdf.clicked.connect(lambda : pdf_export.from_table(self, self.ui.table))
         self.refresh()
@@ -27,12 +27,12 @@ class StockWidget(QWidget):
 
 
     def refresh(self):
-        produits = db.search_product(self.ui.search.text())
+        products = db.search_product(self.ui.search.text())
         tbm.fill_table(
             self.ui.table,
             [
-                [produit["NumProduit"], produit["Design"], produit["Stock"]]
-                for produit in produits
+                [product["NumProduit"], product["Design"], product["Stock"]]
+                for product in products
             ],
         )
 

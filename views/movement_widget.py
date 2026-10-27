@@ -9,10 +9,10 @@ import db
 import utils.table_management as tbm
 from ui_compiled.ui_movement_widget import Ui_MovementWidget
 
-MODE_INTERVALLE = 0
-MODE_MOIS = 1
-MODE_ANNEE = 2
-MODE_TOUT = 3
+MODE_RANGE = 0
+MODE_MONTH = 1
+MODE_YEAR = 2
+MODE_ALL = 3
 
 
 class MovementWidget(QWidget):
@@ -21,9 +21,9 @@ class MovementWidget(QWidget):
         self.ui = Ui_MovementWidget()
         self.ui.setupUi(self)
 
-        self.produit_courant = None
+        self.current_product = None
 
-        tbm.columns_setting(self.ui.table, [150, 120, 120, 0], colonne_etirable=3)
+        tbm.columns_setting(self.ui.table, [150, 120, 120, 0], stretch_column=3)
         self.ui.table.verticalHeader().setVisible(False)
 
         self.ui.date_debut.setDate(QDate.currentDate().addMonths(-1))
@@ -31,148 +31,124 @@ class MovementWidget(QWidget):
         self.ui.date_mois.setDate(QDate.currentDate())
         self.ui.date_annee.setDate(QDate.currentDate())
 
-        self.ui.choix_produit.currentIndexChanged.connect(self._produit_change)
-        self.ui.btn_rechercher.clicked.connect(self._rechercher)
-        self.ui.mode.currentIndexChanged.connect(self._basculer_mode)
-        self.ui.date_debut.dateChanged.connect(self.afficher_mouvements)
-        self.ui.date_fin.dateChanged.connect(self.afficher_mouvements)
-        self.ui.date_mois.dateChanged.connect(self.afficher_mouvements)
-        self.ui.date_annee.dateChanged.connect(self.afficher_mouvements)
+        self.ui.btn_rechercher.clicked.connect(self._search)
+        self.ui.mode.currentIndexChanged.connect(self._toggle_mode)
+        self.ui.date_debut.dateChanged.connect(self.show_movements)
+        self.ui.date_fin.dateChanged.connect(self.show_movements)
+        self.ui.date_mois.dateChanged.connect(self.show_movements)
+        self.ui.date_annee.dateChanged.connect(self.show_movements)
 
-        self._basculer_mode()
-        self.remplir_produits()
-        self.afficher_mouvements()
+        self._toggle_mode()
+        self.fill_products()
+        self.show_movements()
 
-    def remplir_produits(self):
-        self.ui.choix_produit.blockSignals(True)
-        self.ui.choix_produit.clear()
-        self.ui.choix_produit.addItem("", "")
-        for produit in db.product_lists():
-            self.ui.choix_produit.addItem(
-                f"{produit['NumProduit']} - {produit['Design']}",
-                produit["NumProduit"],
-            )
-        self.ui.choix_produit.blockSignals(False)
+    def fill_products(self):
+        if self.current_product is None:
+            self.ui.choix_produit.clear()
 
-    def _charger_produit(self, num_produit):
-        return db.produit(num_produit)
+    def _load_product(self, num_product):
+        return db.get_product(num_product)
 
-    def _produit_change(self):
-        num_produit = self.ui.choix_produit.currentData()
-        if not num_produit:
-            self.produit_courant = None
-            self.afficher_mouvements()
-            return
-        self.produit_courant = self._charger_produit(num_produit)
-        self.afficher_mouvements()
-
-    def _rechercher(self):
-        texte = self.ui.choix_produit.currentText().strip()
-        if not texte:
+    def _search(self):
+        text = self.ui.choix_produit.text().strip()
+        if not text:
             QMessageBox.information(
                 self, "Recherche", "Saisissez un numéro ou une désignation de produit."
             )
             return
 
-        resultats = db.search_product(texte)
-        if not resultats:
+        results = db.search_product(text)
+        if not results:
             QMessageBox.warning(
                 self,
                 "Produit non trouvé",
-                f"Aucun produit ne correspond à « {texte} ».",
+                f"Aucun produit ne correspond à « {text} ».",
             )
             return
 
-        if len(resultats) == 1:
-            self._selectionner(resultats[0])
+        if len(results) == 1:
+            self._select(results[0])
             return
 
-        libelles = [f"{p['NumProduit']} - {p['Design']}" for p in resultats]
-        choix, valide = QInputDialog.getItem(
+        labels = [f"{p['NumProduit']} - {p['Design']}" for p in results]
+        choice, ok = QInputDialog.getItem(
             self,
             "Plusieurs résultats",
-            f"{len(resultats)} produits trouvés. Lequel voulez-vous afficher ?",
-            libelles,
+            f"{len(results)} produits trouvés. Lequel voulez-vous afficher ?",
+            labels,
             0,
             False,
         )
-        if not valide or not choix:
+        if not ok or not choice:
             return
-        for produit in resultats:
-            if f"{produit['NumProduit']} - {produit['Design']}" == choix:
-                self._selectionner(produit)
+        for product in results:
+            if f"{product['NumProduit']} - {product['Design']}" == choice:
+                self._select(product)
                 return
 
-    def _selectionner(self, produit):
-        self.produit_courant = produit
-        index = self.ui.choix_produit.findData(produit["NumProduit"])
-        if index >= 0:
-            self.ui.choix_produit.blockSignals(True)
-            self.ui.choix_produit.setCurrentIndex(index)
-            self.ui.choix_produit.blockSignals(False)
-        self.afficher_mouvements()
+    def _select(self, product):
+        self.current_product = product
+        self.ui.choix_produit.setText(product["NumProduit"])
+        self.show_movements()
 
-    def rafraichir(self):
-        self.remplir_produits()
-        if self.produit_courant is not None:
-            index = self.ui.choix_produit.findData(self.produit_courant["NumProduit"])
-            if index >= 0:
-                self.ui.choix_produit.blockSignals(True)
-                self.ui.choix_produit.setCurrentIndex(index)
-                self.ui.choix_produit.blockSignals(False)
-        self.afficher_mouvements()
+    def refresh(self):
+        self.fill_products()
+        if self.current_product is not None:
+            self.ui.choix_produit.setText(self.current_product["NumProduit"])
+        self.show_movements()
 
-    def _basculer_mode(self):
+    def _toggle_mode(self):
         mode = self.ui.mode.currentIndex()
-        self.ui.date_debut.setEnabled(mode == MODE_INTERVALLE)
-        self.ui.date_fin.setEnabled(mode == MODE_INTERVALLE)
-        self.ui.date_mois.setEnabled(mode == MODE_MOIS)
-        self.ui.date_annee.setEnabled(mode == MODE_ANNEE)
-        self.afficher_mouvements()
+        self.ui.date_debut.setEnabled(mode == MODE_RANGE)
+        self.ui.date_fin.setEnabled(mode == MODE_RANGE)
+        self.ui.date_mois.setEnabled(mode == MODE_MONTH)
+        self.ui.date_annee.setEnabled(mode == MODE_YEAR)
+        self.show_movements()
 
-    def _periode(self):
+    def _period(self):
         mode = self.ui.mode.currentIndex()
 
-        if mode == MODE_INTERVALLE:
-            debut = self.ui.date_debut.date()
-            fin = self.ui.date_fin.date()
-            d1 = date(debut.year(), debut.month(), debut.day())
-            d2 = date(fin.year(), fin.month(), fin.day())
+        if mode == MODE_RANGE:
+            start = self.ui.date_debut.date()
+            end = self.ui.date_fin.date()
+            d1 = date(start.year(), start.month(), start.day())
+            d2 = date(end.year(), end.month(), end.day())
             if d1 > d2:
                 d1, d2 = d2, d1
             return d1, d2, f"{d1.strftime('%d/%m/%y')} - {d2.strftime('%d/%m/%y')}"
 
-        if mode == MODE_MOIS:
-            mois = self.ui.date_mois.date()
-            d1 = date(mois.year(), mois.month(), 1)
-            dernier_jour = monthrange(mois.year(), mois.month())[1]
-            d2 = date(mois.year(), mois.month(), dernier_jour)
+        if mode == MODE_MONTH:
+            month = self.ui.date_mois.date()
+            d1 = date(month.year(), month.month(), 1)
+            last_day = monthrange(month.year(), month.month())[1]
+            d2 = date(month.year(), month.month(), last_day)
             return d1, d2, f"Mois : {d1.strftime('%m/%Y')}"
 
-        if mode == MODE_ANNEE:
-            annee = self.ui.date_annee.date().year()
-            return date(annee, 1, 1), date(annee, 12, 31), f"Année : {annee}"
+        if mode == MODE_YEAR:
+            year = self.ui.date_annee.date().year()
+            return date(year, 1, 1), date(year, 12, 31), f"Année : {year}"
 
         return None, None, "Tout l'historique"
 
     @staticmethod
-    def _format_jour(jour):
-        if jour is None:
+    def _format_day(day):
+        if day is None:
             return ""
-        if hasattr(jour, "strftime"):
-            return jour.strftime("%d/%m/%Y")
-        return str(jour)
+        if hasattr(day, "strftime"):
+            return day.strftime("%d/%m/%Y")
+        return str(day)
 
-    def _mouvements(self, num_produit, debut, fin):
-        return db.resume_mouvements(num_produit, debut, fin)
+    def _movements(self, num_product, start, end):
+        return db.movements_summary(num_product, start, end)
 
-    def afficher_mouvements(self):
-        if self.produit_courant is None:
-            num_produit = self.ui.choix_produit.currentData()
-            if num_produit:
-                self.produit_courant = self._charger_produit(num_produit)
+    def show_movements(self):
+        if self.current_product is None:
+            text = self.ui.choix_produit.text().strip()
+            num_product = text if text else None
+            if num_product:
+                self.current_product = self._load_product(num_product)
 
-        if self.produit_courant is None:
+        if self.current_product is None:
             tbm.fill_table(self.ui.table, [])
             self.ui.periode.setText("-")
             self.ui.lbl_num.setText("-")
@@ -183,57 +159,57 @@ class MovementWidget(QWidget):
             )
             return
 
-        num_produit = self.produit_courant["NumProduit"]
-        produit = self._charger_produit(num_produit)
-        if produit is None:
+        num_product = self.current_product["NumProduit"]
+        product = self._load_product(num_product)
+        if product is None:
             QMessageBox.warning(
                 self,
                 "Produit non trouvé",
-                f"Le produit « {num_produit} » n'existe plus.",
+                f"Le produit « {num_product} » n'existe plus.",
             )
-            self.produit_courant = None
-            self.afficher_mouvements()
+            self.current_product = None
+            self.show_movements()
             return
-        self.produit_courant = produit
+        self.current_product = product
 
-        debut, fin, libelle = self._periode()
-        self.ui.periode.setText(libelle)
+        start, end, label = self._period()
+        self.ui.periode.setText(label)
 
-        resume = self._mouvements(num_produit, debut, fin)
-        mouvements = list(reversed(resume["mouvements"]))
+        summary = self._movements(num_product, start, end)
+        movements = list(reversed(summary["movements"]))
         tbm.fill_table(
             self.ui.table,
             [
                 [
-                    mouvement["NumBon"],
-                    mouvement["Entree"] or "",
-                    mouvement["Sortie"] or "",
-                    self._format_jour(mouvement["Jour"]),
+                    movement["NumBon"],
+                    movement["Entry"] or "",
+                    movement["Exit"] or "",
+                    self._format_day(movement["Day"]),
                 ]
-                for mouvement in mouvements
+                for movement in movements
             ],
         )
-        self._mettre_en_valeur_mouvements(mouvements)
+        self._highlight_movements(movements)
 
-        total_entree = resume["total_entree"]
-        total_sortie = resume["total_sortie"]
+        total_entries = summary["total_entries"]
+        total_exits = summary["total_exits"]
 
-        self.ui.lbl_num.setText(str(num_produit))
-        self.ui.lbl_design.setText(str(produit["Design"]))
-        self.ui.lbl_stock.setText(str(produit["Stock"]))
+        self.ui.lbl_num.setText(str(num_product))
+        self.ui.lbl_design.setText(str(product["Design"]))
+        self.ui.lbl_stock.setText(str(product["Stock"]))
         self.ui.resume.setText(
-            f"<span style='color:#15803d;'>Total entrée : {total_entree}</span>"
+            f"<span style='color:#15803d;'>Total entrée : {total_entries}</span>"
             f"&nbsp;&nbsp;|&nbsp;&nbsp;"
-            f"<span style='color:#b91c1c;'>Total sortie : {total_sortie}</span>"
+            f"<span style='color:#b91c1c;'>Total sortie : {total_exits}</span>"
             f"&nbsp;&nbsp;|&nbsp;&nbsp;"
-            f"Solde des mouvements : {total_entree - total_sortie}"
-            f"&nbsp;&nbsp;|&nbsp;&nbsp;{len(mouvements)} mouvement(s) affiché(s)"
+            f"Solde des mouvements : {total_entries - total_exits}"
+            f"&nbsp;&nbsp;|&nbsp;&nbsp;{len(movements)} mouvement(s) affiché(s)"
         )
 
-    def _mettre_en_valeur_mouvements(self, mouvements):
-        for ligne, mouvement in enumerate(mouvements):
-            colonne = 1 if (mouvement["Entree"] or 0) > 0 else 2
-            couleur = QColor("#15803d" if colonne == 1 else "#b91c1c")
-            item = self.ui.table.item(ligne, colonne)
+    def _highlight_movements(self, movements):
+        for row, movement in enumerate(movements):
+            column = 1 if (movement["Entry"] or 0) > 0 else 2
+            color = QColor("#15803d" if column == 1 else "#b91c1c")
+            item = self.ui.table.item(row, column)
             if item is not None:
-                item.setForeground(couleur)
+                item.setForeground(color)

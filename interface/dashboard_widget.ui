@@ -14,7 +14,16 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#Dashboard { background: #f5f7f9; }
+#Dashboard #frame { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }
+#Dashboard #label { color: #111827; font-size: 18pt; font-weight: 700; }
+#Dashboard #stats { color: #6b7280; font-size: 9.5pt; font-weight: 600; }
+#carte_produits, #carte_stock, #carte_entrees, #carte_sorties { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }
+#cadre_histogramme, #cadre_camembert { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; }
+QLabel#tile_ico_produits, QLabel#tile_ico_stock, QLabel#tile_ico_entrees, QLabel#tile_ico_sorties { background: #e8effc; border-radius: 10px; }
+QLabel#titre_produits, QLabel#titre_stock, QLabel#titre_entrees, QLabel#titre_sorties { font-size: 9pt; font-weight: 600; color: #6b7280; }
+QLabel#valeur_produits, QLabel#valeur_stock, QLabel#valeur_entrees, QLabel#valeur_sorties { font-size: 22pt; font-weight: 700; color: #111827; }
+#derniers_mouvements { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; font-family: Consolas; font-size: 9pt; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,1,0">
    <item>

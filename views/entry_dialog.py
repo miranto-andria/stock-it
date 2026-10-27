@@ -7,7 +7,7 @@ class AddEntryDialog(QDialog):
         super().__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        
+        self.setWindowTitle("Ajout d'un bon d'entrée")
     def get_dialog_data(self):
         return [
             self.ui.numBonInput.text(),

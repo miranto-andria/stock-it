@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Initialisation de la base MySQL 'stock_it' (XAMPP) via mysql-connector-python.
 
@@ -18,7 +16,6 @@ except ImportError:
     print("         Installez-le avec : pip install mysql-connector-python")
     sys.exit(1)
 
-# --- Paramètres de connexion XAMPP ---
 DB_HOST = "127.0.0.1"
 DB_PORT = 3306
 DB_USER = "root"
@@ -69,8 +66,6 @@ def main():
 
     statements = split_sql_statements(sql_text)
 
-    # On sépare : l'instruction CREATE DATABASE / USE (à faire sans DB)
-    # et les CREATE TABLE (à faire avec DB).
     create_db_stmt = None
     other_stmts = []
     for stmt in statements:
@@ -78,11 +73,10 @@ def main():
         if low.startswith("create database"):
             create_db_stmt = stmt
         elif low.startswith("use "):
-            continue  # on gère la DB via la connexion, pas via USE
+            continue
         else:
             other_stmts.append(stmt)
 
-    # ---------- ETAPE 1 : créer la base (connexion sans database) ----------
     print(f"[INFO] Base cible : {DB_NAME}")
     print(f"[INFO] Connexion a {DB_USER}@{DB_HOST}:{DB_PORT} ...")
     try:
@@ -104,7 +98,6 @@ def main():
     finally:
         conn.close()
 
-    # ---------- ETAPE 2 : créer les tables (connexion AVEC database) ----------
     print(f"[INFO] {len(other_stmts)} instruction(s) a executer dans '{DB_NAME}'.")
     try:
         conn = connect(with_db=True)

@@ -21,7 +21,9 @@ border : 1px solid rgba(171, 173, 174, 40%);
 background-color : #fff;
 }
 #description{
-color : #abadae
+color : #abadae;
+font-size : 10pt;
+font-weight : 500;
 }
 
 
@@ -126,21 +128,26 @@ padding : 8px 16px;
          <item>
           <widget class="QPushButton" name="btnAdd">
            <property name="styleSheet">
-            <string notr="true">background-color : #2d66e4;
-font : bold;
+            <string notr="true">QPushButton { background-color : #0d6efd;
+color : #ffffff;
 border : none;
-color:  white</string>
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #0b5ed7; }
+QPushButton:pressed { background-color : #0a58ca; }</string>
            </property>
            <property name="text">
             <string>Ajouter un produit</string>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+            <iconset>
+             <normaloff>:/icons/add.png</normaloff>:/icons/add.png</iconset>
            </property>
            <property name="iconSize">
             <size>
-             <width>12</width>
-             <height>12</height>
+             <width>17</width>
+             <height>17</height>
             </size>
            </property>
           </widget>
@@ -196,21 +203,26 @@ border : 1px solid rgba(171, 173, 174, 80%); background-color : #fff;</string>
          <item>
           <widget class="QPushButton" name="btnSearch">
            <property name="styleSheet">
-            <string notr="true">background-color : #2d66e4;
-font : bold;
+            <string notr="true">QPushButton { background-color : #0d6efd;
+color : #ffffff;
 border : none;
-color:  white</string>
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #0b5ed7; }
+QPushButton:pressed { background-color : #0a58ca; }</string>
            </property>
            <property name="text">
             <string>Recherche</string>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::EditFind"/>
+            <iconset>
+             <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
            </property>
            <property name="iconSize">
             <size>
-             <width>12</width>
-             <height>12</height>
+             <width>17</width>
+             <height>17</height>
             </size>
            </property>
           </widget>
@@ -218,20 +230,26 @@ color:  white</string>
          <item>
           <widget class="QPushButton" name="btnEdit">
            <property name="styleSheet">
-            <string notr="true">border : 1px solid #15803d;
-color : black;
-</string>
+            <string notr="true">QPushButton { background-color : #198754;
+color : #ffffff;
+border : none;
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #157347; }
+QPushButton:pressed { background-color : #146c43; }</string>
            </property>
            <property name="text">
             <string>Modifier</string>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::MailMessageNew"/>
+            <iconset>
+             <normaloff>:/icons/edit.png</normaloff>:/icons/edit.png</iconset>
            </property>
            <property name="iconSize">
             <size>
-             <width>12</width>
-             <height>12</height>
+             <width>17</width>
+             <height>17</height>
             </size>
            </property>
           </widget>
@@ -239,18 +257,26 @@ color : black;
          <item>
           <widget class="QPushButton" name="btnDelete">
            <property name="styleSheet">
-            <string notr="true">background:#dc4a4a;color:white;</string>
+            <string notr="true">QPushButton { background-color : #dc3545;
+color : #ffffff;
+border : none;
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #bb2d3e; }
+QPushButton:pressed { background-color : #b02a37; }</string>
            </property>
            <property name="text">
             <string>Supprimer</string>
            </property>
            <property name="icon">
-            <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+            <iconset>
+             <normaloff>:/icons/trash.png</normaloff>:/icons/trash.png</iconset>
            </property>
            <property name="iconSize">
             <size>
-             <width>12</width>
-             <height>12</height>
+             <width>17</width>
+             <height>17</height>
             </size>
            </property>
           </widget>
@@ -293,7 +319,8 @@ color : black;
     </widget>
    </item>
   </layout>
- </widget>
- <resources/>
+ </widget>  <resources>
+   <include location="../assets/resources.qrc"/>
+  </resources>
  <connections/>
 </ui>

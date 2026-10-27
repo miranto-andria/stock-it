@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'main_window.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -203,7 +195,6 @@ class Ui_StockIt(object):
         self.exitBtn.clicked.connect(Stock_It.close)
 
         QMetaObject.connectSlotsByName(Stock_It)
-    # setupUi
 
     def retranslateUi(self, Stock_It):
         Stock_It.setWindowTitle(QCoreApplication.translate("StockIt", u"MainWindow", None))
@@ -215,5 +206,4 @@ class Ui_StockIt(object):
         self.mouvementBtn.setText(QCoreApplication.translate("StockIt", u"Mouvements d'un produit", None))
         self.gestionBtn.setText(QCoreApplication.translate("StockIt", u"Gestion des stock", None))
         self.exitBtn.setText(QCoreApplication.translate("StockIt", u"Quitter", None))
-    # retranslateUi
 

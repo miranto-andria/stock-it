@@ -20,12 +20,12 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#stockWidget {
-    font-family: &quot;Montserrat&quot;;
-    background-color: #f5f7f9;
-}
-
-</string>
+   <string notr="true">#StockWidget { background: #f5f7f9; }
+#StockWidget #cardHeader { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; }
+#StockWidget #label { color: #111827; font-size: 18pt; font-weight: 700; background: transparent; }
+#StockWidget #description { color: #abadae; font-size: 10pt; font-weight: 500; }
+#StockWidget #btnSearch { background: #0d6efd; color: #ffffff; border: 1px solid #0d6efd; font-weight: 700; }
+#StockWidget QTableWidget { alternate-background-color: #f3f6fb; selection-background-color: #dce8ff; }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
@@ -38,35 +38,33 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_11">
       <item>
-       <widget class="QWidget" name="top" native="true">
+       <widget class="QWidget" name="searchBar" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
           <height>40</height>
          </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel#textTotalProduct , QLabel#textTotalBondeSortie , QLabel#textTotalBondeEntree, QLabel#textTotalStock{
-background-color: #ffffff;
-color: #111827; border: 1px solid #e5e7eb;
-font:bold;
-font-size: 22px;
-qproperty-alignment: AlignCenter;
-border-radius: 8px;
-}
-
-</string>
-        </property>
         <layout class="QVBoxLayout" name="verticalLayout_12">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QFrame" name="cardHeader">
            <property name="styleSheet">
-            <string notr="true">#cardHeader{
-background-color: #ffffff;
-border : 1px solid #e5e7eb;
-border-radius:8px;
-padding: 8px;
-}</string>
+            <string notr="true">#cardHeader { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; padding: 12px;}</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
@@ -75,12 +73,27 @@ padding: 8px;
             <enum>QFrame::Shadow::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="horizontalLayout_13">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QLabel" name="label">
               <property name="font">
                <font>
                 <family>Segoe UI</family>
-                <pointsize>22</pointsize>
+                <pointsize>18</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -153,16 +166,27 @@ background-color:transparent;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color : #2d66e4;
-font : bold;
+           <string notr="true">QPushButton { background-color : #0d6efd;
+color : #ffffff;
 border : none;
-color:  white</string>
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #0b5ed7; }
+QPushButton:pressed { background-color : #0a58ca; }</string>
           </property>
           <property name="text">
            <string>Recherche</string>
           </property>
           <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::EditFind"/>
+           <iconset>
+            <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>17</width>
+            <height>17</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -266,7 +290,8 @@ color:  white</string>
     </widget>
    </item>
   </layout>
- </widget>
- <resources/>
+ </widget>  <resources>
+   <include location="../assets/resources.qrc"/>
+  </resources>
  <connections/>
 </ui>

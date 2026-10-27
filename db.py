@@ -9,9 +9,9 @@ DB_CONFIG = {
     "password": "",
     "database": "stock_it",
 }
-TABLE_PRODUIT = "Produit"
-TABLE_ENTREE = "BondeEntree"
-TABLE_SORTIE = "BondeSortie"
+TABLE_PRODUCT = "Produit"
+TABLE_ENTRY = "BondeEntree"
+TABLE_EXIT = "BondeSortie"
 
 
 def connect():
@@ -22,42 +22,42 @@ def connect():
 
 
 def execute(query, params=None, fetch=False):
-    conn = connect()
-    cursor = conn.cursor(dictionary=True)
+    connection = connect()
+    cursor = connection.cursor(dictionary=True)
     try:
         cursor.execute(query, params or ())
         if fetch:
             return cursor.fetchall()
-        conn.commit()
+        connection.commit()
         return cursor.lastrowid
     except Error as e:
-        conn.rollback()
+        connection.rollback()
         raise Error(f"Erreur SQL : {e}") from e
     finally:
         cursor.close()
-        conn.close()
+        connection.close()
 
 
 def execute_one(query, params=None):
-    lignes = execute(query, params, fetch=True)
-    if not lignes:
+    rows = execute(query, params, fetch=True)
+    if not rows:
         return None
-    return lignes[0]
+    return rows[0]
 
 
-def execute_many(requetes):
-    conn = connect()
-    cursor = conn.cursor(dictionary=True)
+def execute_many(queries):
+    connection = connect()
+    cursor = connection.cursor(dictionary=True)
     try:
-        for query, params in requetes:
+        for query, params in queries:
             cursor.execute(query, params or ())
-        conn.commit()
+        connection.commit()
     except Error as e:
-        conn.rollback()
+        connection.rollback()
         raise Error(f"Erreur SQL : {e}") from e
     finally:
         cursor.close()
-        conn.close()
+        connection.close()
 
 
 def get_entry_pass():
@@ -85,35 +85,35 @@ def product_lists():
     )
 
 
-def search_product(texte):
-    texte = (texte or "").strip()
-    if not texte:
+def search_product(text):
+    text = (text or "").strip()
+    if not text:
         return product_lists()
-    modele = "%" + texte + "%"
+    pattern = "%" + text + "%"
     return execute(
         "SELECT NumProduit, Design, Stock FROM Produit "
         "WHERE NumProduit LIKE %s OR Design LIKE %s ORDER BY NumProduit",
-        (modele, modele),
+        (pattern, pattern),
         fetch=True,
     )
 
 
 def count(query, params=None):
-    ligne = execute_one(query, params)
-    if ligne is None or ligne["total"] is None:
+    row = execute_one(query, params)
+    if row is None or row["total"] is None:
         return 0
-    return ligne["total"]
+    return row["total"]
 
 
 def get_total_products():
     return count("SELECT COUNT(*) AS total FROM Produit")
 
 
-def get_nb_bons_entree():
+def get_entry_voucher_count():
     return count("SELECT COUNT(*) AS total FROM BondeEntree")
 
 
-def get_nb_bons_sortie():
+def get_exit_voucher_count():
     return count("SELECT COUNT(*) AS total FROM BondeSortie")
 
 
@@ -121,75 +121,75 @@ def get_total_stock():
     return count("SELECT COALESCE(SUM(Stock), 0) AS total FROM Produit")
 
 
-def get_total_entrees():
+def get_total_entries():
     return count("SELECT COALESCE(SUM(QteEntree), 0) AS total FROM BondeEntree")
 
 
-def get_total_sorties():
+def get_total_exits():
     return count("SELECT COALESCE(SUM(QteSortie), 0) AS total FROM BondeSortie")
 
 
 def get_dashboard_stats():
     """Retourne en une requête les indicateurs nécessaires au tableau de bord."""
-    ligne = execute_one(
+    row = execute_one(
         "SELECT "
         "COUNT(*) AS total_products, "
         "COALESCE(SUM(Stock), 0) AS total_stock, "
-        "COALESCE(SUM(Stock <= 0), 0) AS rupture, "
-        "COALESCE(SUM(Stock BETWEEN 1 AND 5), 0) AS faible, "
-        "COALESCE(SUM(Stock BETWEEN 6 AND 10), 0) AS moyen, "
-        "COALESCE(SUM(Stock > 10), 0) AS eleve, "
-        "(SELECT COUNT(*) FROM BondeEntree) AS bons_entree, "
-        "(SELECT COUNT(*) FROM BondeSortie) AS bons_sortie "
+        "COALESCE(SUM(Stock <= 0), 0) AS out_of_stock, "
+        "COALESCE(SUM(Stock BETWEEN 1 AND 5), 0) AS low, "
+        "COALESCE(SUM(Stock BETWEEN 6 AND 10), 0) AS medium, "
+        "COALESCE(SUM(Stock > 10), 0) AS high, "
+        "(SELECT COUNT(*) FROM BondeEntree) AS entry_vouchers, "
+        "(SELECT COUNT(*) FROM BondeSortie) AS exit_vouchers "
         "FROM Produit"
     ) or {}
 
     return {
-        "total_products": int(ligne.get("total_products") or 0),
-        "total_stock": int(ligne.get("total_stock") or 0),
-        "rupture": int(ligne.get("rupture") or 0),
-        "faible": int(ligne.get("faible") or 0),
-        "moyen": int(ligne.get("moyen") or 0),
-        "eleve": int(ligne.get("eleve") or 0),
-        "bons_entree": int(ligne.get("bons_entree") or 0),
-        "bons_sortie": int(ligne.get("bons_sortie") or 0),
+        "total_products": int(row.get("total_products") or 0),
+        "total_stock": int(row.get("total_stock") or 0),
+        "out_of_stock": int(row.get("out_of_stock") or 0),
+        "low": int(row.get("low") or 0),
+        "medium": int(row.get("medium") or 0),
+        "high": int(row.get("high") or 0),
+        "entry_vouchers": int(row.get("entry_vouchers") or 0),
+        "exit_vouchers": int(row.get("exit_vouchers") or 0),
     }
 
 
-def get_low_stock_products(limite=8):
+def get_low_stock_products(limit=8):
     """Produits à surveiller, du stock le plus faible au plus élevé."""
     return execute(
         "SELECT NumProduit, Design, Stock FROM Produit "
         "ORDER BY Stock ASC, Design ASC, NumProduit ASC LIMIT %s",
-        (limite,),
+        (limit,),
         fetch=True,
     )
 
 
-def get_bons_entree_mois():
-    aujourdhui = date.today()
+def get_monthly_entry_vouchers():
+    today = date.today()
     return count(
         "SELECT COUNT(*) AS total FROM BondeEntree "
         "WHERE YEAR(DateEntree) = %s AND MONTH(DateEntree) = %s",
-        (aujourdhui.year, aujourdhui.month),
+        (today.year, today.month),
     )
 
 
-def get_bons_entree_mois_dernier():
-    aujourdhui = date.today()
-    mois, annee = aujourdhui.month, aujourdhui.year
-    if mois == 1:
-        mois, annee = 12, annee - 1
+def get_last_month_entry_vouchers():
+    today = date.today()
+    month, year = today.month, today.year
+    if month == 1:
+        month, year = 12, year - 1
     else:
-        mois -= 1
+        month -= 1
     return count(
         "SELECT COUNT(*) AS total FROM BondeEntree "
         "WHERE YEAR(DateEntree) = %s AND MONTH(DateEntree) = %s",
-        (annee, mois),
+        (year, month),
     )
 
 
-def stock_repartition():
+def stock_distribution():
     return [
         (
             "Rupture(0)",
@@ -210,201 +210,330 @@ def stock_repartition():
     ]
 
 
-def add_entry(NumBon, NumProduit, QteEntree, Date):
-    execute(
-        "INSERT INTO BondeEntree (NumBon, NumProduit, QteEntree, DateEntree) "
-        "VALUES (%s, %s, %s, %s)",
-        (NumBon, NumProduit, QteEntree, Date),
-    )
-    execute(
-        "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
-        (QteEntree, NumProduit),
-    )
-def add_exit(NumBon, NumProduit, QteSortie, Date):
-    execute(
-        "INSERT INTO BondeSortie (NumBon, NumProduit, QteEntree, DateEntree) "
-        "VALUES (%s, %s, %s, %s)",
-        (NumBon, NumProduit, QteSortie, Date),
-    )
-    execute(
-        "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
-        (QteSortie, NumProduit),
-    )
+
+def add_entry(num_voucher, num_product, qty, voucher_date):
+    execute_many([
+        (
+            "INSERT INTO BondeEntree (NumBon, NumProduit, QteEntree, DateEntree) "
+            "VALUES (%s, %s, %s, %s)",
+            (num_voucher, num_product, qty, voucher_date),
+        ),
+        (
+            "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
+            (qty, num_product),
+        ),
+    ])
 
 
-def delete_product(numProduit):
-    execute(
-        "DELETE FROM Produit WHERE NumProduit = %s",
-        (numProduit,),
+
+def add_exit(num_voucher, num_product, qty, voucher_date):
+    product = get_product(num_product)
+    if product is None:
+        raise ValueError(f"Le produit '{num_product}' n'existe pas.")
+    if int(product["Stock"]) < int(qty):
+        raise ValueError(
+            f"Stock insuffisant pour '{num_product}' : "
+            f"{product['Stock']} disponible(s) pour une sortie de {qty}."
+        )
+    execute_many([
+        (
+            "INSERT INTO BondeSortie (NumBon, NumProduit, QteSortie, DateSortie) "
+            "VALUES (%s, %s, %s, %s)",
+            (num_voucher, num_product, qty, voucher_date),
+        ),
+        (
+            "UPDATE Produit SET Stock = Stock - %s WHERE NumProduit = %s",
+            (qty, num_product),
+        ),
+    ])
+ 
+
+def update_entry(num_voucher, num_product, qty, voucher_date):
+    line = execute_one(
+        "SELECT NumProduit, QteEntree FROM BondeEntree WHERE NumBon = %s",
+        (num_voucher,),
     )
+    if line is None:
+        raise ValueError(f"Le bon d'entrée '{num_voucher}' n'existe pas.")
+    old_product = line["NumProduit"]
+    old_qty = int(line["QteEntree"])
+    new_qty = int(qty)
+    if old_product == num_product:
+        queries = [
+            (
+                "UPDATE BondeEntree SET QteEntree = %s, DateEntree = %s "
+                "WHERE NumBon = %s AND NumProduit = %s",
+                (new_qty, voucher_date, num_voucher, num_product),
+            ),
+            (
+                "UPDATE Produit SET Stock = Stock - %s + %s WHERE NumProduit = %s",
+                (old_qty, new_qty, num_product),
+            ),
+        ]
+    else:
+        queries = [
+            (
+                "UPDATE BondeEntree SET NumProduit = %s, QteEntree = %s, "
+                "DateEntree = %s WHERE NumBon = %s AND NumProduit = %s",
+                (num_product, new_qty, voucher_date, num_voucher, old_product),
+            ),
+            (
+                "UPDATE Produit SET Stock = Stock - %s WHERE NumProduit = %s",
+                (old_qty, old_product),
+            ),
+            (
+                "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
+                (new_qty, num_product),
+            ),
+        ]
+    execute_many(queries)
 
-def update_entry(NumBon, NumProduit, QteEntree, DateEntree):
-    execute(
-        "UPDATE BondeEntree SET NumProduit = %s, QteEntree = %s, "
-        "DateEntree = %s WHERE NumBon = %s",
-        (NumProduit, QteEntree, DateEntree, NumBon),
+
+def update_exit(num_voucher, num_product, qty, voucher_date):
+    """Modification d'un bon de sortie : on n'applique que la différence au stock."""
+    line = execute_one(
+        "SELECT NumProduit, QteSortie FROM BondeSortie WHERE NumBon = %s",
+        (num_voucher,),
     )
+    if line is None:
+        raise ValueError(f"Le bon de sortie '{num_voucher}' n'existe pas.")
 
-def update_exit(NumBon, NumProduit, QteSortie, DateEntree):
-    execute(
-        "UPDATE BondeSortie SET NumProduit = %s, QteEntree = %s, "
-        "DateEntree = %s WHERE NumBon = %s",
-        (NumProduit, QteSortie, DateEntree, NumBon),
-    )
+    old_product = line["NumProduit"]
+    old_qty = int(line["QteSortie"])
+    new_qty = int(qty)
+
+    if old_product == num_product:
+        product = get_product(num_product)
+        available = 0 if product is None else int(product["Stock"]) + old_qty
+        if product is None or available < new_qty:
+            raise ValueError(
+                f"Stock insuffisant pour '{num_product}' : "
+                f"{available} disponible(s) pour une sortie de {new_qty}."
+            )
+        queries = [
+            (
+                "UPDATE BondeSortie SET QteSortie = %s, DateSortie = %s "
+                "WHERE NumBon = %s AND NumProduit = %s",
+                (new_qty, voucher_date, num_voucher, num_product),
+            ),
+            (
+                "UPDATE Produit SET Stock = Stock + %s - %s WHERE NumProduit = %s",
+                (old_qty, new_qty, num_product),
+            ),
+        ]
+    else:
+        product = get_product(num_product)
+        if product is None or int(product["Stock"]) < new_qty:
+            available = 0 if product is None else int(product["Stock"])
+            raise ValueError(
+                f"Stock insuffisant pour '{num_product}' : "
+                f"{available} disponible(s) pour une sortie de {new_qty}."
+            )
+        queries = [
+            (
+                "UPDATE BondeSortie SET NumProduit = %s, QteSortie = %s, "
+                "DateSortie = %s WHERE NumBon = %s AND NumProduit = %s",
+                (num_product, new_qty, voucher_date, num_voucher, old_product),
+            ),
+            (
+                "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
+                (old_qty, old_product),
+            ),
+            (
+                "UPDATE Produit SET Stock = Stock - %s WHERE NumProduit = %s",
+                (new_qty, num_product),
+            ),
+        ]
+    execute_many(queries)
 
 
-def produit(num_produit):
+def get_product(num_product):
     """Renvoie le produit demandé, ou None s'il n'existe pas."""
     return execute_one(
         "SELECT NumProduit, Design, Stock FROM Produit WHERE NumProduit = %s",
-        (num_produit,),
+        (num_product,),
     )
 
 
-def derniers_mouvements(limite=12):
-    mouvements = []
+def recent_movements(limit=12):
+    movements = []
 
-    for ligne in execute(
-        "SELECT NumBon, NumProduit, QteEntree AS Quantite, DateEntree AS Jour "
+    for row in execute(
+        "SELECT NumBon, NumProduit, QteEntree AS Quantity, DateEntree AS Day "
         "FROM BondeEntree ORDER BY DateEntree DESC, NumBon DESC LIMIT 50",
         fetch=True,
     ):
-        mouvements.append(
+        movements.append(
             {
-                "Jour": ligne["Jour"],
-                "Sens": "ENTREE",
-                "NumBon": ligne["NumBon"],
-                "NumProduit": ligne["NumProduit"],
-                "Quantite": ligne["Quantite"],
+                "Day": row["Day"],
+                "Direction": "ENTRY",
+                "NumBon": row["NumBon"],
+                "NumProduit": row["NumProduit"],
+                "Quantity": row["Quantity"],
             }
         )
 
-    for ligne in execute(
-        "SELECT NumBon, NumProduit, QteSortie AS Quantite, DateSortie AS Jour "
+    for row in execute(
+        "SELECT NumBon, NumProduit, QteSortie AS Quantity, DateSortie AS Day "
         "FROM BondeSortie ORDER BY DateSortie DESC, NumBon DESC LIMIT 50",
         fetch=True,
     ):
-        mouvements.append(
+        movements.append(
             {
-                "Jour": ligne["Jour"],
-                "Sens": "SORTIE",
-                "NumBon": ligne["NumBon"],
-                "NumProduit": ligne["NumProduit"],
-                "Quantite": ligne["Quantite"],
+                "Day": row["Day"],
+                "Direction": "EXIT",
+                "NumBon": row["NumBon"],
+                "NumProduit": row["NumProduit"],
+                "Quantity": row["Quantity"],
             }
         )
 
-    mouvements.sort(
-        key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]),
+    movements.sort(
+        key=lambda movement: (movement["Day"], movement["NumBon"]),
         reverse=True,
     )
-    return mouvements[:limite]
+    return movements[:limit]
 
 
-def add_product(NumProduit, Designation, Stock):
+def add_product(num_product, designation, stock):
     execute(
         "INSERT INTO Produit (NumProduit, Design, Stock) VALUES (%s, %s, %s)",
-        (NumProduit, Designation, Stock),
+        (num_product, designation, stock),
     )
 
 
-def delete_exit(numBon, QteSortie, NumProduit):
-    execute("DELETE FROM BondeSortie WHERE NumBon = %s", [numBon])
-    execute(
-        "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
-        (QteSortie, NumProduit),
-    )
-
-def delete_entry(numBon, QteEntree, NumProduit):
-    execute("DELETE FROM BondeEntree WHERE NumBon = %s", [numBon])
-    execute(
-        "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
-        (QteEntree, NumProduit),
-    )
-
-
-
-def update_product(NumProduit, Designation, Stock):
+def update_product(num_product, designation, stock):
     execute(
         "UPDATE Produit SET Design = %s, Stock = %s WHERE NumProduit = %s",
-        (Designation, Stock, NumProduit),
+        (designation, stock, num_product),
+    )
+    
+def delete_product(num_product):
+    execute(
+        "DELETE FROM Produit WHERE NumProduit = %s",
+        (num_product,),
     )
 
 
-def _table_bon(sens):
-    """Nom de la table correspondant au sens (« ENTREE » ou « SORTIE »)."""
-    return TABLE_ENTREE if sens == "ENTREE" else TABLE_SORTIE
+def delete_exit(num_voucher, qty, num_product=None):
+    if num_product is None:
+        line = execute_one(
+            "SELECT NumProduit FROM BondeSortie WHERE NumBon = %s",
+            (num_voucher,),
+        )
+        if line is None:
+            raise ValueError(f"Le bon de sortie '{num_voucher}' n'existe pas.")
+        num_product = line["NumProduit"]
+    execute_many([
+        (
+            "DELETE FROM BondeSortie WHERE NumBon = %s AND NumProduit = %s",
+            (num_voucher, num_product),
+        ),
+        (
+            "UPDATE Produit SET Stock = Stock + %s WHERE NumProduit = %s",
+            (qty, num_product),
+        ),
+    ])
 
 
-def _colonne_quantite(sens):
+
+
+def delete_entry(num_voucher, qty, num_product=None):
+    if num_product is None:
+        line = execute_one(
+            "SELECT NumProduit FROM BondeEntree WHERE NumBon = %s",
+            (num_voucher,),
+        )
+        if line is None:
+            raise ValueError(f"Le bon d'entrée '{num_voucher}' n'existe pas.")
+        num_product = line["NumProduit"]
+    execute_many([
+        (
+            "DELETE FROM BondeEntree WHERE NumBon = %s AND NumProduit = %s",
+            (num_voucher, num_product),
+        ),
+        (
+            "UPDATE Produit SET Stock = Stock - %s WHERE NumProduit = %s",
+            (qty, num_product),
+        ),
+    ])
+
+
+
+def _voucher_table(direction):
+    """Nom de la table correspondant au sens (« ENTRY » ou « EXIT »)."""
+    return TABLE_ENTRY if direction == "ENTRY" else TABLE_EXIT
+
+
+def _qty_column(direction):
     """Nom de la colonne de quantité dans la table du bon."""
-    return "QteEntree" if sens == "ENTREE" else "QteSortie"
+    return "QteEntree" if direction == "ENTRY" else "QteSortie"
 
 
-def _colonne_date(sens):
+def _date_column(direction):
     """Nom de la colonne de date dans la table du bon."""
-    return "DateEntree" if sens == "ENTREE" else "DateSortie"
+    return "DateEntree" if direction == "ENTRY" else "DateSortie"
 
 
-def _libelle_bon(sens):
-    return "d'entrée" if sens == "ENTREE" else "de sortie"
+def _voucher_label(direction):
+    return "d'entrée" if direction == "ENTRY" else "de sortie"
 
 
-def _lignes_produit(sens, num_produit, debut, fin):
+def _product_rows(direction, num_product, start, end):
     """Lignes de bons d'un produit, entre deux dates (facultatives)."""
-    colonne_qte = _colonne_quantite(sens)
-    colonne_date = _colonne_date(sens)
+    qty_column = _qty_column(direction)
+    date_column = _date_column(direction)
 
-    requete = (
-        f"SELECT NumBon, {colonne_qte} AS Quantite, {colonne_date} AS Jour "
-        f"FROM {_table_bon(sens)} WHERE NumProduit = %s"
+    query = (
+        f"SELECT NumBon, {qty_column} AS Quantity, {date_column} AS Day "
+        f"FROM {_voucher_table(direction)} WHERE NumProduit = %s"
     )
-    parametres = [num_produit]
+    params = [num_product]
 
-    if debut is not None:
-        requete += f" AND {colonne_date} >= %s"
-        parametres.append(debut)
+    if start is not None:
+        query += f" AND {date_column} >= %s"
+        params.append(start)
 
-    if fin is not None:
-        requete += f" AND {colonne_date} <= %s"
-        parametres.append(fin)
+    if end is not None:
+        query += f" AND {date_column} <= %s"
+        params.append(end)
 
-    requete += f" ORDER BY {colonne_date}, NumBon"
-    return execute(requete, tuple(parametres), fetch=True)
+    query += f" ORDER BY {date_column}, NumBon"
+    return execute(query, tuple(params), fetch=True)
 
 
-def liste_mouvements(num_produit, debut=None, fin=None):
-    mouvements = []
+def list_movements(num_product, start=None, end=None):
+    movements = []
 
-    for ligne in _lignes_produit("ENTREE", num_produit, debut, fin):
-        mouvements.append(
+    for row in _product_rows("ENTRY", num_product, start, end):
+        movements.append(
             {
-                "Jour": ligne["Jour"],
-                "NumBon": ligne["NumBon"],
-                "Entree": ligne["Quantite"],
-                "Sortie": 0,
+                "Day": row["Day"],
+                "NumBon": row["NumBon"],
+                "Entry": row["Quantity"],
+                "Exit": 0,
             }
         )
 
-    for ligne in _lignes_produit("SORTIE", num_produit, debut, fin):
-        mouvements.append(
+    for row in _product_rows("EXIT", num_product, start, end):
+        movements.append(
             {
-                "Jour": ligne["Jour"],
-                "NumBon": ligne["NumBon"],
-                "Entree": 0,
-                "Sortie": ligne["Quantite"],
+                "Day": row["Day"],
+                "NumBon": row["NumBon"],
+                "Entry": 0,
+                "Exit": row["Quantity"],
             }
         )
 
-    mouvements.sort(key=lambda mouvement: (mouvement["Jour"], mouvement["NumBon"]))
-    return mouvements
+    movements.sort(key=lambda movement: (movement["Day"], movement["NumBon"]))
+    return movements
 
 
-def resume_mouvements(num_produit, debut=None, fin=None):
+def movements_summary(num_product, start=None, end=None):
     """Retourne les mouvements et leurs totaux pour un produit."""
-    mouvements = liste_mouvements(num_produit, debut, fin)
+    movements = list_movements(num_product, start, end)
     return {
-        "mouvements": mouvements,
-        "total_entree": sum(mouvement["Entree"] or 0 for mouvement in mouvements),
-        "total_sortie": sum(mouvement["Sortie"] or 0 for mouvement in mouvements),
+        "movements": movements,
+        "total_entries": sum(movement["Entry"] or 0 for movement in movements),
+        "total_exits": sum(movement["Exit"] or 0 for movement in movements),
     }

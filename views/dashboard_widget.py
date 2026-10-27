@@ -6,7 +6,7 @@ import db
 import resources_rc
 from ui_compiled.ui_dashboard_widget import Ui_Dashboard
 
-ICONES_PAR_CARTE = {
+CARD_ICONS = {
     "tile_ico_produits": "product.png",
     "tile_ico_stock": "box.png",
     "tile_ico_entrees": "inward.png",
@@ -14,11 +14,11 @@ ICONES_PAR_CARTE = {
 }
 
 
-def icone_pixmap(nom_fichier, taille=22):
-    pixmap = QPixmap(f":/icons/{nom_fichier}")
+def icon_pixmap(file_name, size=22):
+    pixmap = QPixmap(f":/icons/{file_name}")
     return pixmap.scaled(
-        taille,
-        taille,
+        size,
+        size,
         Qt.AspectRatioMode.KeepAspectRatio,
         Qt.TransformationMode.SmoothTransformation,
     )
@@ -29,61 +29,60 @@ class DashboardWidget(QWidget):
         super().__init__()
         self.ui = Ui_Dashboard()
         self.ui.setupUi(self)
-        for nom_objet, nom_fichier in ICONES_PAR_CARTE.items():
-            getattr(self.ui, nom_objet).setPixmap(icone_pixmap(nom_fichier))
+        for object_name, file_name in CARD_ICONS.items():
+            getattr(self.ui, object_name).setPixmap(icon_pixmap(file_name))
         self.refresh()
 
     def init_count(self, stats):
         self.ui.valeur_stock.setText(str(stats["total_stock"]))
         self.ui.valeur_produits.setText(str(stats["total_products"]))
-        self.ui.valeur_entrees.setText(str(stats["bons_entree"]))
-        self.ui.valeur_sorties.setText(str(stats["bons_sortie"]))
+        self.ui.valeur_entrees.setText(str(stats["entry_vouchers"]))
+        self.ui.valeur_sorties.setText(str(stats["exit_vouchers"]))
         self.ui.stats.setText(
-            f"{stats['rupture']} en rupture  |  {stats['faible']} à surveiller  |  "
-            f"{stats['moyen']} niveau moyen  |  {stats['eleve']} niveau confortable"
+            f"{stats['out_of_stock']} en rupture  |  {stats['low']} à surveiller  |  "
+            f"{stats['medium']} niveau moyen  |  {stats['high']} niveau confortable"
         )
 
     def refresh(self):
         stats = {
             "total_products": 0,
             "total_stock": 0,
-            "bons_entree": 0,
-            "bons_sortie": 0,
-            "rupture": 0,
-            "faible": 0,
-            "moyen": 0,
-            "eleve": 0,
+            "entry_vouchers": 0,
+            "exit_vouchers": 0,
+            "out_of_stock": 0,
+            "low": 0,
+            "medium": 0,
+            "high": 0,
         }
-        produits = []
-        mouvements = []
+        products = []
+        movements = []
         try:
             stats.update(db.get_dashboard_stats() or {})
-            produits = db.get_low_stock_products() or []
-            mouvements = db.derniers_mouvements(12) or []
+            products = db.get_low_stock_products() or []
+            movements = db.recent_movements(12) or []
         except Exception:
-            # Les widgets restent utilisables si la base est indisponible.
             pass
         self.init_count(stats)
         self.ui.histogramme.set_data(
-            [(produit["Design"], produit["Stock"]) for produit in produits]
+            [(product["Design"], product["Stock"]) for product in products]
         )
         self.ui.camembert.set_data(
             [
-                ("Rupture", stats["rupture"]),
-                ("Faible", stats["faible"]),
-                ("Moyen", stats["moyen"]),
-                ("Confortable", stats["eleve"]),
+                ("Rupture", stats["out_of_stock"]),
+                ("Faible", stats["low"]),
+                ("Moyen", stats["medium"]),
+                ("Confortable", stats["high"]),
             ]
         )
         self.ui.derniers_mouvements.clear()
-        for mouvement in mouvements:
-            entre = mouvement["Sens"] == "ENTREE"
-            signe = "+" if entre else "-"
-            mot = "ENTRÉE" if entre else "SORTIE"
+        for movement in movements:
+            is_entry = movement["Direction"] == "ENTRY"
+            sign = "+" if is_entry else "-"
+            word = "ENTRÉE" if is_entry else "SORTIE"
             self.ui.derniers_mouvements.addItem(
-                f"{mouvement['Jour'].strftime('%d/%m/%Y')}   {mot:<6} "
-                f"{mouvement['NumBon']} - {mouvement['NumProduit']} "
-                f": {signe}{mouvement['Quantite']}"
+                f"{movement['Day'].strftime('%d/%m/%Y')}   {word:<6} "
+                f"{movement['NumBon']} - {movement['NumProduit']} "
+                f": {sign}{movement['Quantity']}"
             )
-        if not mouvements:
+        if not movements:
             self.ui.derniers_mouvements.addItem("- aucun mouvement enregistré -")

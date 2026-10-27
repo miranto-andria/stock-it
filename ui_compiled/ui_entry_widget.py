@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'entry_widget.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -19,6 +11,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QHeaderView, QLabel, QLineEdit, QPushButton,
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
+import resources_rc
 
 class Ui_EntryWidget(object):
     def setupUi(self, EntryWidget):
@@ -32,7 +25,9 @@ class Ui_EntryWidget(object):
 "background-color : #fff;\n"
 "}\n"
 "#description{\n"
-"color : #abadae\n"
+"color : #abadae;\n"
+"font-size : 10pt;\n"
+"font-weight : 500;\n"
 "}\n"
 "\n"
 "#searchBar{\n"
@@ -105,12 +100,8 @@ class Ui_EntryWidget(object):
         palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.ToolTipText, brush1)
         brush3 = QBrush(QColor(255, 255, 255, 127))
         brush3.setStyle(Qt.BrushStyle.SolidPattern)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.PlaceholderText, brush3)
-#endif
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Accent, brush1)
-#endif
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Light, brush1)
@@ -126,12 +117,8 @@ class Ui_EntryWidget(object):
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.AlternateBase, brush1)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipBase, brush2)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ToolTipText, brush1)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.PlaceholderText, brush3)
-#endif
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Accent, brush1)
-#endif
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush1)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Light, brush1)
@@ -149,12 +136,8 @@ class Ui_EntryWidget(object):
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ToolTipText, brush1)
         brush4 = QBrush(QColor(0, 0, 0, 127))
         brush4.setStyle(Qt.BrushStyle.SolidPattern)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.PlaceholderText, brush4)
-#endif
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Accent, brush1)
-#endif
         self.pageName.setPalette(palette)
         font = QFont()
         font.setFamilies([u"Segoe UI"])
@@ -187,13 +170,18 @@ class Ui_EntryWidget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btnAdd = QPushButton(self.add)
         self.btnAdd.setObjectName(u"btnAdd")
-        self.btnAdd.setStyleSheet(u"background-color : #2d66e4;\n"
-"font : bold;\n"
+        self.btnAdd.setStyleSheet(u"QPushButton { background-color : #0d6efd;\n"
+"color : #ffffff;\n"
 "border : none;\n"
-"color : white")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #0b5ed7; }\n"
+"QPushButton:pressed { background-color : #0a58ca; }")
+        icon = QIcon()
+        icon.addFile(u":/icons/add.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnAdd.setIcon(icon)
-        self.btnAdd.setIconSize(QSize(12, 12))
+        self.btnAdd.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_2.addWidget(self.btnAdd)
 
@@ -232,33 +220,58 @@ class Ui_EntryWidget(object):
         self.btnSearch.setObjectName(u"btnSearch")
         font1 = QFont()
         font1.setBold(True)
+        font1.setItalic(False)
         self.btnSearch.setFont(font1)
-        self.btnSearch.setStyleSheet(u"background: #2d66e4;\n"
-"color : white;")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+        self.btnSearch.setStyleSheet(u"QPushButton { background-color : #0d6efd;\n"
+"color : #ffffff;\n"
+"border : none;\n"
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #0b5ed7; }\n"
+"QPushButton:pressed { background-color : #0a58ca; }")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/search.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnSearch.setIcon(icon1)
-        self.btnSearch.setIconSize(QSize(12, 12))
+        self.btnSearch.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_5.addWidget(self.btnSearch)
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid #15803d;\n"
-"color : black;\n"
-"")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
+        font2 = QFont()
+        font2.setBold(True)
+        self.btnEdit.setFont(font2)
+        self.btnEdit.setStyleSheet(u"QPushButton { background-color : #198754;\n"
+"color : #ffffff;\n"
+"border : none;\n"
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #157347; }\n"
+"QPushButton:pressed { background-color : #146c43; }")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnEdit.setIcon(icon2)
-        self.btnEdit.setIconSize(QSize(12, 12))
+        self.btnEdit.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_5.addWidget(self.btnEdit)
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setFont(font1)
-        self.btnDelete.setStyleSheet(u"background:#dc4a4a;color:white;")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
+        self.btnDelete.setFont(font2)
+        self.btnDelete.setStyleSheet(u"QPushButton { background-color : #dc3545;\n"
+"color : #ffffff;\n"
+"border : none;\n"
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #bb2d3e; }\n"
+"QPushButton:pressed { background-color : #b02a37; }")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/trash.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnDelete.setIcon(icon3)
-        self.btnDelete.setIconSize(QSize(12, 12))
+        self.btnDelete.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_5.addWidget(self.btnDelete)
 
@@ -293,7 +306,6 @@ class Ui_EntryWidget(object):
         self.retranslateUi(EntryWidget)
 
         QMetaObject.connectSlotsByName(EntryWidget)
-    # setupUi
 
     def retranslateUi(self, EntryWidget):
         EntryWidget.setWindowTitle(QCoreApplication.translate("EntryWidget", u"Form", None))
@@ -315,5 +327,4 @@ class Ui_EntryWidget(object):
         ___qtablewidgetitem3.setText(QCoreApplication.translate("EntryWidget", u"Quantite Entr\u00e9e", None))
         ___qtablewidgetitem4 = self.entryTable.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("EntryWidget", u"Date", None))
-    # retranslateUi
 

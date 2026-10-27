@@ -4,7 +4,6 @@ from PySide6.QtCore import QDate
 from ui_compiled.ui_entry_widget import Ui_EntryWidget
 import db
 from views.entry_dialog import AddEntryDialog
-from ui_compiled.ui_add_entry_dialog import Ui_Dialog
 from utils.table_management import fill_table
 class EntryWidget(QWidget):
     def __init__(self):
@@ -36,24 +35,24 @@ class EntryWidget(QWidget):
     def show_add_dialog(self):
         dialog = AddEntryDialog(self)
         if dialog.exec() == QDialog.Accepted:
-            NumBon, NumProduit, QteEntree, DateEntree = dialog.get_dialog_data()
+            new_num_voucher, new_num_product, new_entry_qty, new_entry_date = dialog.get_dialog_data()
             entry = db.get_entry_pass()
-            bons_existants = [fp.get("NumBon") for fp in entry]
-            produits_existants = [fp.get("NumProduit") for fp in entry]
-            if len(NumBon) < 5 or not NumBon.startswith("BE-"):
+            existing_vouchers = [fp.get("NumBon") for fp in entry]
+            existing_products = [fp.get("NumProduit") for fp in entry]
+            if len(new_num_voucher) < 5 or not new_num_voucher.startswith("BE-"):
                 QMessageBox.warning(self, "Erreur", "Numéro de bon invalide (doit commencer par BE- et faire 5 caractères min).")
                 return
-            if NumBon in bons_existants:
+            if new_num_voucher in existing_vouchers:
                 QMessageBox.warning(self, "Erreur", "Ce numéro de bon existe déjà dans la base !")
                 return
-            if NumProduit not in produits_existants:
-                QMessageBox.warning(self, "Erreur", f"Le produit '{NumProduit}' n'existe pas.")
+            if new_num_product not in existing_products:
+                QMessageBox.warning(self, "Erreur", f"Le produit '{new_num_product}' n'existe pas.")
                 return
-            if len(DateEntree) != 10:
+            if len(new_entry_date) != 10:
                 QMessageBox.warning(self, "Erreur", "Format de date invalide.")
                 return
             try:
-                db.add_entry(NumBon, NumProduit, QteEntree, DateEntree)
+                db.add_entry(new_num_voucher, new_num_product, new_entry_qty, new_entry_date)
                 QMessageBox.information(self, "Succès", "Ajout réussi !")
 
                 self.set_entry_table()
@@ -62,22 +61,22 @@ class EntryWidget(QWidget):
 
     def delete_row(self):
         row = self.ui.entryTable.currentRow()
-        dialog = QMessageBox()
+        dialog = QMessageBox(self)
         dialog.setWindowTitle("Confirmation")
         if row == -1:
             QMessageBox.warning(self , "Attention" , "Veuillez selectionner le bon à supprimer")
             return
         else:
-            num_bon = self.ui.entryTable.item(row , 0).text()
-            num_produit = self.ui.entryTable.item(row , 1).text()
-            qte_entree = self.ui.entryTable.item(row , 3).text()
-            dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_bon}")
+            num_voucher = self.ui.entryTable.item(row , 0).text()
+            num_product = self.ui.entryTable.item(row , 1).text()
+            entry_qty = self.ui.entryTable.item(row , 3).text()
+            dialog.setInformativeText(f"Voulez vous vraiment supprimer le bon {num_voucher}")
             dialog.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
             dialog.setDefaultButton(QMessageBox.StandardButton.No)
               
-            reponse =dialog.exec()
-            if reponse == QMessageBox.StandardButton.Yes:
-                db.delete_entry(num_bon , int(qte_entree), num_produit )
+            answer =dialog.exec()
+            if answer == QMessageBox.StandardButton.Yes:
+                db.delete_entry(num_voucher , int(entry_qty), num_product )
                 self.set_entry_table()
                 QMessageBox.information(self, "Succès", "Suppression réussi !")
     def edit_row(self):
@@ -90,39 +89,39 @@ class EntryWidget(QWidget):
         dialog.ui.numBonInput.setReadOnly(True)
         
 
-        num_bon = self.ui.entryTable.item(row, 0).text()
-        num_produit = self.ui.entryTable.item(row, 1).text()
-        qte_entree = self.ui.entryTable.item(row, 3).text()
+        num_voucher = self.ui.entryTable.item(row, 0).text()
+        num_product = self.ui.entryTable.item(row, 1).text()
+        entry_qty = self.ui.entryTable.item(row, 3).text()
         
 
 
         date_str = self.ui.entryTable.item(row, 4).text()
-        annee, mois, jour = map(int, date_str.split("-"))
+        year, month, day = map(int, date_str.split("-"))
 
 
-        dialog.ui.numBonInput.setText(num_bon)
-        dialog.ui.numProdInput.setText(num_produit)
-        dialog.ui.qteInput.setValue(int(qte_entree))
-        dialog.ui.dateInput.setDate(QDate(annee, mois, jour))
+        dialog.ui.numBonInput.setText(num_voucher)
+        dialog.ui.numProdInput.setText(num_product)
+        dialog.ui.qteInput.setValue(int(entry_qty))
+        dialog.ui.dateInput.setDate(QDate(year, month, day))
 
 
         if dialog.exec() == QDialog.Accepted:
-            NumBon, NumProduit, QteEntree, DateEntree = dialog.get_dialog_data()
+            new_num_voucher, new_num_product, new_entry_qty, new_entry_date = dialog.get_dialog_data()
             entry = db.get_entry_pass()
-            produits_existants = [fp.get("NumProduit") for fp in entry]
-            if (NumProduit == num_produit
-            and str(QteEntree) == str(qte_entree)
-            and str(DateEntree) == str(date_str)):
+            existing_products = [fp.get("NumProduit") for fp in entry]
+            if (new_num_product == num_product
+            and str(new_entry_qty) == str(entry_qty)
+            and str(new_entry_date) == str(date_str)):
                 QMessageBox.warning(self,"Attention","Vous n'avez effectué aucune modification.")
                 return
-            if NumProduit not in produits_existants:
-                QMessageBox.warning(self, "Erreur", f"Le produit '{NumProduit}' n'existe pas.")
+            if new_num_product not in existing_products:
+                QMessageBox.warning(self, "Erreur", f"Le produit '{new_num_product}' n'existe pas.")
                 return
-            if len(DateEntree) != 10:
+            if len(new_entry_date) != 10:
                 QMessageBox.warning(self, "Erreur", "Format de date invalide.")
                 return
             try:
-                db.update_entry(NumBon, NumProduit, QteEntree, DateEntree)
+                db.update_entry(new_num_voucher, new_num_product, new_entry_qty, new_entry_date)
                 self.set_entry_table()
                 QMessageBox.information(self, "Succès", "Modification réussi !")
             except Exception as e:

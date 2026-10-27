@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'add_exit_dialog.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -25,6 +17,8 @@ class Ui_ExitDialog(object):
         if not ExitDialog.objectName():
             ExitDialog.setObjectName(u"ExitDialog")
         ExitDialog.resize(500, 400)
+        ExitDialog.setStyleSheet(u"QDialog { background: #f5f7f9; }\n"
+"QDialogButtonBox QPushButton { min-width: 84px; }")
         ExitDialog.setStyleSheet(u"QLineEdit, QSpinBox , QDateEdit{\n"
 "padding : 8px 16px;\n"
 "border-radius : 8px;\n"
@@ -135,15 +129,13 @@ class Ui_ExitDialog(object):
         self.buttonBox.rejected.connect(ExitDialog.reject)
 
         QMetaObject.connectSlotsByName(ExitDialog)
-    # setupUi
 
     def retranslateUi(self, ExitDialog):
         ExitDialog.setWindowTitle(QCoreApplication.translate("ExitDialog", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("ExitDialog", u"Num\u00e9ro du bon", None))
-        self.numBonInput.setPlaceholderText(QCoreApplication.translate("ExitDialog", u"BE-0000", None))
+        self.numBonInput.setPlaceholderText(QCoreApplication.translate("ExitDialog", u"BS-0000", None))
         self.label_2.setText(QCoreApplication.translate("ExitDialog", u"Num\u00e9ro du produit", None))
         self.numProdInput.setPlaceholderText(QCoreApplication.translate("ExitDialog", u"PRD-0000", None))
-        self.label_3.setText(QCoreApplication.translate("ExitDialog", u"Quantite Sortie", None))
+        self.label_3.setText(QCoreApplication.translate("ExitDialog", u"Quantit\u00e9 de sortie", None))
         self.label_4.setText(QCoreApplication.translate("ExitDialog", u"Date", None))
-    # retranslateUi
 

@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'exit_widget.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -19,12 +11,13 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QHBoxLay
     QHeaderView, QLabel, QLineEdit, QPushButton,
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
+import resources_rc
 
 class Ui_ExitWidget(object):
     def setupUi(self, ExitWidget):
         if not ExitWidget.objectName():
             ExitWidget.setObjectName(u"ExitWidget")
-        ExitWidget.resize(696, 506)
+        ExitWidget.resize(736, 506)
         ExitWidget.setStyleSheet(u"\n"
 "#middle{\n"
 "border-radius : 8px;\n"
@@ -32,7 +25,9 @@ class Ui_ExitWidget(object):
 "background-color : #fff;\n"
 "}\n"
 "#description{\n"
-"color : #abadae\n"
+"color : #abadae;\n"
+"font-size : 10pt;\n"
+"font-weight : 500;\n"
 "}\n"
 "\n"
 "#searchBar{\n"
@@ -111,13 +106,18 @@ class Ui_ExitWidget(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btnAdd = QPushButton(self.add)
         self.btnAdd.setObjectName(u"btnAdd")
-        self.btnAdd.setStyleSheet(u"background-color : #2d66e4;\n"
-"font : bold;\n"
+        self.btnAdd.setStyleSheet(u"QPushButton { background-color : #0d6efd;\n"
+"color : #ffffff;\n"
 "border : none;\n"
-"color : white")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListAdd))
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #0b5ed7; }\n"
+"QPushButton:pressed { background-color : #0a58ca; }")
+        icon = QIcon()
+        icon.addFile(u":/icons/add.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnAdd.setIcon(icon)
-        self.btnAdd.setIconSize(QSize(12, 12))
+        self.btnAdd.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_2.addWidget(self.btnAdd)
 
@@ -154,31 +154,52 @@ class Ui_ExitWidget(object):
 
         self.btnSearch = QPushButton(self.frame)
         self.btnSearch.setObjectName(u"btnSearch")
-        self.btnSearch.setStyleSheet(u"background-color : #2d66e4;\n"
-"font : bold;\n"
+        self.btnSearch.setStyleSheet(u"QPushButton { background-color : #0d6efd;\n"
+"color : #ffffff;\n"
 "border : none;\n"
-"color : white")
-        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #0b5ed7; }\n"
+"QPushButton:pressed { background-color : #0a58ca; }")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/search.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnSearch.setIcon(icon1)
-        self.btnSearch.setIconSize(QSize(12, 12))
+        self.btnSearch.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_5.addWidget(self.btnSearch)
 
         self.btnEdit = QPushButton(self.frame)
         self.btnEdit.setObjectName(u"btnEdit")
-        self.btnEdit.setStyleSheet(u"border : 1px solid #15803d;color : black;")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MailMessageNew))
+        self.btnEdit.setStyleSheet(u"QPushButton { background-color : #198754;\n"
+"color : #ffffff;\n"
+"border : none;\n"
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #157347; }\n"
+"QPushButton:pressed { background-color : #146c43; }")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnEdit.setIcon(icon2)
-        self.btnEdit.setIconSize(QSize(12, 12))
+        self.btnEdit.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_5.addWidget(self.btnEdit)
 
         self.btnDelete = QPushButton(self.frame)
         self.btnDelete.setObjectName(u"btnDelete")
-        self.btnDelete.setStyleSheet(u"background:#dc4a4a;color:white;")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditDelete))
+        self.btnDelete.setStyleSheet(u"QPushButton { background-color : #dc3545;\n"
+"color : #ffffff;\n"
+"border : none;\n"
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #bb2d3e; }\n"
+"QPushButton:pressed { background-color : #b02a37; }")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/trash.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btnDelete.setIcon(icon3)
-        self.btnDelete.setIconSize(QSize(12, 12))
+        self.btnDelete.setIconSize(QSize(17, 17))
 
         self.horizontalLayout_5.addWidget(self.btnDelete)
 
@@ -213,7 +234,6 @@ class Ui_ExitWidget(object):
         self.retranslateUi(ExitWidget)
 
         QMetaObject.connectSlotsByName(ExitWidget)
-    # setupUi
 
     def retranslateUi(self, ExitWidget):
         ExitWidget.setWindowTitle(QCoreApplication.translate("ExitWidget", u"Form", None))
@@ -235,5 +255,4 @@ class Ui_ExitWidget(object):
         ___qtablewidgetitem3.setText(QCoreApplication.translate("ExitWidget", u"Quantite Sortie", None))
         ___qtablewidgetitem4 = self.exitTable.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("ExitWidget", u"Date", None))
-    # retranslateUi
 

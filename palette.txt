@@ -1,7 +1,0 @@
-bg-primary : #f8f8f8 / #f5f7f9
-bg-secondary : #f3f5f7
-accent-light-blue : #2d66e4 (teinte : #ecf3fe)
-accent-purple : #774cff
-texte : #111827
-texte gris : #abadae / #6b7280
-bordures : #e5e7eb (grille tableaux : #eef0f3)

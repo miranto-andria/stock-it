@@ -7,30 +7,45 @@
     <x>0</x>
     <y>0</y>
     <width>811</width>
-    <height>635</height>
+    <height>676</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#MovementWidget { background: #f5f7f9; }
+#MovementWidget #titre { color: #111827; font-size: 18pt; font-weight: 700; }
+#MovementWidget #sous_titre { color: #6b7280; font-size: 9.5pt; }
+#MovementWidget QGroupBox { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; margin-top: 14px; padding: 12px; }
+#MovementWidget QGroupBox::title { color: #2d66e4; font-size: 10pt; font-weight: 700; }
+#MovementWidget #fiche { border-left: 4px solid #2d66e4; }
+#MovementWidget #label_fiche_num, #MovementWidget #label_fiche_design, #MovementWidget #label_fiche_stock, #MovementWidget #label_choix, #MovementWidget #label_mode, #MovementWidget #label_du, #MovementWidget #label_au, #MovementWidget #label_mois, #MovementWidget #label_annee { color: #6b7280; font-size: 9pt; font-weight: 600; }
+#MovementWidget #lbl_num, #MovementWidget #lbl_design, #MovementWidget #lbl_stock { color: #111827; font-size: 11pt; font-weight: 700; }
+#MovementWidget #lbl_stock { color: #2d66e4; font-size: 13pt; }
+#MovementWidget #periode { color: #2d66e4; font-size: 9pt; font-weight: 700; }
+#MovementWidget QDateEdit { background: #ffffff; border: 1px solid #d5dbe3; border-radius: 8px; padding: 6px 8px; }
+#MovementWidget QDateEdit:focus { border-color: #2d66e4; }
+#MovementWidget QDateEdit:disabled { background: #f8f8f8; color: #abadae; border-color: #e5e7eb; }
+#MovementWidget QTableWidget { border-radius: 10px; font-size: 9.5pt; }
+#MovementWidget QHeaderView::section { padding: 10px 8px; font-size: 9pt; }
+#MovementWidget #resume { background: #ffffff; border: 1px solid #dfe7f7; border-radius: 10px; color: #374151; font-size: 10pt; font-weight: 600; padding: 11px 14px; }</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
-    <number>16</number>
+    <number>9</number>
    </property>
    <property name="topMargin">
-    <number>16</number>
+    <number>9</number>
    </property>
    <property name="rightMargin">
-    <number>16</number>
+    <number>9</number>
    </property>
    <property name="bottomMargin">
-    <number>16</number>
+    <number>9</number>
    </property>
-   <property name="horizontalSpacing">
+   <property name="spacing">
     <number>16</number>
-   </property>
-   <property name="verticalSpacing">
-    <number>12</number>
    </property>
    <item row="5" column="0">
     <widget class="QLabel" name="resume">
@@ -43,51 +58,63 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QTableWidget" name="table">
-     <property name="editTriggers">
-      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+    <widget class="QFrame" name="tableCard">
+     <property name="styleSheet">
+      <string notr="true">#tableCard { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; padding: 8px; }</string>
      </property>
-     <property name="alternatingRowColors">
-      <bool>true</bool>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
-     </property>
-     <property name="sortingEnabled">
-      <bool>false</bool>
-     </property>
-     <attribute name="horizontalHeaderStretchLastSection">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderDefaultSectionSize">
-      <number>30</number>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>N° Bon</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Entrée</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Sortie</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Date</string>
-      </property>
-     </column>
+     <layout class="QVBoxLayout" name="tableCardLayout">
+      <item>
+       <widget class="QTableWidget" name="table">
+        <property name="editTriggers">
+         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+        </property>
+        <property name="sortingEnabled">
+         <bool>false</bool>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderDefaultSectionSize">
+         <number>30</number>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>N° Bon</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Entrée</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Sortie</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Date</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="2" column="0">
@@ -97,7 +124,7 @@
        <property name="title">
         <string>Produit recherché</string>
        </property>
-       <layout class="QHBoxLayout" name="ligne_produit" stretch="0,1,0,1">
+       <layout class="QHBoxLayout" name="ligne_produit" stretch="0,1,0">
         <item>
          <widget class="QLabel" name="label_choix">
           <property name="text">
@@ -106,46 +133,38 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="choix_produit">
-          <property name="editable">
-           <bool>true</bool>
+         <widget class="QLineEdit" name="choix_produit">
+          <property name="placeholderText">
+           <string>Code ou désignation du produit</string>
           </property>
-          <property name="insertPolicy">
-           <enum>QComboBox::InsertPolicy::NoInsert</enum>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="btn_rechercher">
           <property name="styleSheet">
-           <string notr="true">background-color : #2d66e4;
-font : bold;
+           <string notr="true">QPushButton { background-color : #0d6efd;
+color : #ffffff;
 border : none;
-color : white</string>
+border-radius : 8px;
+font : bold;
+padding : 12px; }
+QPushButton:hover { background-color : #0b5ed7; }
+QPushButton:pressed { background-color : #0a58ca; }</string>
           </property>
           <property name="text">
            <string>Rechercher</string>
           </property>
           <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::EditFind"/>
+           <iconset resource="../assets/resources.qrc">
+            <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
           </property>
           <property name="primaire" stdset="0">
            <bool>true</bool>
           </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="espace_produit">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -283,13 +302,6 @@ color : white</string>
      </item>
     </layout>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="sous_titre">
-     <property name="text">
-      <string>Consultez les entrées et sorties selon le produit et la période sélectionnés.</string>
-     </property>
-    </widget>
-   </item>
    <item row="3" column="0">
     <widget class="QGroupBox" name="fiche">
      <property name="title">
@@ -355,16 +367,51 @@ color : white</string>
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="titre">
-     <property name="font">
-      <font>
-       <pointsize>22</pointsize>
-       <bold>true</bold>
-      </font>
+    <widget class="QWidget" name="searchBar" native="true">
+     <property name="styleSheet">
+      <string notr="true">#searchBar{background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; 
+padding: 15px;}</string>
      </property>
-     <property name="text">
-      <string>Mouvements de stock d'un produit</string>
-     </property>
+     <layout class="QVBoxLayout" name="headerLayout">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <property name="leftMargin">
+       <number>15</number>
+      </property>
+      <property name="topMargin">
+       <number>15</number>
+      </property>
+      <property name="rightMargin">
+       <number>15</number>
+      </property>
+      <property name="bottomMargin">
+       <number>15</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="titre">
+        <property name="font">
+         <font>
+          <pointsize>18</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Mouvements de stock d'un produit</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="sous_titre">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Consultez les entrées et sorties selon le produit et la période sélectionnés.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="6" column="0">
@@ -385,6 +432,8 @@ color : white</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../assets/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

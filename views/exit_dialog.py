@@ -7,7 +7,7 @@ class AddExitDialog(QDialog):
         super().__init__(parent)
         self.ui = Ui_ExitDialog()
         self.ui.setupUi(self)
-        
+        self.setWindowTitle("Ajout d'un bon de sortie")
     def get_dialog_data(self):
         return [
             self.ui.numBonInput.text(),

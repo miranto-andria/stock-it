@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'movement_widget.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -16,27 +8,51 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QDateEdit,
-    QGridLayout, QGroupBox, QHBoxLayout, QHeaderView,
-    QLabel, QPushButton, QSizePolicy, QSpacerItem,
-    QTableWidget, QTableWidgetItem, QWidget)
+    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
+import resources_rc
 
 class Ui_MovementWidget(object):
     def setupUi(self, MovementWidget):
         if not MovementWidget.objectName():
             MovementWidget.setObjectName(u"MovementWidget")
-        MovementWidget.resize(811, 635)
+        MovementWidget.resize(811, 676)
+        MovementWidget.setStyleSheet(u"#MovementWidget { background: #f5f7f9; }\n"
+"#MovementWidget #titre { color: #111827; font-size: 18pt; font-weight: 700; }\n"
+"#MovementWidget #sous_titre { color: #6b7280; font-size: 9.5pt; }\n"
+"#MovementWidget QGroupBox { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; margin-top: 14px; padding: 12px; }\n"
+"#MovementWidget QGroupBox::title { color: #2d66e4; font-size: 10pt; font-weight: 700; }\n"
+"#MovementWidget #fiche { border-left: 4px solid #2d66e4; }\n"
+"#MovementWidget #label_fiche_num, #MovementWidget #label_fiche_design, #MovementWidget #label_fiche_stock, #MovementWidget #label_choix, #MovementWidget #label_mode, #MovementWidget #label_du, #MovementWidget #label_au, #MovementWidget #label_mois, #MovementWidget #label_annee { color: #6b7280; font-size: 9pt; font-weight: 600; }\n"
+"#MovementWidget #lbl_num, #MovementWidget #lbl_design, #MovementWidget #lbl_stock { color: #111827; font-size: 11pt; font-weight: 700; }\n"
+"#MovementWidget #lbl_stock { color: #2d66e4; fo"
+                        "nt-size: 13pt; }\n"
+"#MovementWidget #periode { color: #2d66e4; font-size: 9pt; font-weight: 700; }\n"
+"#MovementWidget QDateEdit { background: #ffffff; border: 1px solid #d5dbe3; border-radius: 8px; padding: 6px 8px; }\n"
+"#MovementWidget QDateEdit:focus { border-color: #2d66e4; }\n"
+"#MovementWidget QDateEdit:disabled { background: #f8f8f8; color: #abadae; border-color: #e5e7eb; }\n"
+"#MovementWidget QTableWidget { border-radius: 10px; font-size: 9.5pt; }\n"
+"#MovementWidget QHeaderView::section { padding: 10px 8px; font-size: 9pt; }\n"
+"#MovementWidget #resume { background: #ffffff; border: 1px solid #dfe7f7; border-radius: 10px; color: #374151; font-size: 10pt; font-weight: 600; padding: 11px 14px; }")
         self.gridLayout = QGridLayout(MovementWidget)
+        self.gridLayout.setSpacing(16)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setHorizontalSpacing(16)
-        self.gridLayout.setVerticalSpacing(12)
-        self.gridLayout.setContentsMargins(16, 16, 16, 16)
+        self.gridLayout.setContentsMargins(9, 9, 9, 9)
         self.resume = QLabel(MovementWidget)
         self.resume.setObjectName(u"resume")
         self.resume.setTextFormat(Qt.TextFormat.RichText)
 
         self.gridLayout.addWidget(self.resume, 5, 0, 1, 1)
 
-        self.table = QTableWidget(MovementWidget)
+        self.tableCard = QFrame(MovementWidget)
+        self.tableCard.setObjectName(u"tableCard")
+        self.tableCard.setStyleSheet(u"#tableCard { background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; padding: 8px; }")
+        self.tableCard.setFrameShape(QFrame.Shape.StyledPanel)
+        self.tableCardLayout = QVBoxLayout(self.tableCard)
+        self.tableCardLayout.setObjectName(u"tableCardLayout")
+        self.table = QTableWidget(self.tableCard)
         if (self.table.columnCount() < 4):
             self.table.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
@@ -57,7 +73,10 @@ class Ui_MovementWidget(object):
         self.table.verticalHeader().setVisible(False)
         self.table.verticalHeader().setDefaultSectionSize(30)
 
-        self.gridLayout.addWidget(self.table, 4, 0, 1, 1)
+        self.tableCardLayout.addWidget(self.table)
+
+
+        self.gridLayout.addWidget(self.tableCard, 4, 0, 1, 1)
 
         self.haut = QHBoxLayout()
         self.haut.setObjectName(u"haut")
@@ -70,31 +89,30 @@ class Ui_MovementWidget(object):
 
         self.ligne_produit.addWidget(self.label_choix)
 
-        self.choix_produit = QComboBox(self.cadre_produit)
+        self.choix_produit = QLineEdit(self.cadre_produit)
         self.choix_produit.setObjectName(u"choix_produit")
-        self.choix_produit.setEditable(True)
-        self.choix_produit.setInsertPolicy(QComboBox.InsertPolicy.NoInsert)
+        self.choix_produit.setClearButtonEnabled(True)
 
         self.ligne_produit.addWidget(self.choix_produit)
 
         self.btn_rechercher = QPushButton(self.cadre_produit)
         self.btn_rechercher.setObjectName(u"btn_rechercher")
-        self.btn_rechercher.setStyleSheet(u"background-color : #2d66e4;\n"
-"font : bold;\n"
+        self.btn_rechercher.setStyleSheet(u"QPushButton { background-color : #0d6efd;\n"
+"color : #ffffff;\n"
 "border : none;\n"
-"color : white")
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
+"border-radius : 8px;\n"
+"font : bold;\n"
+"padding : 12px; }\n"
+"QPushButton:hover { background-color : #0b5ed7; }\n"
+"QPushButton:pressed { background-color : #0a58ca; }")
+        icon = QIcon()
+        icon.addFile(u":/icons/search.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.btn_rechercher.setIcon(icon)
         self.btn_rechercher.setProperty(u"primaire", True)
 
         self.ligne_produit.addWidget(self.btn_rechercher)
 
-        self.espace_produit = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.ligne_produit.addItem(self.espace_produit)
-
         self.ligne_produit.setStretch(1, 1)
-        self.ligne_produit.setStretch(3, 1)
 
         self.haut.addWidget(self.cadre_produit, 0, Qt.AlignmentFlag.AlignTop)
 
@@ -178,11 +196,6 @@ class Ui_MovementWidget(object):
 
         self.gridLayout.addLayout(self.haut, 2, 0, 1, 1)
 
-        self.sous_titre = QLabel(MovementWidget)
-        self.sous_titre.setObjectName(u"sous_titre")
-
-        self.gridLayout.addWidget(self.sous_titre, 1, 0, 1, 1)
-
         self.fiche = QGroupBox(MovementWidget)
         self.fiche.setObjectName(u"fiche")
         self.fiche_grille = QGridLayout(self.fiche)
@@ -224,14 +237,31 @@ class Ui_MovementWidget(object):
 
         self.gridLayout.addWidget(self.fiche, 3, 0, 1, 1)
 
-        self.titre = QLabel(MovementWidget)
+        self.searchBar = QWidget(MovementWidget)
+        self.searchBar.setObjectName(u"searchBar")
+        self.searchBar.setStyleSheet(u"#searchBar{background: #ffffff; border: 1px solid rgba(171,173,174,102); border-radius: 8px; \n"
+"padding: 15px;}")
+        self.headerLayout = QVBoxLayout(self.searchBar)
+        self.headerLayout.setSpacing(6)
+        self.headerLayout.setObjectName(u"headerLayout")
+        self.headerLayout.setContentsMargins(15, 15, 15, 15)
+        self.titre = QLabel(self.searchBar)
         self.titre.setObjectName(u"titre")
         font = QFont()
-        font.setPointSize(22)
+        font.setPointSize(18)
         font.setBold(True)
         self.titre.setFont(font)
 
-        self.gridLayout.addWidget(self.titre, 0, 0, 1, 1)
+        self.headerLayout.addWidget(self.titre)
+
+        self.sous_titre = QLabel(self.searchBar)
+        self.sous_titre.setObjectName(u"sous_titre")
+        self.sous_titre.setStyleSheet(u"")
+
+        self.headerLayout.addWidget(self.sous_titre)
+
+
+        self.gridLayout.addWidget(self.searchBar, 0, 0, 1, 1)
 
         self.verticalSpacer = QSpacerItem(10, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
 
@@ -241,7 +271,6 @@ class Ui_MovementWidget(object):
         self.retranslateUi(MovementWidget)
 
         QMetaObject.connectSlotsByName(MovementWidget)
-    # setupUi
 
     def retranslateUi(self, MovementWidget):
         MovementWidget.setWindowTitle(QCoreApplication.translate("MovementWidget", u"Form", None))
@@ -256,6 +285,7 @@ class Ui_MovementWidget(object):
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MovementWidget", u"Date", None))
         self.cadre_produit.setTitle(QCoreApplication.translate("MovementWidget", u"Produit recherch\u00e9", None))
         self.label_choix.setText(QCoreApplication.translate("MovementWidget", u"N\u00b0 ou d\u00e9signation :", None))
+        self.choix_produit.setPlaceholderText(QCoreApplication.translate("MovementWidget", u"Code ou d\u00e9signation du produit", None))
         self.btn_rechercher.setText(QCoreApplication.translate("MovementWidget", u"Rechercher", None))
         self.cadre_periode.setTitle(QCoreApplication.translate("MovementWidget", u"P\u00e9riode de consultation", None))
         self.label_mode.setText(QCoreApplication.translate("MovementWidget", u"Mode :", None))
@@ -273,7 +303,6 @@ class Ui_MovementWidget(object):
         self.date_mois.setDisplayFormat(QCoreApplication.translate("MovementWidget", u"MM/yyyy", None))
         self.label_annee.setText(QCoreApplication.translate("MovementWidget", u"Ann\u00e9e :", None))
         self.date_annee.setDisplayFormat(QCoreApplication.translate("MovementWidget", u"yyyy", None))
-        self.sous_titre.setText(QCoreApplication.translate("MovementWidget", u"Consultez les entr\u00e9es et sorties selon le produit et la p\u00e9riode s\u00e9lectionn\u00e9s.", None))
         self.fiche.setTitle(QCoreApplication.translate("MovementWidget", u"Fiche produit", None))
         self.label_fiche_num.setText(QCoreApplication.translate("MovementWidget", u"N\u00b0 Produit :", None))
         self.lbl_num.setText(QCoreApplication.translate("MovementWidget", u"-", None))
@@ -282,5 +311,5 @@ class Ui_MovementWidget(object):
         self.label_fiche_stock.setText(QCoreApplication.translate("MovementWidget", u"Stock actuel :", None))
         self.lbl_stock.setText(QCoreApplication.translate("MovementWidget", u"-", None))
         self.titre.setText(QCoreApplication.translate("MovementWidget", u"Mouvements de stock d'un produit", None))
-    # retranslateUi
+        self.sous_titre.setText(QCoreApplication.translate("MovementWidget", u"Consultez les entr\u00e9es et sorties selon le produit et la p\u00e9riode s\u00e9lectionn\u00e9s.", None))
 

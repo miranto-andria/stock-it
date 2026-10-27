@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Peuplement de 'stock_it' (stdlib uniquement).
 
@@ -27,46 +25,41 @@ except ImportError:
     print("[ERREUR] mysql-connector-python manquant : pip install mysql-connector-python")
     sys.exit(1)
 
-# --- Parametres ---
 DB_HOST = "127.0.0.1"
 DB_PORT = 3306
 DB_USER = "root"
 DB_PASS = ""
 DB_NAME = "stock_it"
 
-NB_PRODUITS     = 25
-MAX_BONS_ENTREE = 3
-MAX_BONS_SORTIE = 3
-SEED            = 42
+PRODUCT_COUNT    = 25
+MAX_ENTRY_VOUCHERS = 3
+MAX_EXIT_VOUCHERS  = 3
+SEED              = 42
 
 random.seed(SEED)
 
-# --- Vocabulaire ---
-MARQUES  = ["Logitech", "HP", "Dell", "Samsung", "Asus", "Lenovo",
+BRANDS = ["Logitech", "HP", "Dell", "Samsung", "Asus", "Lenovo",
             "Canon", "Epson", "TP-Link", "Kingston", "SanDisk", "Acer"]
-OBJETS   = ["Clavier", "Souris", "Ecran", "Cable HDMI", "Disque SSD",
+ITEMS  = ["Clavier", "Souris", "Ecran", "Cable HDMI", "Disque SSD",
             "Cle USB", "Casque", "Webcam", "Imprimante laser", "Switch",
             "Routeur", "Hub USB", "Chargeur", "Batterie", "Adaptateur",
             "Tapis souris", "Support ecran", "Enceinte", "Microphone", "Scanner"]
-COULEURS = ["Noir", "Blanc", "Gris", "Bleu", "Rouge", "Vert",
+COLORS = ["Noir", "Blanc", "Gris", "Bleu", "Rouge", "Vert",
             "Argent", "Or", "Transparent", "Violet", "Orange"]
 SUFFIXES = ["Pro", "Max", "Lite", "Plus", "V2", "V3", "Series X",
             "Edition", "Standard", "Compact", "XL"]
 
 
-# ---------------------------------------------------------------
-# Generateurs
-# ---------------------------------------------------------------
 def gen_design() -> str:
     return " ".join([
-        random.choice(MARQUES),
-        random.choice(OBJETS),
-        random.choice(COULEURS),
+        random.choice(BRANDS),
+        random.choice(ITEMS),
+        random.choice(COLORS),
         random.choice(SUFFIXES),
     ])
 
 
-def gen_num_produit(index: int) -> str:
+def gen_product_number(index: int) -> str:
     return f"PRD-{index:04d}"
 
 
@@ -74,7 +67,7 @@ def _random_code(n: int = 4) -> str:
     return "".join(random.choices(string.ascii_uppercase + string.digits, k=n))
 
 
-def gen_num_bon(prefix: str, used: set) -> str:
+def gen_voucher_number(prefix: str, used: set) -> str:
     while True:
         d = date.today() - timedelta(days=random.randint(0, 365))
         num = f"{prefix}-{d.strftime('%Y%m%d')}-{_random_code(4)}"
@@ -87,9 +80,6 @@ def gen_date_in_past(days_max: int = 365) -> date:
     return date.today() - timedelta(days=random.randint(0, days_max))
 
 
-# ---------------------------------------------------------------
-# Connexion
-# ---------------------------------------------------------------
 def connect():
     try:
         return mysql.connector.connect(
@@ -106,15 +96,11 @@ def connect():
         sys.exit(1)
 
 
-# ---------------------------------------------------------------
-# Peuplement
-# ---------------------------------------------------------------
 def main():
     print(f"[INFO] Connexion a {DB_USER}@{DB_HOST}:{DB_PORT}/{DB_NAME} ...")
     conn = connect()
     cur = conn.cursor()
 
-    # 1) Nettoyage
     print("[INFO] Nettoyage des tables existantes ...")
     cur.execute("SET FOREIGN_KEY_CHECKS = 0")
     cur.execute("TRUNCATE TABLE BondeSortie")
@@ -122,54 +108,50 @@ def main():
     cur.execute("TRUNCATE TABLE Produit")
     cur.execute("SET FOREIGN_KEY_CHECKS = 1")
 
-    produits = []
-    dispo = {}                       # NumProduit -> stock disponible courant
-    bons_entree_used = set()
-    bons_sortie_used = set()
+    products = []
+    available = {}
+    used_entry_vouchers = set()
+    used_exit_vouchers = set()
 
-    # 2) Produits (Stock = 0 initialement, recalcule a la fin)
-    print(f"[INFO] Generation de {NB_PRODUITS} produits ...")
-    for i in range(1, NB_PRODUITS + 1):
-        num = gen_num_produit(i)
+    print(f"[INFO] Generation de {PRODUCT_COUNT} produits ...")
+    for i in range(1, PRODUCT_COUNT + 1):
+        num = gen_product_number(i)
         design = gen_design()
-        produits.append(num)
-        dispo[num] = 0
+        products.append(num)
+        available[num] = 0
         cur.execute(
             "INSERT INTO Produit (NumProduit, Design, Stock) VALUES (%s, %s, 0)",
             (num, design),
         )
 
-    # 3) Bons d'entree
     print("[INFO] Generation des bons d'entree ...")
-    for num_produit in produits:
-        for _ in range(random.randint(1, MAX_BONS_ENTREE)):
-            qte = random.randint(1, 50)
+    for num_product in products:
+        for _ in range(random.randint(1, MAX_ENTRY_VOUCHERS)):
+            qty = random.randint(1, 50)
             d = gen_date_in_past(365)
-            num_bon = gen_num_bon("BE", bons_entree_used)
+            num_voucher = gen_voucher_number("BE", used_entry_vouchers)
             cur.execute(
                 "INSERT INTO BondeEntree (NumBon, NumProduit, QteEntree, DateEntree) "
                 "VALUES (%s, %s, %s, %s)",
-                (num_bon, num_produit, qte, d),
+                (num_voucher, num_product, qty, d),
             )
-            dispo[num_produit] += qte
+            available[num_product] += qty
 
-    # 4) Bons de sortie (jamais > dispo)
     print("[INFO] Generation des bons de sortie ...")
-    for num_produit in produits:
-        for _ in range(random.randint(0, MAX_BONS_SORTIE)):
-            if dispo[num_produit] <= 0:
+    for num_product in products:
+        for _ in range(random.randint(0, MAX_EXIT_VOUCHERS)):
+            if available[num_product] <= 0:
                 break
-            qte = random.randint(1, min(dispo[num_produit], 40))
+            qty = random.randint(1, min(available[num_product], 40))
             d = gen_date_in_past(365)
-            num_bon = gen_num_bon("BS", bons_sortie_used)
+            num_voucher = gen_voucher_number("BS", used_exit_vouchers)
             cur.execute(
                 "INSERT INTO BondeSortie (NumBon, NumProduit, QteSortie, DateSortie) "
                 "VALUES (%s, %s, %s, %s)",
-                (num_bon, num_produit, qte, d),
+                (num_voucher, num_product, qty, d),
             )
-            dispo[num_produit] -= qte
+            available[num_product] -= qty
 
-    # 5) Recalcul du Stock reel (pas de StockInitial dans ce schema)
     print("[INFO] Recalcul du champ Stock ...")
     cur.execute("""
         UPDATE Produit p
@@ -182,20 +164,19 @@ def main():
 
     conn.commit()
 
-    # 6) Resume
     cur.execute("SELECT COUNT(*), COALESCE(SUM(Stock),0) FROM Produit")
-    nb_p, total_stock = cur.fetchone()
+    product_count, total_stock = cur.fetchone()
     cur.execute("SELECT COUNT(*), COALESCE(SUM(QteEntree),0) FROM BondeEntree")
-    nb_be, total_be = cur.fetchone()
+    entry_count, total_entry = cur.fetchone()
     cur.execute("SELECT COUNT(*), COALESCE(SUM(QteSortie),0) FROM BondeSortie")
-    nb_bs, total_bs = cur.fetchone()
+    exit_count, total_exit = cur.fetchone()
 
     print("\n" + "=" * 50)
     print("  RESUME DU PEUPLEMENT")
     print("=" * 50)
-    print(f"  Produits       : {nb_p:>4}   (stock cumule : {total_stock})")
-    print(f"  Bons d'entree  : {nb_be:>4}   (quantite    : {total_be})")
-    print(f"  Bons de sortie : {nb_bs:>4}   (quantite    : {total_bs})")
+    print(f"  Produits       : {product_count:>4}   (stock cumule : {total_stock})")
+    print(f"  Bons d'entree  : {entry_count:>4}   (quantite    : {total_entry})")
+    print(f"  Bons de sortie : {exit_count:>4}   (quantite    : {total_exit})")
     print("=" * 50)
     print(f"[SUCCES] Base '{DB_NAME}' peuplee.")
 

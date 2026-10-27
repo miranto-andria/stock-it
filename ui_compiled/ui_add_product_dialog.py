@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'add_product_dialog.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -19,12 +11,14 @@ from PySide6.QtWidgets import (QAbstractButton, QAbstractSpinBox, QApplication, 
     QDialogButtonBox, QFrame, QLabel, QLineEdit,
     QSizePolicy, QSpinBox, QVBoxLayout, QWidget)
 
-class Ui_prodDialog(object):
-    def setupUi(self, prodDialog):
-        if not prodDialog.objectName():
-            prodDialog.setObjectName(u"prodDialog")
-        prodDialog.resize(500, 400)
-        prodDialog.setStyleSheet(u"QLineEdit, QSpinBox , QDateEdit{\n"
+class Ui_ProdDialog(object):
+    def setupUi(self, ProdDialog):
+        if not ProdDialog.objectName():
+            ProdDialog.setObjectName(u"ProdDialog")
+        ProdDialog.resize(500, 400)
+        ProdDialog.setStyleSheet(u"QDialog { background: #f5f7f9; }\n"
+"QDialogButtonBox QPushButton { min-width: 84px; }")
+        ProdDialog.setStyleSheet(u"QLineEdit, QSpinBox , QDateEdit{\n"
 "padding : 8px 16px;\n"
 "border-radius : 8px;\n"
 "}\n"
@@ -32,9 +26,9 @@ class Ui_prodDialog(object):
 "QLabel{\n"
 "font-size : 14px\n"
 "}")
-        self.verticalLayout_5 = QVBoxLayout(prodDialog)
+        self.verticalLayout_5 = QVBoxLayout(ProdDialog)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.frame = QFrame(prodDialog)
+        self.frame = QFrame(ProdDialog)
         self.frame.setObjectName(u"frame")
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
@@ -54,7 +48,7 @@ class Ui_prodDialog(object):
 
         self.verticalLayout_5.addWidget(self.frame)
 
-        self.frame_2 = QFrame(prodDialog)
+        self.frame_2 = QFrame(ProdDialog)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
@@ -74,7 +68,7 @@ class Ui_prodDialog(object):
 
         self.verticalLayout_5.addWidget(self.frame_2)
 
-        self.frame_3 = QFrame(prodDialog)
+        self.frame_3 = QFrame(ProdDialog)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
@@ -97,7 +91,7 @@ class Ui_prodDialog(object):
 
         self.verticalLayout_5.addWidget(self.frame_3)
 
-        self.buttonBox = QDialogButtonBox(prodDialog)
+        self.buttonBox = QDialogButtonBox(ProdDialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
@@ -105,20 +99,18 @@ class Ui_prodDialog(object):
         self.verticalLayout_5.addWidget(self.buttonBox)
 
 
-        self.retranslateUi(prodDialog)
-        self.buttonBox.accepted.connect(prodDialog.accept)
-        self.buttonBox.rejected.connect(prodDialog.reject)
+        self.retranslateUi(ProdDialog)
+        self.buttonBox.accepted.connect(ProdDialog.accept)
+        self.buttonBox.rejected.connect(ProdDialog.reject)
 
-        QMetaObject.connectSlotsByName(prodDialog)
-    # setupUi
+        QMetaObject.connectSlotsByName(ProdDialog)
 
-    def retranslateUi(self, prodDialog):
-        prodDialog.setWindowTitle(QCoreApplication.translate("prodDialog", u"Dialog", None))
-        self.label.setText(QCoreApplication.translate("prodDialog", u"Num\u00e9ro du produit", None))
+    def retranslateUi(self, ProdDialog):
+        ProdDialog.setWindowTitle(QCoreApplication.translate("ProdDialog", u"Dialog", None))
+        self.label.setText(QCoreApplication.translate("ProdDialog", u"Num\u00e9ro du produit", None))
         self.numProdInput.setText("")
         self.numProdInput.setPlaceholderText("")
-        self.label_2.setText(QCoreApplication.translate("prodDialog", u"Designation", None))
-        self.designationInput.setPlaceholderText(QCoreApplication.translate("prodDialog", u"Riz", None))
-        self.label_3.setText(QCoreApplication.translate("prodDialog", u"Stock", None))
-    # retranslateUi
+        self.label_2.setText(QCoreApplication.translate("ProdDialog", u"D\u00e9signation", None))
+        self.designationInput.setPlaceholderText(QCoreApplication.translate("ProdDialog", u"Riz", None))
+        self.label_3.setText(QCoreApplication.translate("ProdDialog", u"Stock", None))
 

@@ -14,6 +14,10 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
+   <string notr="true">QDialog { background: #f5f7f9; }
+QDialogButtonBox QPushButton { min-width: 84px; }</string>
+  </property>
+  <property name="styleSheet">
    <string notr="true">QLineEdit, QSpinBox , QDateEdit{
 padding : 8px 16px;
 border-radius : 8px;
@@ -46,7 +50,7 @@ font-size : 14px
       <item>
        <widget class="QLineEdit" name="numBonInput">
         <property name="placeholderText">
-         <string>BE-0000</string>
+         <string>BS-0000</string>
         </property>
        </widget>
       </item>
@@ -97,7 +101,7 @@ font-size : 14px
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Quantite Sortie</string>
+         <string>Quantité de sortie</string>
         </property>
        </widget>
       </item>

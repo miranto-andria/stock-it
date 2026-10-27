@@ -7,7 +7,6 @@ from views.exit_widget import ExitWidget
 from views.stock_widget import StockWidget
 from views.movement_widget import MovementWidget
 from views.product_widget import ProductWidget
-from views.stock_widget import StockWidget
 
 
 class MainWindow(QMainWindow):

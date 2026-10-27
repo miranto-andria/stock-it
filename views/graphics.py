@@ -143,7 +143,7 @@ class HistogramWidget(BaseChart):
         bar_set.setColor(QColor(BAR_COLOR))
         bar_set.setBorderColor(QColor(BAR_BORDER_COLOR))
         bar_set.setLabelFont(self._axis_font())
-        bar_set.setLabelColor(QColor(TEXT_COLOR))
+        bar_set.setLabelColor(QColor("#ffffff"))
 
         for _, value in self._data:
             bar_set.append(value)
@@ -234,10 +234,10 @@ class PieChartWidget(BaseChart):
 
         chart.addSeries(series)
 
-        for marqueur, (label, _valeur) in zip(
+        for marker, (label, _value) in zip(
             chart.legend().markers(series), positive_data
         ):
-            marqueur.setLabel(str(label))
+            marker.setLabel(str(label))
 
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignmentFlag.AlignBottom)

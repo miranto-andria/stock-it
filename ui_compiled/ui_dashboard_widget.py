@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
 
-################################################################################
-## Form generated from reading UI file 'dashboard_widget.ui'
-##
-## Created by: Qt User Interface Compiler version 6.12.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
@@ -27,7 +19,17 @@ class Ui_Dashboard(object):
         if not Dashboard.objectName():
             Dashboard.setObjectName(u"Dashboard")
         Dashboard.resize(837, 636)
-        Dashboard.setStyleSheet(u"")
+        Dashboard.setStyleSheet(u"#Dashboard { background: #f5f7f9; }\n"
+"#Dashboard #frame { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }\n"
+"#Dashboard #label { color: #111827; font-size: 18pt; font-weight: 700; }\n"
+"#Dashboard #stats { color: #6b7280; font-size: 9.5pt; font-weight: 600; }\n"
+"#carte_produits, #carte_stock, #carte_entrees, #carte_sorties { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; }\n"
+"#cadre_histogramme, #cadre_camembert { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; }\n"
+"QLabel#tile_ico_produits, QLabel#tile_ico_stock, QLabel#tile_ico_entrees, QLabel#tile_ico_sorties { background: #e8effc; border-radius: 10px; }\n"
+"QLabel#titre_produits, QLabel#titre_stock, QLabel#titre_entrees, QLabel#titre_sorties { font-size: 9pt; font-weight: 600; color: #6b7280; }\n"
+"QLabel#valeur_produits, QLabel#valeur_stock, QLabel#valeur_entrees, QLabel#valeur_sorties { font-size: 22pt; font-weight: 700; color: #111827; }\n"
+"#derniers_mouvements { background: #fffff"
+                        "f; border: 1px solid #e5e7eb; border-radius: 8px; font-family: Consolas; font-size: 9pt; }")
         self.verticalLayout_2 = QVBoxLayout(Dashboard)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame = QFrame(Dashboard)
@@ -257,7 +259,6 @@ class Ui_Dashboard(object):
         self.retranslateUi(Dashboard)
 
         QMetaObject.connectSlotsByName(Dashboard)
-    # setupUi
 
     def retranslateUi(self, Dashboard):
         Dashboard.setWindowTitle(QCoreApplication.translate("Dashboard", u"Form", None))
@@ -276,5 +277,4 @@ class Ui_Dashboard(object):
         self.titre_sorties.setText(QCoreApplication.translate("Dashboard", u"Bons de sortie", None))
         self.valeur_sorties.setText(QCoreApplication.translate("Dashboard", u"0", None))
         self.bloc_mouvements.setTitle(QCoreApplication.translate("Dashboard", u"Derniers mouvements enregistr\u00e9s", None))
-    # retranslateUi
 

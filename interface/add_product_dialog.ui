@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>prodDialog</class>
- <widget class="QDialog" name="prodDialog">
+ <class>ProdDialog</class>
+ <widget class="QDialog" name="ProdDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,6 +12,10 @@
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { background: #f5f7f9; }
+QDialogButtonBox QPushButton { min-width: 84px; }</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QLineEdit, QSpinBox , QDateEdit{
@@ -71,7 +75,7 @@ font-size : 14px
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Designation</string>
+         <string>Désignation</string>
         </property>
        </widget>
       </item>
@@ -137,7 +141,7 @@ font-size : 14px
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>prodDialog</receiver>
+   <receiver>ProdDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -153,7 +157,7 @@ font-size : 14px
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>prodDialog</receiver>
+   <receiver>ProdDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
